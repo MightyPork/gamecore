@@ -21,12 +21,14 @@ import mightypork.utils.math.constraints.vect.proxy.VectAdapter;
  */
 public class LinearLayout extends LayoutComponent {
 	
-	public LinearLayout(AlignX align) {
+	public LinearLayout(AlignX align)
+	{
 		this.align = align;
 	}
 	
 	
-	public LinearLayout(RectBound context, AlignX align) {
+	public LinearLayout(RectBound context, AlignX align)
+	{
 		super(context);
 		this.align = align;
 	}

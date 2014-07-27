@@ -43,7 +43,8 @@ public class AsyncResourceLoader extends Thread implements ResourceLoader, Destr
 	}
 	
 	
-	public AsyncResourceLoader() {
+	public AsyncResourceLoader()
+	{
 		super("Deferred loader");
 	}
 	

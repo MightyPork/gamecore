@@ -20,7 +20,8 @@ public class ResourceLoadRequest extends BusEvent<ResourceLoader> {
 	/**
 	 * @param resource resource to load
 	 */
-	public ResourceLoadRequest(DeferredResource resource) {
+	public ResourceLoadRequest(DeferredResource resource)
+	{
 		this.resource = resource;
 	}
 	

@@ -77,7 +77,7 @@ public class InitTaskDisplay extends InitTask {
 	@Override
 	public void run()
 	{
-		GraphicsModule gfx = app.getBackend().getGraphics();
+		final GraphicsModule gfx = app.getBackend().getGraphics();
 		
 		gfx.setSize(width, height);
 		gfx.setResizable(resizable);

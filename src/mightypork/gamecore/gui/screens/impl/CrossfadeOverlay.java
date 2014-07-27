@@ -40,7 +40,8 @@ public class CrossfadeOverlay extends Overlay {
 	};
 	
 	
-	public CrossfadeOverlay() {
+	public CrossfadeOverlay()
+	{
 		final QuadPainter qp = new QuadPainter(RGB.BLACK); // TODO allow custom colors
 		qp.setRect(root);
 		root.add(qp);

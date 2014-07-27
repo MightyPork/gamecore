@@ -23,7 +23,8 @@ public class MouseMotionEvent extends BusEvent<MouseMotionHandler> {
 	 * @param pos end pos
 	 * @param move move vector
 	 */
-	public MouseMotionEvent(Vect pos, Vect move) {
+	public MouseMotionEvent(Vect pos, Vect move)
+	{
 		this.move = move.freeze();
 		this.pos = pos.freeze();
 	}

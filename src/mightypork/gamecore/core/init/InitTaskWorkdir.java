@@ -26,14 +26,15 @@ public class InitTaskWorkdir extends InitTask {
 	private File workdirPath;
 	private boolean doLock;
 	private String lockFile = ".lock";
-	private Map<String, String> namedPaths = new HashMap<>();
+	private final Map<String, String> namedPaths = new HashMap<>();
 	
 	
 	/**
 	 * @param workdir path to the working directory
 	 * @param lock whether to lock the directory (single instance mode)
 	 */
-	public InitTaskWorkdir(File workdir, boolean lock) {
+	public InitTaskWorkdir(File workdir, boolean lock)
+	{
 		this.workdirPath = workdir;
 		this.doLock = lock;
 	}
@@ -99,7 +100,7 @@ public class InitTaskWorkdir extends InitTask {
 			}
 		}
 		
-		for (Entry<String, String> e : namedPaths.entrySet()) {
+		for (final Entry<String, String> e : namedPaths.entrySet()) {
 			WorkDir.addPath(e.getKey(), e.getValue());
 		}
 	}

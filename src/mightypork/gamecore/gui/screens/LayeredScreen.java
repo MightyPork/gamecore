@@ -46,7 +46,8 @@ public abstract class LayeredScreen extends Screen {
 	private final LayersClient layersClient = new LayersClient();
 	
 	
-	public LayeredScreen() {
+	public LayeredScreen()
+	{
 		addChildClient(layersClient);
 	}
 	

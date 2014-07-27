@@ -52,7 +52,8 @@ public abstract class LinearComponent extends BaseComponent implements DynamicWi
 	private Num height;
 	
 	
-	public LinearComponent() {
+	public LinearComponent()
+	{
 		super.setRect(rect);
 	}
 	

@@ -18,7 +18,8 @@ import mightypork.utils.eventbus.events.flags.NonRejectableEvent;
 @NonRejectableEvent
 public class LayoutChangeEvent extends BusEvent<LayoutChangeListener> {
 	
-	public LayoutChangeEvent() {
+	public LayoutChangeEvent()
+	{
 	}
 	
 	

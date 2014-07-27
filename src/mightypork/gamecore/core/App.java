@@ -39,7 +39,8 @@ public class App extends BusNode {
 	 * 
 	 * @param backend
 	 */
-	public App(AppBackend backend) {
+	public App(AppBackend backend)
+	{
 		if (App.instance != null) {
 			throw new IllegalStateException("App already initialized");
 		}
@@ -125,9 +126,9 @@ public class App extends BusNode {
 		Log.i("=== Starting initialization sequence ===");
 		
 		// sort initializers by order.
-		List<InitTask> orderedInitializers = InitTask.inOrder(initializers);
+		final List<InitTask> orderedInitializers = InitTask.inOrder(initializers);
 		
-		for (InitTask initializer : orderedInitializers) {
+		for (final InitTask initializer : orderedInitializers) {
 			Log.f1("Running init task \"" + initializer.getName() + "\"...");
 			initializer.bind(this);
 			initializer.init();

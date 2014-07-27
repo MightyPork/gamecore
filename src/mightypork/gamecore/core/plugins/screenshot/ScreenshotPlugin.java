@@ -26,7 +26,7 @@ public class ScreenshotPlugin extends AppPlugin {
 			@Override
 			public void run()
 			{
-				Runnable tts = new TaskTakeScreenshot();
+				final Runnable tts = new TaskTakeScreenshot();
 				Support.runAsThread(tts);
 			}
 		}));

@@ -18,10 +18,11 @@ import mightypork.utils.logging.Log;
  */
 public class ShutdownEvent extends BusEvent<ShutdownListener> {
 	
-	private Runnable shutdownTask;
+	private final Runnable shutdownTask;
 	
 	
-	public ShutdownEvent(Runnable doShutdown) {
+	public ShutdownEvent(Runnable doShutdown)
+	{
 		this.shutdownTask = doShutdown;
 	}
 	

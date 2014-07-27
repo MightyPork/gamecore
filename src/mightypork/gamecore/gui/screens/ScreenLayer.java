@@ -17,7 +17,8 @@ public abstract class ScreenLayer extends Overlay {
 	/**
 	 * @param screen parent screen
 	 */
-	public ScreenLayer(Screen screen) {
+	public ScreenLayer(Screen screen)
+	{
 		this.screen = screen;
 	}
 	

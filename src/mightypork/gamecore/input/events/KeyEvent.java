@@ -1,14 +1,13 @@
 package mightypork.gamecore.input.events;
 
 
+import mightypork.gamecore.input.Keys;
 import mightypork.utils.eventbus.BusEvent;
 import mightypork.utils.eventbus.events.flags.NotLoggedEvent;
 
-import org.lwjgl.input.Keyboard;
-
 
 /**
- * A keyboard event
+ * A keyboard event FIXME Should use Key class, not keycode.
  * 
  * @author Ondřej Hruška (MightyPork)
  */
@@ -25,7 +24,8 @@ public class KeyEvent extends BusEvent<KeyEventHandler> {
 	 * @param c typed char (can be zero char)
 	 * @param down true = pressed, false = released.
 	 */
-	public KeyEvent(int key, char c, boolean down) {
+	public KeyEvent(int key, char c, boolean down)
+	{
 		this.key = key;
 		this.c = c;
 		this.down = down;
@@ -33,7 +33,7 @@ public class KeyEvent extends BusEvent<KeyEventHandler> {
 	
 	
 	/**
-	 * @return key code (see {@link org.lwjgl.input.Keyboard})
+	 * @return key code
 	 */
 	public int getKey()
 	{
@@ -78,7 +78,8 @@ public class KeyEvent extends BusEvent<KeyEventHandler> {
 	@Override
 	public String toString()
 	{
-		return Keyboard.getKeyName(key) + ":" + (down ? "DOWN" : "UP");
+		// FIXME
+		return Keys.codeToKey(key).getName() + ":" + (down ? "DOWN" : "UP");
 	}
 	
 }

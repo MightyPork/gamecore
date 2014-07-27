@@ -26,7 +26,8 @@ public class TaskTakeScreenshot implements Runnable {
 	/**
 	 * Take screenshot. Must be called in render thread.
 	 */
-	public TaskTakeScreenshot() {
+	public TaskTakeScreenshot()
+	{
 		scr = App.gfx().takeScreenshot();
 	}
 	

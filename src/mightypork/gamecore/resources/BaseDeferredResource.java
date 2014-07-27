@@ -27,7 +27,8 @@ public abstract class BaseDeferredResource implements DeferredResource, Destroya
 	 * @param resource resource path / name; this string is later used in
 	 *            loadResource()
 	 */
-	public BaseDeferredResource(String resource) {
+	public BaseDeferredResource(String resource)
+	{
 		this.resource = resource;
 	}
 	

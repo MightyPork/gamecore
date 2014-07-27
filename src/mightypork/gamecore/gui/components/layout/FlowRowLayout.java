@@ -26,7 +26,8 @@ public class FlowRowLayout extends LayoutComponent {
 	 * @param elementHeight height of all elements
 	 * @param align component align. Legal values are TOP and BOTTOM.
 	 */
-	public FlowRowLayout(RectBound context, Num elementHeight, AlignY align) {
+	public FlowRowLayout(RectBound context, Num elementHeight, AlignY align)
+	{
 		super(context);
 		this.elementHeight = elementHeight;
 		this.align = align;
@@ -44,7 +45,8 @@ public class FlowRowLayout extends LayoutComponent {
 	 * @param elementHeight height of all elements
 	 * @param align component align. Legal values are TOP and BOTTOM.
 	 */
-	public FlowRowLayout(Num elementHeight, AlignY align) {
+	public FlowRowLayout(Num elementHeight, AlignY align)
+	{
 		this(null, elementHeight, align);
 	}
 	

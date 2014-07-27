@@ -85,23 +85,23 @@ public abstract class InitTask {
 	 */
 	public static List<InitTask> inOrder(List<InitTask> tasks)
 	{
-		List<InitTask> remaining = new ArrayList<>(tasks);
+		final List<InitTask> remaining = new ArrayList<>(tasks);
 		
-		List<InitTask> ordered = new ArrayList<>();
-		Set<String> loaded = new HashSet<>();
+		final List<InitTask> ordered = new ArrayList<>();
+		final Set<String> loaded = new HashSet<>();
 		
 		// resolve task order
 		int addedThisIteration = 0;
 		do {
-			for (Iterator<InitTask> i = remaining.iterator(); i.hasNext();) {
-				InitTask task = i.next();
+			for (final Iterator<InitTask> i = remaining.iterator(); i.hasNext();) {
+				final InitTask task = i.next();
 				
 				String[] deps = task.getDependencies();
 				if (deps == null) deps = new String[] {};
 				
 				int unmetDepsCount = deps.length;
 				
-				for (String d : deps) {
+				for (final String d : deps) {
 					if (loaded.contains(d)) unmetDepsCount--;
 				}
 				
@@ -119,7 +119,7 @@ public abstract class InitTask {
 			
 			// build error message for each bad task
 			int badInitializers = 0;
-			for (InitTask task : remaining) {
+			for (final InitTask task : remaining) {
 				if (Reflect.hasAnnotation(task.getClass(), OptionalInitTask.class)) {
 					continue;
 				}
@@ -128,7 +128,7 @@ public abstract class InitTask {
 				
 				String notSatisfied = "";
 				
-				for (String d : task.getDependencies()) {
+				for (final String d : task.getDependencies()) {
 					if (!loaded.contains(d)) {
 						
 						if (!notSatisfied.isEmpty()) {

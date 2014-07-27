@@ -19,7 +19,8 @@ public class ScreenRequest extends BusEvent<ScreenRequestListener> {
 	/**
 	 * @param screenKey screen name
 	 */
-	public ScreenRequest(String screenKey) {
+	public ScreenRequest(String screenKey)
+	{
 		scrName = screenKey;
 	}
 	

@@ -21,7 +21,8 @@ public class KeyStroke {
 	 * @param key key code
 	 * @param modmask modifiers
 	 */
-	public KeyStroke(Key key, int modmask) {
+	public KeyStroke(Key key, int modmask)
+	{
 		setTo(key, modmask);
 	}
 	
@@ -46,7 +47,8 @@ public class KeyStroke {
 	 * 
 	 * @param key key
 	 */
-	public KeyStroke(Key key) {
+	public KeyStroke(Key key)
+	{
 		this(key, Keys.MOD_NONE);
 	}
 	

@@ -163,16 +163,16 @@ public class Keys {
 		NONE.setCode(0);
 		
 		// Use reflection to find keys
-		Field[] fields = Keys.class.getFields();
+		final Field[] fields = Keys.class.getFields();
 		try {
-			for (Field field : fields) {
-				int modifiers = field.getModifiers();
+			for (final Field field : fields) {
+				final int modifiers = field.getModifiers();
 				if (Modifier.isStatic(modifiers) && Modifier.isPublic(modifiers) && Modifier.isFinal(modifiers) && field.getType().equals(Key.class)) {
 					
 					keyList.add((Key) field.get(null));
 				}
 			}
-		} catch (Exception e) {}
+		} catch (final Exception e) {}
 	}
 	
 	
@@ -185,7 +185,7 @@ public class Keys {
 		
 		lookupByCode.put(NONE.getCode(), NONE);
 		
-		for (Key k : keyList) {
+		for (final Key k : keyList) {
 			if (!k.isDefined()) continue;
 			if (!lookupByCode.containsKey(k.getCode())) {
 				lookupByCode.put(k.getCode(), k);
@@ -207,7 +207,7 @@ public class Keys {
 	 */
 	public static Key stringToKey(String keyStr)
 	{
-		for (Key k : keyList) {
+		for (final Key k : keyList) {
 			if (k.matches(keyStr)) return k;
 		}
 		
@@ -350,7 +350,7 @@ public class Keys {
 	{
 		int mods = 0;
 		
-		InputModule inp = App.input();
+		final InputModule inp = App.input();
 		
 		if (inp.isKeyDown(Keys.ALT_LEFT) || inp.isKeyDown(Keys.ALT_RIGHT)) {
 			mods |= Keys.MOD_ALT;

@@ -17,7 +17,8 @@ import mightypork.utils.config.propmgr.Property;
  */
 public class KeyStrokeProperty extends Property<KeyStroke> {
 	
-	public KeyStrokeProperty(String key, KeyStroke defaultValue, String comment) {
+	public KeyStrokeProperty(String key, KeyStroke defaultValue, String comment)
+	{
 		super(key, defaultValue, comment);
 	}
 	

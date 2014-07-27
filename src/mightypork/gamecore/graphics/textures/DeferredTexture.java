@@ -23,7 +23,8 @@ public abstract class DeferredTexture extends BaseDeferredResource implements IT
 	/**
 	 * @param resourcePath resource path
 	 */
-	public DeferredTexture(String resourcePath) {
+	public DeferredTexture(String resourcePath)
+	{
 		super(resourcePath);
 	}
 	

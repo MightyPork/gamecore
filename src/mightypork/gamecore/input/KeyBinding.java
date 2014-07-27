@@ -23,7 +23,8 @@ public class KeyBinding implements KeyEventHandler {
 	 * @param stroke trigger keystroke
 	 * @param handler action
 	 */
-	public KeyBinding(KeyStroke stroke, Trigger edge, Runnable handler) {
+	public KeyBinding(KeyStroke stroke, Trigger edge, Runnable handler)
+	{
 		this.keystroke = stroke;
 		this.handler = handler;
 		this.edge = edge;

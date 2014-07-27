@@ -20,7 +20,8 @@ public abstract class DeferredAudio extends BaseDeferredResource implements IAud
 	 * 
 	 * @param resourceName resource to load (when needed)
 	 */
-	public DeferredAudio(String resourceName) {
+	public DeferredAudio(String resourceName)
+	{
 		super(resourceName);
 	}
 	

@@ -32,7 +32,8 @@ public class TextButton extends ClickableComponent implements DynamicWidthCompon
 	private boolean hoverMove = true;
 	
 	
-	public TextButton(IFont font, String text, Color color) {
+	public TextButton(IFont font, String text, Color color)
+	{
 		this.color = color;
 		
 		this.textPainter = new TextPainter(font, AlignX.CENTER, this.color, text);

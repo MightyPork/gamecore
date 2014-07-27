@@ -23,9 +23,9 @@ public class Config {
 	
 	protected static Map<String, Config> configs = new HashMap<>();
 	
-	private Map<String, KeyStrokeProperty> strokes = new HashMap<>();
+	private final Map<String, KeyStrokeProperty> strokes = new HashMap<>();
 	
-	private PropertyManager propertyManager;
+	private final PropertyManager propertyManager;
 	
 	
 	/**
@@ -36,7 +36,7 @@ public class Config {
 	 */
 	public static Config forAlias(String alias)
 	{
-		Config c = configs.get(alias);
+		final Config c = configs.get(alias);
 		
 		if (c == null) {
 			throw new IllegalArgumentException("There is no config with alias \"" + alias + "\"");
@@ -68,7 +68,8 @@ public class Config {
 	 * @param file config file, relative to workdir
 	 * @param headComment file comment
 	 */
-	public Config(String file, String headComment) {
+	public Config(String file, String headComment)
+	{
 		this(new PropertyFile(WorkDir.getFile(file), headComment));
 	}
 	
@@ -78,11 +79,8 @@ public class Config {
 	 * 
 	 * @param store property store backing the property manager
 	 */
-	public Config(PropertyStore store) {
-		if (propertyManager != null) {
-			throw new IllegalStateException("Config already initialized.");
-		}
-		
+	public Config(PropertyStore store)
+	{		
 		propertyManager = new PropertyManager(store);
 	}
 	

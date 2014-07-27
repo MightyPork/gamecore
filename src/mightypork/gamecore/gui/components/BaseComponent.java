@@ -33,7 +33,8 @@ public abstract class BaseComponent extends AbstractRectCache implements Compone
 	private Num alphaMul = Num.ONE;
 	
 	
-	public BaseComponent() {
+	public BaseComponent()
+	{
 		enableCaching(false);
 	}
 	

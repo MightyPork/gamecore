@@ -15,14 +15,16 @@ public abstract class LayoutComponent extends BaseComponent implements ClientHub
 	final LinkedList<Component> components = new LinkedList<>();
 	
 	
-	public LayoutComponent(RectBound context) {
+	public LayoutComponent(RectBound context)
+	{
 		this.clientList = new DelegatingList();
 		setRect(context);
 		enableCaching(true); // layout is typically updated only when screen resizes.
 	}
 	
 	
-	public LayoutComponent() {
+	public LayoutComponent()
+	{
 		this(null);
 	}
 	

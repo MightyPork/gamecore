@@ -18,7 +18,8 @@ public class InitTaskPluginScreenshot extends InitTask {
 	/**
 	 * Initialize to use the "screenshots" directory
 	 */
-	public InitTaskPluginScreenshot() {
+	public InitTaskPluginScreenshot()
+	{
 		this("screenshots");
 	}
 	
@@ -28,7 +29,8 @@ public class InitTaskPluginScreenshot extends InitTask {
 	 * 
 	 * @param dir screenshot dir (relative to workdir)
 	 */
-	public InitTaskPluginScreenshot(String dir) {
+	public InitTaskPluginScreenshot(String dir)
+	{
 		this.screenshotDir = dir;
 	}
 	

@@ -28,14 +28,15 @@ public class Key {
 	 * @param name key name (primary alias)
 	 * @param aliases extra aliases (used for matching)
 	 */
-	public Key(String name, String... aliases) {
+	public Key(String name, String... aliases)
+	{
 		
 		// assign name and aliases, converting both to uppercase
 		
 		this.name = name;
 		this.aliases.add(prepareForMatch(name));
 		
-		for (String al : aliases) {
+		for (final String al : aliases) {
 			this.aliases.add(prepareForMatch(al));
 		}
 	}

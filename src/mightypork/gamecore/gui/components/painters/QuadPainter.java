@@ -36,7 +36,8 @@ public class QuadPainter extends BaseComponent {
 	 * 
 	 * @param color
 	 */
-	public QuadPainter(Color color) {
+	public QuadPainter(Color color)
+	{
 		this.grad = new Grad(color, color, color, color);
 	}
 	
@@ -49,7 +50,8 @@ public class QuadPainter extends BaseComponent {
 	 * @param leftBottom
 	 * @param rightBottom
 	 */
-	public QuadPainter(Color leftTop, Color rightTop, Color leftBottom, Color rightBottom) {
+	public QuadPainter(Color leftTop, Color rightTop, Color leftBottom, Color rightBottom)
+	{
 		this.grad = new Grad(leftTop, rightTop, rightBottom, leftBottom);
 	}
 	

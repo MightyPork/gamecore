@@ -12,7 +12,8 @@ public class LayerColor extends ScreenLayer {
 	private final int zIndex;
 	
 	
-	public LayerColor(Screen screen, Color color, int zIndex) {
+	public LayerColor(Screen screen, Color color, int zIndex)
+	{
 		super(screen);
 		
 		final QuadPainter qp = new QuadPainter(color);

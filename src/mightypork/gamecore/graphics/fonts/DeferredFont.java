@@ -25,7 +25,8 @@ public abstract class DeferredFont extends BaseDeferredResource implements IFont
 		 * @param style style index as in awt Font. Not using constants to be
 		 *            independent on awt.
 		 */
-		private FontStyle(int style) {
+		private FontStyle(int style)
+		{
 			this.numval = style;
 		}
 	}
@@ -39,7 +40,8 @@ public abstract class DeferredFont extends BaseDeferredResource implements IFont
 	protected double discardBottom = 0;
 	
 	
-	public DeferredFont(String resource) {
+	public DeferredFont(String resource)
+	{
 		super(resource);
 	}
 	

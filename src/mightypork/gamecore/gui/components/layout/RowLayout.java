@@ -10,12 +10,14 @@ public class RowLayout extends GridLayout {
 	private int row = 0;
 	
 	
-	public RowLayout(int rows) {
+	public RowLayout(int rows)
+	{
 		this(null, rows);
 	}
 	
 	
-	public RowLayout(RectBound context, int rows) {
+	public RowLayout(RectBound context, int rows)
+	{
 		super(context, rows, 1);
 	}
 	

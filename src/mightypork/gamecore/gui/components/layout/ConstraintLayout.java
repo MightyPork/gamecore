@@ -13,11 +13,13 @@ import mightypork.utils.math.constraints.rect.RectBound;
  */
 public class ConstraintLayout extends LayoutComponent {
 	
-	public ConstraintLayout() {
+	public ConstraintLayout()
+	{
 	}
 	
 	
-	public ConstraintLayout(RectBound context) {
+	public ConstraintLayout(RectBound context)
+	{
 		super(context);
 	}
 	

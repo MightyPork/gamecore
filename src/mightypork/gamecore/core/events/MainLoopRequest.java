@@ -21,7 +21,8 @@ public class MainLoopRequest extends BusEvent<MainLoop> {
 	/**
 	 * @param task task to run on main thread in rendering context
 	 */
-	public MainLoopRequest(Runnable task) {
+	public MainLoopRequest(Runnable task)
+	{
 		this(task, false);
 	}
 	
@@ -30,7 +31,8 @@ public class MainLoopRequest extends BusEvent<MainLoop> {
 	 * @param task task to run on main thread in rendering context
 	 * @param priority if true, skip other tasks in queue
 	 */
-	public MainLoopRequest(Runnable task, boolean priority) {
+	public MainLoopRequest(Runnable task, boolean priority)
+	{
 		this.task = task;
 		this.priority = priority;
 	}

@@ -28,7 +28,8 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	private volatile boolean needSetupViewport = false;
 	
 	
-	public Screen() {
+	public Screen()
+	{
 		
 		// disable events initially
 		setListening(false);

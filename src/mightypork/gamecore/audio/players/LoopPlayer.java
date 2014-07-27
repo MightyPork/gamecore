@@ -15,7 +15,7 @@ import mightypork.utils.math.animation.NumAnimated;
  */
 public class LoopPlayer extends BaseAudioPlayer implements Updateable, Pauseable {
 	
-	private int sourceID = -1;
+	private final int sourceID = -1;
 	
 	/** animator for fade in and fade out */
 	private final NumAnimated fadeAnim = new NumAnimated(0);
@@ -38,7 +38,8 @@ public class LoopPlayer extends BaseAudioPlayer implements Updateable, Pauseable
 	 * @param baseGain base gain (volume multiplier)
 	 * @param volume volume control
 	 */
-	public LoopPlayer(DeferredAudio track, double basePitch, double baseGain, Volume volume) {
+	public LoopPlayer(DeferredAudio track, double basePitch, double baseGain, Volume volume)
+	{
 		super(track, (float) basePitch, (float) baseGain, volume);
 		
 		paused = true;

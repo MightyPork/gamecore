@@ -39,32 +39,38 @@ public class TextPainter extends BaseComponent implements DynamicWidthComponent 
 	/**
 	 * @param font font to use
 	 */
-	public TextPainter(IFont font) {
+	public TextPainter(IFont font)
+	{
 		this(font, AlignX.LEFT, RGB.WHITE);
 	}
 	
 	
-	public TextPainter(IFont font, Color color, String text) {
+	public TextPainter(IFont font, Color color, String text)
+	{
 		this(font, AlignX.LEFT, color, new StringWrapper(text));
 	}
 	
 	
-	public TextPainter(IFont font, Color color, StringProvider text) {
+	public TextPainter(IFont font, Color color, StringProvider text)
+	{
 		this(font, AlignX.LEFT, color, text);
 	}
 	
 	
-	public TextPainter(IFont font, Color color) {
+	public TextPainter(IFont font, Color color)
+	{
 		this(font, AlignX.LEFT, color, (StringProvider) null);
 	}
 	
 	
-	public TextPainter(IFont font, AlignX align, Color color, String text) {
+	public TextPainter(IFont font, AlignX align, Color color, String text)
+	{
 		this(font, align, color, new StringWrapper(text));
 	}
 	
 	
-	public TextPainter(IFont font, AlignX align, Color color, StringProvider text) {
+	public TextPainter(IFont font, AlignX align, Color color, StringProvider text)
+	{
 		this.font = new FontRenderer(font);
 		this.color = color;
 		this.align = align;
@@ -72,7 +78,8 @@ public class TextPainter extends BaseComponent implements DynamicWidthComponent 
 	}
 	
 	
-	public TextPainter(IFont font, AlignX align, Color color) {
+	public TextPainter(IFont font, AlignX align, Color color)
+	{
 		this(font, align, color, (StringProvider) null);
 	}
 	

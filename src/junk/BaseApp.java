@@ -3,7 +3,6 @@ package junk;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 
-import mightypork.gamecore.backends.lwjgl.LwjglInputModule;
 import mightypork.gamecore.core.App;
 import mightypork.gamecore.core.AppBackend;
 import mightypork.gamecore.core.MainLoop;
@@ -50,7 +49,8 @@ public abstract class BaseApp extends App implements UncaughtExceptionHandler {
 	}
 	
 	
-	public BaseApp(AppBackend backend) {
+	public BaseApp(AppBackend backend)
+	{
 		super(backend);
 	}
 	

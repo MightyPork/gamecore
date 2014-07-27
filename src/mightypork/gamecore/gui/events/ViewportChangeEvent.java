@@ -22,7 +22,8 @@ public class ViewportChangeEvent extends BusEvent<ViewportChangeListener> {
 	/**
 	 * @param size new screen size
 	 */
-	public ViewportChangeEvent(Vect size) {
+	public ViewportChangeEvent(Vect size)
+	{
 		this.screenSize = size;
 	}
 	

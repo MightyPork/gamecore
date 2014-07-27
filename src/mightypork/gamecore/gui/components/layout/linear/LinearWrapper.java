@@ -6,7 +6,8 @@ import mightypork.gamecore.gui.components.DynamicWidthComponent;
 
 public class LinearWrapper extends AbstractLinearWrapper {
 	
-	public LinearWrapper(DynamicWidthComponent wrapped) {
+	public LinearWrapper(DynamicWidthComponent wrapped)
+	{
 		super(wrapped);
 	}
 	

@@ -49,7 +49,8 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 	private Num alphaMul = Num.ONE;
 	
 	
-	public Overlay() {
+	public Overlay()
+	{
 		
 		this.mouse = App.input().getMousePos();
 		

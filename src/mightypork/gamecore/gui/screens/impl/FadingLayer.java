@@ -47,7 +47,8 @@ public abstract class FadingLayer extends ScreenLayer {
 	 * 
 	 * @param screen
 	 */
-	public FadingLayer(Screen screen) {
+	public FadingLayer(Screen screen)
+	{
 		this(screen, new NumAnimated(1, Easing.QUADRATIC_OUT, 0.3));
 	}
 	
@@ -56,7 +57,8 @@ public abstract class FadingLayer extends ScreenLayer {
 	 * @param screen
 	 * @param easingAnim the animation num
 	 */
-	public FadingLayer(Screen screen, NumAnimated easingAnim) {
+	public FadingLayer(Screen screen, NumAnimated easingAnim)
+	{
 		super(screen);
 		
 		numa = easingAnim;

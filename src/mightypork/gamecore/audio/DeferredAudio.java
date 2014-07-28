@@ -24,25 +24,25 @@ public abstract class DeferredAudio extends BaseDeferredResource implements IAud
 	{
 		super(resourceName);
 	}
-
-
+	
+	
 	@Override
-	public void play(double pitch, double gain, boolean loop)
+	public void play(double gain, double pitch, boolean loop)
 	{
-		play(pitch, gain, loop, App.audio().getListenerPos());
+		play(gain, pitch, loop, App.audio().getListenerPos());
 	}
-
-
+	
+	
 	@Override
-	public void play(double pitch, double gain, boolean loop, double x, double y)
+	public void play(double gain, double pitch, boolean loop, double x, double y)
 	{
-		play(pitch, gain, loop, x, y, App.audio().getListenerPos().z());
+		play(gain, pitch, loop, x, y, App.audio().getListenerPos().z());
 	}
-
-
+	
+	
 	@Override
-	public void play(double pitch, double gain, boolean loop, Vect pos)
+	public void play(double gain, double pitch, boolean loop, Vect pos)
 	{
-		play(pitch, gain, loop, pos.x(), pos.y(), pos.z());
+		play(gain, pitch, loop, pos.x(), pos.y(), pos.z());
 	}
 }

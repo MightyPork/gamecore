@@ -1,7 +1,7 @@
 package mightypork.gamecore.audio.players;
 
 
-import mightypork.gamecore.audio.DeferredAudio;
+import mightypork.gamecore.audio.IAudio;
 import mightypork.gamecore.audio.Volume;
 import mightypork.utils.math.constraints.vect.Vect;
 
@@ -11,34 +11,32 @@ import mightypork.utils.math.constraints.vect.Vect;
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public class EffectPlayer extends BaseAudioPlayer {
-
+public class EffectPlayer extends AudioPlayer {
+	
 	/**
 	 * @param track audio resource
-	 * @param basePitch base pitch (pitch multiplier)
-	 * @param baseGain base gain (volume multiplier)
 	 * @param volume volume control
 	 */
-	public EffectPlayer(DeferredAudio track, double basePitch, double baseGain, Volume volume)
+	public EffectPlayer(IAudio track, Volume volume)
 	{
-		super(track, (float) basePitch, (float) baseGain, volume);
+		super(track, volume);
 	}
-
-
+	
+	
 	/**
 	 * Play at listener
 	 *
-	 * @param pitch play pitch
 	 * @param gain play gain
+	 * @param pitch play pitch
 	 */
-	public void play(double pitch, double gain)
+	public void play(double gain, double pitch)
 	{
 		if (!hasAudio()) return;
-
-		getAudio().play(computePitch(pitch), computeGain(gain), false);
+		
+		getAudio().play(computeGain(gain), computePitch(pitch), false);
 	}
-
-
+	
+	
 	/**
 	 * Play at listener
 	 *
@@ -46,22 +44,34 @@ public class EffectPlayer extends BaseAudioPlayer {
 	 */
 	public void play(double gain)
 	{
-		play(1, gain);
+		play(gain, 1);
 	}
-
-
+	
+	
 	/**
 	 * Play at given position
 	 *
-	 * @param pitch play pitch
 	 * @param gain play gain
 	 * @param pos play position
 	 */
-	public void play(double pitch, double gain, Vect pos)
+	public void play(double gain, Vect pos)
+	{
+		play(gain, 1, pos);
+	}
+	
+	
+	/**
+	 * Play at given position
+	 *
+	 * @param gain play gain
+	 * @param pitch play pitch
+	 * @param pos play position
+	 */
+	public void play(double gain, double pitch, Vect pos)
 	{
 		if (!hasAudio()) return;
-
-		getAudio().play(computePitch(pitch), computeGain(gain), false, pos);
+		
+		getAudio().play(computeGain(gain), computePitch(pitch), false, pos);
 	}
-
+	
 }

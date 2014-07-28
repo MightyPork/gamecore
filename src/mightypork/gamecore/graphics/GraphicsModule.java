@@ -272,7 +272,7 @@ public abstract class GraphicsModule extends BackendModule {
 	 * @param path path to texture
 	 * @return the deferred font
 	 */
-	public abstract DeferredTexture createDeferredTexture(String path);
+	public abstract DeferredTexture createTextureResource(String path);
 
 
 	/**
@@ -281,7 +281,7 @@ public abstract class GraphicsModule extends BackendModule {
 	 * @param path path to font, or font name in the system
 	 * @return the deferred font
 	 */
-	public abstract DeferredFont createDeferredFont(String path);
+	public abstract DeferredFont createFontResource(String path);
 
 
 	/**

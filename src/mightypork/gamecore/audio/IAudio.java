@@ -11,19 +11,19 @@ import mightypork.utils.math.constraints.vect.Vect;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface IAudio extends Destroyable {
-
+	
 	/**
 	 * Pause loop (remember position and stop playing) - if was looping
 	 */
 	void pauseLoop();
-
-
+	
+	
 	/**
 	 * Resume loop (if was paused)
 	 */
 	void resumeLoop();
-
-
+	
+	
 	/**
 	 * Adjust gain for the currently playing effect (can be used for fading
 	 * music)
@@ -31,20 +31,20 @@ public interface IAudio extends Destroyable {
 	 * @param gain gain to set 0..1
 	 */
 	void adjustGain(double gain);
-
-
+	
+	
 	/**
-	 * Stop audio playback
+	 * Stop audio playback, free source.
 	 */
 	void stop();
-
-
+	
+	
 	/**
 	 * @return true if the audio is playing
 	 */
 	boolean isPlaying();
-
-
+	
+	
 	/**
 	 * @return trie if the audio is paused
 	 */
@@ -54,46 +54,55 @@ public interface IAudio extends Destroyable {
 	/**
 	 * Play as sound effect at listener position
 	 *
-	 * @param pitch pitch (1 = default)
-	 * @param gain gain (0-1)
+	 * @param gain gain
+	 * @param pitch pitch
 	 * @param loop looping
 	 */
-	void play(double pitch, double gain, boolean loop);
-
-
-	/**
-	 * Play as sound effect at given X-Y position
-	 *
-	 * @param pitch pitch (1 = default)
-	 * @param gain gain (0-1)
-	 * @param loop looping
-	 * @param x
-	 * @param y
-	 */
-	void play(double pitch, double gain, boolean loop, double x, double y);
-
-
+	void play(double gain, double pitch, boolean loop);
+	
+	
 	/**
 	 * Play as sound effect at given position
 	 *
-	 * @param pitch pitch (1 = default)
-	 * @param gain gain (0-1)
+	 * @param gain gain
+	 * @param pitch pitch
 	 * @param loop looping
 	 * @param x
 	 * @param y
 	 * @param z
 	 */
-	void play(double pitch, double gain, boolean loop, double x, double y, double z);
-
-
+	void play(double gain, double pitch, boolean loop, double x, double y, double z);
+	
+	
+	/**
+	 * Play as sound effect at given X-Y position
+	 *
+	 * @param gain gain
+	 * @param pitch pitch
+	 * @param loop looping
+	 * @param x
+	 * @param y
+	 */
+	void play(double gain, double pitch, boolean loop, double x, double y);
+	
+	
 	/**
 	 * Play as sound effect at given position
 	 *
-	 * @param pitch pitch (1 = default)
-	 * @param gain gain (0-1)
+	 * @param gain gain
+	 * @param pitch pitch
 	 * @param loop looping
 	 * @param pos coord
 	 */
-	void play(double pitch, double gain, boolean loop, Vect pos);
-
+	void play(double gain, double pitch, boolean loop, Vect pos);
+	
+	
+	/**
+	 * Check if this audio is currently active (ie. playing or paused, not
+	 * stopped)
+	 *
+	 * @return is active
+	 */
+	boolean isActive();
+	
 }

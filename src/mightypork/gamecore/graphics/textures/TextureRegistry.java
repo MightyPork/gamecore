@@ -51,7 +51,7 @@ public class TextureRegistry {
 	{
 		if (key != null) if (textures.containsKey(key)) throw new KeyAlreadyExistsException();
 
-		final DeferredTexture texture = App.gfx().createDeferredTexture(resourcePath);
+		final DeferredTexture texture = App.gfx().createTextureResource(resourcePath);
 		texture.setFilter(filter);
 		texture.setWrap(wrap);
 

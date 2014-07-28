@@ -6,7 +6,6 @@ import java.util.Map;
 
 import mightypork.gamecore.audio.players.EffectPlayer;
 import mightypork.gamecore.audio.players.LoopPlayer;
-import mightypork.gamecore.core.App;
 
 
 /**
@@ -15,41 +14,35 @@ import mightypork.gamecore.core.App;
  * @author Ondřej Hruška (MightyPork)
  */
 public class SoundRegistry {
-
+	
 	private final Map<String, EffectPlayer> effects = new HashMap<>();
 	private final Map<String, LoopPlayer> loops = new HashMap<>();
-
-
+	
+	
 	/**
 	 * Register effect resource
 	 *
 	 * @param key sound key
-	 * @param resource resource path
-	 * @param pitch default pitch (1 = unchanged)
-	 * @param gain default gain (0-1)
+	 * @param effect the effect to add (Obtained from audio module)
 	 */
-	public void addEffect(String key, String resource, double pitch, double gain)
+	public void addEffect(String key, EffectPlayer effect)
 	{
-		effects.put(key, App.audio().createEffect(resource, pitch, gain));
+		effects.put(key, effect);
 	}
-
-
+	
+	
 	/**
 	 * Register loop resource (music / effect loop)
 	 *
 	 * @param key sound key
-	 * @param resource resource path
-	 * @param pitch default pitch (1 = unchanged)
-	 * @param gain default gain (0-1)
-	 * @param fadeIn default time for fadeIn
-	 * @param fadeOut default time for fadeOut
+	 * @param loop the loop to add (Obtained from audio module)
 	 */
-	public void addLoop(String key, String resource, double pitch, double gain, double fadeIn, double fadeOut)
+	public void addLoop(String key, LoopPlayer loop)
 	{
-		loops.put(key, App.audio().createLoop(resource, pitch, gain, fadeIn, fadeOut));
+		loops.put(key, loop);
 	}
-
-
+	
+	
 	/**
 	 * Get a loop player for key
 	 *
@@ -64,8 +57,8 @@ public class SoundRegistry {
 		}
 		return p;
 	}
-
-
+	
+	
 	/**
 	 * Get a effect player for key
 	 *

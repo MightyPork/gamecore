@@ -19,7 +19,7 @@ public interface IAudio extends Destroyable {
 	
 	
 	/**
-	 * Resume loop (if was paused)
+	 * Resume loop (if was looping and paused)
 	 */
 	void resumeLoop();
 	
@@ -34,7 +34,8 @@ public interface IAudio extends Destroyable {
 	
 	
 	/**
-	 * Stop audio playback, free source.
+	 * Stop audio playback, free source. Meaningful for loops, may not work
+	 * properly for effects.
 	 */
 	void stop();
 	

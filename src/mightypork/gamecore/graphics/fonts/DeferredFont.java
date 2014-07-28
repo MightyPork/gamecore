@@ -13,36 +13,6 @@ import mightypork.gamecore.resources.BaseDeferredResource;
 public abstract class DeferredFont extends BaseDeferredResource implements IFont {
 	
 	/**
-	 * Font style enum
-	 */
-	public static enum FontStyle
-	{
-		/** Plan style */
-		PLAIN(0),
-		/** Bold style */
-		BOLD(1),
-		/** Italic style */
-		ITALIC(2),
-		/** Bond and italic together */
-		BOLD_ITALIC(1 + 2);
-		
-		/** Number associated with the style */
-		public int numval;
-		
-		
-		/**
-		 * Font style
-		 *
-		 * @param style style index as in awt Font. Not using constants to be
-		 *            independent on awt.
-		 */
-		private FontStyle(int style)
-		{
-			this.numval = style;
-		}
-	}
-	
-	/**
 	 * Requested font size. For bitmap fonts, this should match the actual font
 	 * size (in pixels). The font can be scaled after loaded, but it may be
 	 * cached with this size.

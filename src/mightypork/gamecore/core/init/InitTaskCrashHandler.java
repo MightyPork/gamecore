@@ -4,7 +4,6 @@ package mightypork.gamecore.core.init;
 import java.lang.Thread.UncaughtExceptionHandler;
 
 import mightypork.gamecore.core.App;
-import mightypork.gamecore.core.InitTask;
 import mightypork.utils.annotations.Stub;
 import mightypork.utils.logging.Log;
 

@@ -18,83 +18,127 @@ import mightypork.gamecore.graphics.textures.TxSheet;
  * @author Ondřej Hruška (MightyPork)
  */
 public final class Res {
-
-	private static TextureRegistry textures;
-	private static SoundRegistry sounds;
-	private static FontRegistry fonts;
-
-	private static boolean initialized = false;
-
-
+	
+	private static TextureRegistry textures = new TextureRegistry();
+	private static SoundRegistry sounds = new SoundRegistry();
+	private static FontRegistry fonts = new FontRegistry();
+	
+	
 	/**
-	 * Load on behalf of given base app
+	 * Get a texture by key
 	 *
-	 * @param app app access
+	 * @param key the key
+	 * @return texture
 	 */
-	public static void init()
-	{
-		if (initialized) return;
-		initialized = true;
-
-		textures = new TextureRegistry();
-		sounds = new SoundRegistry();
-		fonts = new FontRegistry();
-	}
-
-
-	public static ITexture getTexture(String key)
+	public static ITexture texture(String key)
 	{
 		return textures.getTexture(key);
 	}
-
-
+	
+	
 	/**
 	 * Get a texture sheet by key
 	 *
-	 * @param key
+	 * @param key the key
 	 * @return sheet
 	 */
-	public static TxSheet getTxSheet(String key)
+	public static TxSheet txSheet(String key)
 	{
 		return textures.getSheet(key);
 	}
-
-
+	
+	
 	/**
 	 * Get a texture quad by key
 	 *
-	 * @param key
+	 * @param key the key
 	 * @return quad
 	 */
-	public static TxQuad getTxQuad(String key)
+	public static TxQuad txQuad(String key)
 	{
 		return textures.getQuad(key);
 	}
-
-
-	public static LoopPlayer getSoundLoop(String key)
+	
+	
+	/**
+	 * Get a sound loop player by key
+	 *
+	 * @param key the key
+	 * @return loop player
+	 */
+	public static LoopPlayer loop(String key)
 	{
 		return sounds.getLoop(key);
 	}
-
-
-	public static EffectPlayer getSoundEffect(String key)
+	
+	
+	/**
+	 * Get a sound effect player by key
+	 *
+	 * @param key the key
+	 * @return effect player
+	 */
+	public static EffectPlayer sound(String key)
 	{
 		return sounds.getEffect(key);
 	}
 
 
-	public static IFont getFont(String key)
+	/**
+	 * Get a font by key
+	 *
+	 * @param key the key
+	 * @return font
+	 */
+	public static IFont font(String key)
 	{
 		return fonts.getFont(key);
 	}
-
-
-	public static void load(ResourceSetup binder)
+	
+	
+	/**
+	 * Get internal texture registry
+	 *
+	 * @return registry
+	 */
+	public static TextureRegistry getTextureRegistry()
 	{
-		binder.addFonts(fonts);
-		binder.addTextures(textures);
-		binder.addSounds(sounds);
+		return textures;
 	}
 
+
+	/**
+	 * Get internal font registry
+	 *
+	 * @return registry
+	 */
+	public static FontRegistry getFontRegistry()
+	{
+		return fonts;
+	}
+	
+	
+	/**
+	 * Get internal sound registry
+	 *
+	 * @return registry
+	 */
+	public static SoundRegistry getSoundRegistry()
+	{
+		return sounds;
+	}
+
+
+	/**
+	 * Load resources by a resource initializer.
+	 *
+	 * @param initializer the resource initializer
+	 */
+	public static void load(ResourceInitializer initializer)
+	{
+		initializer.addFonts(fonts);
+		initializer.addTextures(textures);
+		initializer.addSounds(sounds);
+	}
+	
 }

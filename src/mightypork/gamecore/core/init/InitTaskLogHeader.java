@@ -3,8 +3,6 @@ package mightypork.gamecore.core.init;
 
 import java.io.IOException;
 
-import mightypork.gamecore.core.InitTask;
-import mightypork.gamecore.core.OptionalInitTask;
 import mightypork.utils.files.WorkDir;
 import mightypork.utils.logging.Log;
 

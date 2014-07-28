@@ -76,7 +76,7 @@ public class CrossfadeOverlay extends Overlay {
 
 		if (screen == null) {
 			// going for halt
-			App.audio().fadeOutAllLoops();
+			App.sound().fadeOutAllLoops();
 		}
 
 		if (fromDark) {

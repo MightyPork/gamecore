@@ -11,7 +11,7 @@ import mightypork.gamecore.graphics.textures.TextureRegistry;
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public interface ResourceSetup {
+public interface ResourceInitializer {
 
 	/**
 	 * Add fonts to load.

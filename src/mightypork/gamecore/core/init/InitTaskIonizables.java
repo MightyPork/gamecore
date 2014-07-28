@@ -3,7 +3,6 @@ package mightypork.gamecore.core.init;
 
 import java.io.IOException;
 
-import mightypork.gamecore.core.InitTask;
 import mightypork.utils.ion.Ion;
 import mightypork.utils.ion.IonInput;
 import mightypork.utils.ion.IonOutput;

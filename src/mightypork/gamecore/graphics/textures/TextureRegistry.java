@@ -20,20 +20,25 @@ public class TextureRegistry {
 
 	private final Map<String, ITexture> textures = new HashMap<>();
 	private final Map<String, TxSheet> sheets = new HashMap<>();
-
-
+	
+	
 	/**
-	 * Load a texture from resource, without a key. This texture will not be
-	 * added to the bank.
+	 * Load a texture from resource.
 	 *
 	 * @param resourcePath resource path of the texture
 	 * @param filter filtering mode
 	 * @param wrap wrapping mode
 	 * @return texture reference
 	 */
-	public ITexture addTexture(String resourcePath, FilterMode filter, WrapMode wrap)
+	public ITexture loadTexture(String resourcePath, FilterMode filter, WrapMode wrap)
 	{
-		return addTexture(resourcePath, resourcePath, filter, wrap);
+		final DeferredTexture texture = App.gfx().createTextureResource(resourcePath);
+		texture.setFilter(filter);
+		texture.setWrap(wrap);
+
+		App.bus().send(new ResourceLoadRequest(texture));
+		
+		return texture;
 	}
 
 
@@ -51,11 +56,7 @@ public class TextureRegistry {
 	{
 		if (key != null) if (textures.containsKey(key)) throw new KeyAlreadyExistsException();
 
-		final DeferredTexture texture = App.gfx().createTextureResource(resourcePath);
-		texture.setFilter(filter);
-		texture.setWrap(wrap);
-
-		App.bus().send(new ResourceLoadRequest(texture));
+		final ITexture texture = loadTexture(resourcePath, filter, wrap);
 
 		if (key != null) {
 			textures.put(key, texture);

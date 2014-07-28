@@ -7,7 +7,7 @@ import java.util.List;
 import java.util.logging.Level;
 
 import mightypork.gamecore.core.AppBackend;
-import mightypork.gamecore.resources.ResourceSetup;
+import mightypork.gamecore.resources.ResourceInitializer;
 import mightypork.gamecore.resources.loading.AsyncResourceLoader;
 import mightypork.gamecore.resources.loading.ResourceLoader;
 
@@ -27,7 +27,7 @@ public class AppInitOptions {
 	String configFile = "settings.cfg";
 	String configComment = "Main config file";
 
-	final List<ResourceSetup> resourceLists = new ArrayList<>();
+	final List<ResourceInitializer> resourceLists = new ArrayList<>();
 	final List<KeySetup> keyLists = new ArrayList<>();
 	final List<ConfigSetup> configLists = new ArrayList<>();
 
@@ -56,7 +56,7 @@ public class AppInitOptions {
 	}
 
 
-	public void addResources(ResourceSetup res)
+	public void addResources(ResourceInitializer res)
 	{
 		resourceLists.add(res);
 	}

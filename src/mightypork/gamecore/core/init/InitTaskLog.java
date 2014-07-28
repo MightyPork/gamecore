@@ -4,7 +4,6 @@ package mightypork.gamecore.core.init;
 import java.io.File;
 import java.util.logging.Level;
 
-import mightypork.gamecore.core.InitTask;
 import mightypork.utils.files.WorkDir;
 import mightypork.utils.logging.Log;
 import mightypork.utils.logging.writers.LogWriter;

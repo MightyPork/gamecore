@@ -10,7 +10,7 @@ import mightypork.gamecore.core.config.Config;
 import mightypork.gamecore.gui.screens.ScreenRegistry;
 import mightypork.gamecore.gui.screens.impl.CrossfadeOverlay;
 import mightypork.gamecore.resources.Res;
-import mightypork.gamecore.resources.ResourceSetup;
+import mightypork.gamecore.resources.ResourceInitializer;
 import mightypork.utils.files.WorkDir;
 import mightypork.utils.logging.Log;
 
@@ -140,7 +140,7 @@ public abstract class BaseApp extends App implements UncaughtExceptionHandler {
 
 		Res.setBaseDir(this);
 
-		for (final ResourceSetup rl : opt.resourceLists) {
+		for (final ResourceInitializer rl : opt.resourceLists) {
 			Res.load(rl);
 		}
 

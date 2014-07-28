@@ -1,4 +1,4 @@
-package mightypork.gamecore.core;
+package mightypork.gamecore.core.init;
 
 
 import java.util.ArrayList;
@@ -7,6 +7,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import mightypork.gamecore.core.App;
 import mightypork.utils.Reflect;
 import mightypork.utils.annotations.Stub;
 import mightypork.utils.logging.Log;
@@ -20,22 +21,22 @@ import mightypork.utils.logging.Log;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class InitTask {
-	
+
 	/** App instance assigned using <code>bind()</code> */
 	protected App app;
-
-
+	
+	
 	/**
 	 * Assign the initialized app instance to an "app" field.
 	 *
 	 * @param app app
 	 */
-	final void bind(App app)
+	public final void bind(App app)
 	{
 		this.app = app;
 	}
-
-
+	
+	
 	/**
 	 * An init method that is called before the <code>run()</code> method.<br>
 	 * This method should be left unimplemented in the task, and can be used to
@@ -46,8 +47,8 @@ public abstract class InitTask {
 	{
 		//
 	}
-
-
+	
+	
 	/**
 	 * Hook for extra action before the main task action.<br>
 	 * Can be overridden during app configuration to "bake-in" extra actions.
@@ -57,14 +58,14 @@ public abstract class InitTask {
 	{
 		//
 	}
-
-
+	
+	
 	/**
 	 * Run the initializer on app.
 	 */
 	public abstract void run();
-
-
+	
+	
 	/**
 	 * Hook executed after the "run()" method.<br>
 	 * Can be overridden during app configuration to "bake-in" extra actions.
@@ -74,8 +75,8 @@ public abstract class InitTask {
 	{
 		//
 	}
-
-
+	
+	
 	/**
 	 * Get name of this initializer (for dependency resolver).<br>
 	 * The name should be short, snake_case and precise.
@@ -83,8 +84,8 @@ public abstract class InitTask {
 	 * @return name
 	 */
 	public abstract String getName();
-
-
+	
+	
 	/**
 	 * Get what other initializers must be already loaded before this can load.<br>
 	 * Depending on itself or creating a circular dependency will cause error.<br>
@@ -98,8 +99,8 @@ public abstract class InitTask {
 	{
 		return new String[] {};
 	}
-
-
+	
+	
 	/**
 	 * Order init tasks so that all dependencies are loaded before thye are
 	 * needed by the tasks.
@@ -110,25 +111,25 @@ public abstract class InitTask {
 	public static List<InitTask> inOrder(List<InitTask> tasks)
 	{
 		final List<InitTask> remaining = new ArrayList<>(tasks);
-
+		
 		final List<InitTask> ordered = new ArrayList<>();
 		final Set<String> loaded = new HashSet<>();
-
+		
 		// resolve task order
 		int addedThisIteration = 0;
 		do {
 			for (final Iterator<InitTask> i = remaining.iterator(); i.hasNext();) {
 				final InitTask task = i.next();
-
+				
 				String[] deps = task.getDependencies();
 				if (deps == null) deps = new String[] {};
-
+				
 				int unmetDepsCount = deps.length;
-
+				
 				for (final String d : deps) {
 					if (loaded.contains(d)) unmetDepsCount--;
 				}
-
+				
 				if (unmetDepsCount == 0) {
 					ordered.add(task);
 					loaded.add(task.getName());
@@ -137,38 +138,38 @@ public abstract class InitTask {
 				}
 			}
 		} while (addedThisIteration > 0);
-
+		
 		// check if any tasks are left out
 		if (remaining.size() > 0) {
-
+			
 			// build error message for each bad task
 			int badInitializers = 0;
 			for (final InitTask task : remaining) {
 				if (Reflect.hasAnnotation(task.getClass(), OptionalInitTask.class)) {
 					continue;
 				}
-
+				
 				badInitializers++;
-
+				
 				String notSatisfied = "";
-
+				
 				for (final String d : task.getDependencies()) {
 					if (!loaded.contains(d)) {
-
+						
 						if (!notSatisfied.isEmpty()) {
 							notSatisfied += ", ";
 						}
-
+						
 						notSatisfied += d;
 					}
 				}
-
+				
 				Log.w("InitTask \"" + task.getName() + "\" - missing dependencies: " + notSatisfied);
 			}
-
+			
 			if (badInitializers > 0) throw new RuntimeException("Some InitTask dependencies could not be satisfied.");
 		}
-
+		
 		return ordered;
 	}
 }

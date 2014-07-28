@@ -6,6 +6,8 @@ import java.util.Map;
 
 import mightypork.gamecore.audio.players.EffectPlayer;
 import mightypork.gamecore.audio.players.LoopPlayer;
+import mightypork.gamecore.core.App;
+import mightypork.utils.exceptions.KeyAlreadyExistsException;
 
 
 /**
@@ -23,11 +25,60 @@ public class SoundRegistry {
 	 * Register effect resource
 	 *
 	 * @param key sound key
+	 * @param resourcePath path to the effect resource
+	 * @param gain gain adjustment
+	 * @param pitch pitch adjustment
+	 * @return the just created effect player
+	 */
+	public EffectPlayer addEffect(String key, String resourcePath, double gain, double pitch)
+	{
+		final EffectPlayer effect = App.sound().createEffect(resourcePath);
+		
+		effect.setPitch(pitch);
+		effect.setGain(gain);
+		
+		addEffect(key, effect);
+		
+		return effect;
+	}
+	
+	
+	/**
+	 * Register effect resource
+	 *
+	 * @param key sound key
 	 * @param effect the effect to add (Obtained from audio module)
 	 */
 	public void addEffect(String key, EffectPlayer effect)
 	{
+		if (effects.containsKey(key)) throw new KeyAlreadyExistsException();
+		
 		effects.put(key, effect);
+	}
+	
+	
+	/**
+	 * Register loop resource (music / effect loop)
+	 *
+	 * @param key sound key
+	 * @param resourcePath path to the effect resource
+	 * @param gain gain adjustment
+	 * @param pitch pitch adjustment
+	 * @param fadeIn fadeIn time (s)
+	 * @param fadeOut fadeOut time (s)
+	 * @return the just created loop player
+	 */
+	public LoopPlayer addLoop(String key, String resourcePath, double gain, double pitch, double fadeIn, double fadeOut)
+	{
+		final LoopPlayer loop = App.sound().createLoop(resourcePath);
+
+		loop.setPitch(pitch);
+		loop.setGain(gain);
+		loop.setFadeTimes(fadeIn, fadeOut);
+
+		addLoop(key, loop);
+
+		return loop;
 	}
 	
 	
@@ -39,6 +90,8 @@ public class SoundRegistry {
 	 */
 	public void addLoop(String key, LoopPlayer loop)
 	{
+		if (loops.containsKey(key)) throw new KeyAlreadyExistsException();
+		
 		loops.put(key, loop);
 	}
 	

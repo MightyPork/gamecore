@@ -1,7 +1,7 @@
 package mightypork.gamecore.core.plugins.screenshot;
 
 
-import mightypork.gamecore.core.InitTask;
+import mightypork.gamecore.core.init.InitTask;
 import mightypork.utils.files.WorkDir;
 
 

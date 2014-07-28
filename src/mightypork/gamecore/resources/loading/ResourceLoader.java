@@ -10,17 +10,17 @@ import mightypork.gamecore.resources.DeferredResource;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface ResourceLoader {
-
+	
 	/**
 	 * Load a resource
 	 *
 	 * @param resource
 	 */
 	void loadResource(DeferredResource resource);
-
-
+	
+	
 	/**
-	 * Initialize the loader (Join the bus, start a stread etc)
+	 * Initialize the loader (Join the bus, start a thread etc)
 	 *
 	 * @param app app the loader works for. The event bus must already be
 	 *            initialized.

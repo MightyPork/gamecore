@@ -1,4 +1,4 @@
-package mightypork.gamecore.core;
+package mightypork.gamecore.core.init;
 
 
 import java.lang.annotation.Documented;
@@ -20,5 +20,5 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 public @interface OptionalInitTask {
-
+	//
 }

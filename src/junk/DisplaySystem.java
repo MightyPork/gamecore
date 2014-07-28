@@ -24,67 +24,67 @@
 //
 ///**
 // * Display system
-// * 
+// *
 // * @author Ondřej Hruška (MightyPork)
 // */
 //@Deprecated
 //public class DisplaySystem extends AppModule implements RectBound {
-//	
+//
 //	private DisplayMode windowDisplayMode;
 //	private int targetFps;
 //	private FpsMeter fpsMeter;
 //	private boolean fullscreenSwitchRequested;
-//	
+//
 //	/** Current screen size */
 //	private static final Vect screenSize = new Vect() {
-//		
+//
 //		@Override
 //		public double y()
 //		{
 //			return Display.getHeight();
 //		}
-//		
-//		
+//
+//
 //		@Override
 //		public double x()
 //		{
 //			return Display.getWidth();
 //		}
 //	};
-//	
+//
 //	private static final Rect rect = Rect.make(screenSize);
-//	
-//	
+//
+//
 //	/**
 //	 * @param app app access
 //	 */
 //	public DisplaySystem(AppAccess app) {
 //		super(app);
 //	}
-//	
-//	
+//
+//
 //	@Override
 //	protected void deinit()
 //	{
 //		Display.destroy();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Set target fps (for syncing in endFrame() call).<br>
 //	 * With vsync enabled, the target fps may not be met.
-//	 * 
+//	 *
 //	 * @param fps requested fps
 //	 */
 //	public void setTargetFps(int fps)
 //	{
 //		this.targetFps = fps;
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Create a main window
-//	 * 
+//	 *
 //	 * @param width requested width
 //	 * @param height requested height
 //	 * @param resizable is resizable by the user
@@ -99,22 +99,22 @@
 //			Display.setVSyncEnabled(true);
 //			Display.setTitle(title);
 //			Display.create();
-//			
+//
 //			fpsMeter = new FpsMeter();
-//			
+//
 //			if (fullscreen) {
 //				switchFullscreen();
 //				Display.update();
 //			}
-//			
+//
 //			getEventBus().send(new DisplayReadyEvent());
-//			
+//
 //		} catch (final LWJGLException e) {
 //			throw new RuntimeException("Could not initialize screen", e);
 //		}
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Toggle FS if possible
 //	 */
@@ -122,17 +122,17 @@
 //	{
 //		fullscreenSwitchRequested = true;
 //	}
-//	
-//	
+//
+//
 //	private void doSwitchFullscreen()
 //	{
 //		try {
-//			
+//
 //			if (!Display.isFullscreen()) {
 //				Log.f3("Entering fullscreen.");
 //				// save window resize
 //				windowDisplayMode = new DisplayMode(Display.getWidth(), Display.getHeight());
-//				
+//
 //				Display.setDisplayMode(Display.getDesktopDisplayMode());
 //				Display.setFullscreen(true);
 //				Display.update();
@@ -141,9 +141,9 @@
 //				Display.setDisplayMode(windowDisplayMode);
 //				Display.update();
 //			}
-//			
+//
 //			getEventBus().send(new ViewportChangeEvent(getSize()));
-//			
+//
 //		} catch (final Throwable t) {
 //			Log.e("Failed to toggle fullscreen mode.", t);
 //			try {
@@ -154,12 +154,12 @@
 //			}
 //		}
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Take screenshot (expensive processing is done on-demand when screenshot
 //	 * is processed).
-//	 * 
+//	 *
 //	 * @return screenshot object
 //	 */
 //	public static AwtScreenshot prepareScreenshot()
@@ -170,13 +170,13 @@
 //		final int bpp = 4;
 //		final ByteBuffer buffer = BufferUtils.createByteBuffer(width * height * bpp);
 //		glReadPixels(0, 0, width, height, GL_RGBA, GL_UNSIGNED_BYTE, buffer);
-//		
+//
 //		final AwtScreenshot sc = new AwtScreenshot(width, height, bpp, buffer);
-//		
+//
 //		return sc;
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * @return true if close was requested (i.e. click on cross)
 //	 */
@@ -184,41 +184,41 @@
 //	{
 //		return Display.isCloseRequested();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Get fullscreen state
-//	 * 
+//	 *
 //	 * @return is fullscreen
 //	 */
 //	public static boolean isFullscreen()
 //	{
 //		return Display.isFullscreen();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Get screen size. This Vect is final and views at it can safely be made.
-//	 * 
+//	 *
 //	 * @return size
 //	 */
 //	public static Vect getSize()
 //	{
 //		return screenSize;
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Get screen rect. Static version of getRect().
-//	 * 
+//	 *
 //	 * @return size
 //	 */
 //	public static Rect getBounds()
 //	{
 //		return rect;
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * @return screen width
 //	 */
@@ -226,8 +226,8 @@
 //	{
 //		return screenSize.xi();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * @return screen height
 //	 */
@@ -235,8 +235,8 @@
 //	{
 //		return screenSize.yi();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Start a OpenGL frame
 //	 */
@@ -246,18 +246,18 @@
 //		if (Display.wasResized()) {
 //			getEventBus().send(new ViewportChangeEvent(getSize()));
 //		}
-//		
+//
 //		if (fullscreenSwitchRequested) {
 //			fullscreenSwitchRequested = false;
 //			doSwitchFullscreen();
 //		}
-//		
+//
 //		glLoadIdentity();
 //		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 //		fpsMeter.frame();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * End an OpenGL frame, flip buffers, sync to fps.
 //	 */
@@ -266,8 +266,8 @@
 //		Display.update(false); // don't poll input devices
 //		Display.sync(targetFps);
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Get screen rect. This Rect is final and views at it can safely be made.
 //	 */
@@ -276,8 +276,8 @@
 //	{
 //		return getBounds();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * @return current FPS
 //	 */
@@ -285,11 +285,11 @@
 //	{
 //		return fpsMeter.getFPS();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Get screen center. This vect is final and views at it can safely be made.
-//	 * 
+//	 *
 //	 * @return screen center.
 //	 */
 //	public static Vect getCenter()

@@ -11,7 +11,7 @@ import mightypork.utils.math.timing.TimedTask;
 
 /**
  * Layer that smoothly appears/disappears when shown/hidden
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class FadingLayer extends ScreenLayer {
@@ -44,8 +44,8 @@ public abstract class FadingLayer extends ScreenLayer {
 	
 	/**
 	 * Create with default fading time and effect
-	 * 
-	 * @param screen
+	 *
+	 * @param screen the parent screen
 	 */
 	public FadingLayer(Screen screen)
 	{
@@ -54,7 +54,9 @@ public abstract class FadingLayer extends ScreenLayer {
 	
 	
 	/**
-	 * @param screen
+	 * Create with custom animator
+	 *
+	 * @param screen the parent screen
 	 * @param easingAnim the animation num
 	 */
 	public FadingLayer(Screen screen, NumAnimated easingAnim)

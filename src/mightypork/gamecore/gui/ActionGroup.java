@@ -7,6 +7,12 @@ import java.util.Set;
 import mightypork.utils.interfaces.Enableable;
 
 
+/**
+ * A group of enableable objects that propagates it's "enable" state to them
+ * all.
+ *
+ * @author Ondřej Hruška (MightyPork)
+ */
 public class ActionGroup implements Enableable {
 	
 	private boolean enabled = true;
@@ -30,9 +36,25 @@ public class ActionGroup implements Enableable {
 	}
 	
 	
-	public void add(Enableable action)
+	/**
+	 * Add an {@link Enableable} to the group
+	 *
+	 * @param member the object to add
+	 */
+	public void add(Enableable member)
 	{
-		groupMembers.add(action);
+		groupMembers.add(member);
+	}
+	
+	
+	/**
+	 * Remove a group member
+	 *
+	 * @param member the object to remove
+	 */
+	public void remove(Enableable member)
+	{
+		groupMembers.remove(member);
 	}
 	
 }

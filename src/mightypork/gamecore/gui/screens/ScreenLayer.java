@@ -6,14 +6,14 @@ import mightypork.utils.annotations.Stub;
 
 /**
  * Screen display layer
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class ScreenLayer extends Overlay {
-	
+
 	private final Screen screen;
-	
-	
+
+
 	/**
 	 * @param screen parent screen
 	 */
@@ -21,8 +21,8 @@ public abstract class ScreenLayer extends Overlay {
 	{
 		this.screen = screen;
 	}
-	
-	
+
+
 	/**
 	 * @return parent screen instance
 	 */
@@ -30,8 +30,8 @@ public abstract class ScreenLayer extends Overlay {
 	{
 		return screen;
 	}
-	
-	
+
+
 	/**
 	 * Called when the screen becomes active
 	 */
@@ -39,8 +39,8 @@ public abstract class ScreenLayer extends Overlay {
 	protected void onScreenEnter()
 	{
 	}
-	
-	
+
+
 	/**
 	 * Called when the screen is no longer active
 	 */

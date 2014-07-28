@@ -7,8 +7,9 @@ import mightypork.utils.logging.Log;
 
 
 /**
- * Basic sprite sheet
- * 
+ * Basic sprite sheet (cuts a {@link TxQuad} to a number of same-sized
+ * sub-quads)
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public class TxSheet {
@@ -22,6 +23,13 @@ public class TxSheet {
 	private final int count;
 	
 	
+	/**
+	 * Make a sprite sheet
+	 *
+	 * @param tx backing texture quad
+	 * @param width number of tiles horizontally
+	 * @param height number of tiles vertically
+	 */
 	public TxSheet(TxQuad tx, int width, int height)
 	{
 		this.original = tx;
@@ -43,7 +51,7 @@ public class TxSheet {
 	
 	/**
 	 * Get a quad based on ratio 0-1 (0: first, 1: last)
-	 * 
+	 *
 	 * @param ratio ratio
 	 * @return quad
 	 */
@@ -55,7 +63,7 @@ public class TxSheet {
 	
 	/**
 	 * Get quad of index
-	 * 
+	 *
 	 * @param index index
 	 * @return the quad
 	 */
@@ -86,7 +94,7 @@ public class TxSheet {
 	
 	/**
 	 * Get entirely random TxQuad from this sheet
-	 * 
+	 *
 	 * @return the picked quad
 	 */
 	public TxQuad getRandomQuad()
@@ -97,7 +105,7 @@ public class TxSheet {
 	
 	/**
 	 * Get random TxQuad from this sheet
-	 * 
+	 *
 	 * @param seed random number generator seed
 	 * @return the picked quad
 	 */
@@ -110,7 +118,7 @@ public class TxSheet {
 	
 	/**
 	 * Get random TxQuad from this sheet
-	 * 
+	 *
 	 * @param seed random number generator seed (double will be converted to
 	 *            long)
 	 * @return the picked quad

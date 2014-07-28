@@ -9,16 +9,16 @@ import mightypork.utils.math.constraints.vect.Vect;
 
 /**
  * Screen resolution or mode was changed
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 @NonConsumableEvent
 @NotLoggedEvent
 public class ViewportChangeEvent extends BusEvent<ViewportChangeListener> {
-	
+
 	private final Vect screenSize;
-	
-	
+
+
 	/**
 	 * @param size new screen size
 	 */
@@ -26,8 +26,8 @@ public class ViewportChangeEvent extends BusEvent<ViewportChangeListener> {
 	{
 		this.screenSize = size;
 	}
-	
-	
+
+
 	/**
 	 * @return new screen size
 	 */
@@ -35,8 +35,8 @@ public class ViewportChangeEvent extends BusEvent<ViewportChangeListener> {
 	{
 		return screenSize;
 	}
-	
-	
+
+
 	@Override
 	public void handleBy(ViewportChangeListener handler)
 	{

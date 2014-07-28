@@ -12,7 +12,7 @@ import java.lang.annotation.Target;
 /**
  * Indicates that an {@link InitTask} can safely be ignored if it's dependencies
  * are not satisfied.
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 @Retention(RetentionPolicy.RUNTIME)
@@ -20,5 +20,5 @@ import java.lang.annotation.Target;
 @Documented
 @Inherited
 public @interface OptionalInitTask {
-	
+
 }

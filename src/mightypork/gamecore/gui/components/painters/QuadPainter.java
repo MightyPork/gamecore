@@ -10,41 +10,41 @@ import mightypork.utils.math.color.Grad;
 
 /**
  * Draws image in given rect
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public class QuadPainter extends BaseComponent {
-	
+
 	@FactoryMethod
 	public static QuadPainter gradH(Color colorLeft, Color colorRight)
 	{
 		return new QuadPainter(colorLeft, colorRight, colorRight, colorLeft);
 	}
-	
-	
+
+
 	@FactoryMethod
 	public static QuadPainter gradV(Color colorTop, Color colorBottom)
 	{
 		return new QuadPainter(colorTop, colorTop, colorBottom, colorBottom);
 	}
-	
+
 	private final Grad grad;
-	
-	
+
+
 	/**
 	 * Painter with solid color
-	 * 
+	 *
 	 * @param color
 	 */
 	public QuadPainter(Color color)
 	{
 		this.grad = new Grad(color, color, color, color);
 	}
-	
-	
+
+
 	/**
 	 * Painter with coloured vertices.
-	 * 
+	 *
 	 * @param leftTop
 	 * @param rightTop
 	 * @param leftBottom
@@ -54,8 +54,8 @@ public class QuadPainter extends BaseComponent {
 	{
 		this.grad = new Grad(leftTop, rightTop, rightBottom, leftBottom);
 	}
-	
-	
+
+
 	@Override
 	public void renderComponent()
 	{

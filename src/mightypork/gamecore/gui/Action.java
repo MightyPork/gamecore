@@ -5,8 +5,8 @@ import mightypork.utils.interfaces.Enableable;
 
 
 /**
- * Triggered action
- * 
+ * An {@link Enableable} runnable.
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class Action implements Runnable, Enableable {
@@ -16,7 +16,7 @@ public abstract class Action implements Runnable, Enableable {
 	
 	/**
 	 * Enable the action
-	 * 
+	 *
 	 * @param enable true to enable
 	 */
 	@Override

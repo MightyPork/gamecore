@@ -7,7 +7,7 @@ import mightypork.utils.math.constraints.rect.RectConst;
 
 /**
  * Texture Quad (describing a part of a texture)
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public class TxQuad {
@@ -23,7 +23,7 @@ public class TxQuad {
 	
 	/**
 	 * TxQuad from origin and size in pixels
-	 * 
+	 *
 	 * @param tx texture
 	 * @param xPx left top X (0-1)
 	 * @param yPx left top Y (0-1)
@@ -42,7 +42,7 @@ public class TxQuad {
 	
 	/**
 	 * TxQuad from origin and size 0-1
-	 * 
+	 *
 	 * @param tx texture
 	 * @param x1 left top X (0-1)
 	 * @param y1 left top Y (0-1)
@@ -58,7 +58,7 @@ public class TxQuad {
 	
 	/**
 	 * Make of coords
-	 * 
+	 *
 	 * @param tx texture
 	 * @param x1 left top X (0-1)
 	 * @param y1 left top Y (0-1)
@@ -84,7 +84,7 @@ public class TxQuad {
 	
 	/**
 	 * Clone another
-	 * 
+	 *
 	 * @param txQuad a copied quad
 	 */
 	public TxQuad(TxQuad txQuad)
@@ -98,7 +98,7 @@ public class TxQuad {
 	
 	/**
 	 * Get copy
-	 * 
+	 *
 	 * @return copy of this
 	 */
 	public TxQuad copy()
@@ -109,7 +109,7 @@ public class TxQuad {
 	
 	/**
 	 * Make a sheet starting with this quad, spannign to right and down.
-	 * 
+	 *
 	 * @param width sheet width
 	 * @param height sheet height
 	 * @return sheet
@@ -142,12 +142,18 @@ public class TxQuad {
 	}
 	
 	
+	/**
+	 * @return true if the quad is to be rendered flipped vertically
+	 */
 	public boolean isFlippedY()
 	{
 		return flipY;
 	}
 	
 	
+	/**
+	 * @return true if the quad is to be rendered flipped horizontally
+	 */
 	public boolean isFlippedX()
 	{
 		return flipX;
@@ -156,8 +162,8 @@ public class TxQuad {
 	
 	/**
 	 * Use the same flit/other attributes as the original txQuad
-	 * 
-	 * @param original
+	 *
+	 * @param original quad to copy attributes from
 	 */
 	public void dupeAttrs(TxQuad original)
 	{

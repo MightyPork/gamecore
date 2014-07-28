@@ -2,11 +2,15 @@ package mightypork.gamecore.gui.components;
 
 
 import mightypork.utils.eventbus.clients.ToggleableClient;
-import mightypork.utils.interfaces.Enableable;
 
 
-public abstract class InputComponent extends BaseComponent implements Enableable, ToggleableClient {
-	
+/**
+ * Component used for user input, such as buttons.
+ *
+ * @author Ondřej Hruška (MightyPork)
+ */
+public abstract class InputComponent extends BaseComponent implements ToggleableClient {
+
 	@Override
 	public boolean isListening()
 	{

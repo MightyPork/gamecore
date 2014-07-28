@@ -17,7 +17,7 @@ import mightypork.utils.math.constraints.rect.RectBound;
 
 /**
  * Screen class.
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class Screen extends BusNode implements Renderable, RectBound, KeyBinder, LayoutChangeListener {
@@ -28,9 +28,12 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	private volatile boolean needSetupViewport = false;
 	
 	
+	/**
+	 * Make a screen. The screen will initially not listen to the bus, which is
+	 * changed once the setActive method is set to true.
+	 */
 	public Screen()
 	{
-		
 		// disable events initially
 		setListening(false);
 		
@@ -60,7 +63,7 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	
 	/**
 	 * Prepare for being shown
-	 * 
+	 *
 	 * @param shown true to show, false to hide
 	 */
 	public final void setActive(boolean shown)
@@ -134,6 +137,7 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	@Stub
 	protected void onScreenEnter()
 	{
+		//
 	}
 	
 	
@@ -143,6 +147,7 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	@Stub
 	protected void onScreenLeave()
 	{
+		//
 	}
 	
 	

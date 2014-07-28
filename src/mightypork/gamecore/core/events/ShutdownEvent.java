@@ -10,10 +10,8 @@ import mightypork.utils.logging.Log;
  * Shutdown event.<br>
  * This event is dispatched when the <code>App.shutdown()</code> method is
  * called. If no client consumes it, the shutdown will immediately follow.<br>
- * This is a way to allow clients to abort the shutdown (ie. ask user to save
- * game). After the game is saved, the <code>App.shutdown()</code> method can be
- * called again.
- * 
+ * This is a way to allow clients to abort the shutdown (ie. ask to save game).
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public class ShutdownEvent extends BusEvent<ShutdownListener> {
@@ -21,6 +19,11 @@ public class ShutdownEvent extends BusEvent<ShutdownListener> {
 	private final Runnable shutdownTask;
 	
 	
+	/**
+	 * Make a shutdown event
+	 *
+	 * @param doShutdown Task that does the actual shutdown
+	 */
 	public ShutdownEvent(Runnable doShutdown)
 	{
 		this.shutdownTask = doShutdown;

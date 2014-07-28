@@ -18,15 +18,15 @@ import java.io.IOException;
  * Once created (passing byte buffer in constructor), the Screenshot should be
  * safe to process (call the save() method) in separate thread.
  * </p>
- * 
+ *
  * @author MightyPork
  */
 public interface Screenshot {
-	
+
 	/**
 	 * Process byte buffer and write image to a file.<br>
 	 * Image can be cached for future save.
-	 * 
+	 *
 	 * @param file target file
 	 * @throws IOException on error writing to file
 	 */

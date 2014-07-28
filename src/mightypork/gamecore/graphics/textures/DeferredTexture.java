@@ -9,14 +9,16 @@ import mightypork.utils.math.constraints.rect.Rect;
 
 /**
  * Deferred texture (to be extended by backend texture)
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 @Alias(name = "Texture")
 @MustLoadInRenderingContext
 public abstract class DeferredTexture extends BaseDeferredResource implements ITexture {
 	
+	/** Used filtering mode */
 	protected FilterMode filter = FilterMode.NEAREST;
+	/** Used wrapping mode */
 	protected WrapMode wrap = WrapMode.CLAMP;
 	
 	

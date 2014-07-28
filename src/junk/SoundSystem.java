@@ -28,22 +28,22 @@ package junk;
 //
 ///**
 // * Sound system class (only one instance should be made per application)
-// * 
+// *
 // * @author Ondřej Hruška (MightyPork)
 // */
 //@Deprecated
 //public class SoundSystem extends BusNode implements Updateable, Destroyable {
-//	
+//
 //	private static final Vect INITIAL_LISTENER_POS = Vect.ZERO;
 //	private static final int MAX_SOURCES = 256;
-//	
+//
 //	private static VectVar listener = Vect.makeVar();
 //	private static boolean soundSystemInited = false;
-//	
-//	
+//
+//
 //	/**
 //	 * Set listener pos
-//	 * 
+//	 *
 //	 * @param pos
 //	 */
 //	public static void setListener(Vect pos)
@@ -61,8 +61,8 @@ package junk;
 //		BufferHelper.fill(buf6, 0.0f, 0.0f, -1.0f, 0.0f, 1.0f, 0.0f);
 //		AL10.alListener(AL10.AL_ORIENTATION, buf6);
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * @return listener coordinate
 //	 */
@@ -70,50 +70,50 @@ package junk;
 //	{
 //		return listener;
 //	}
-//	
+//
 //	// -- instance --
-//	
+//
 //	private final Volume masterVolume = new Volume(1D);
 //	private final Volume effectsVolume = new JointVolume(masterVolume);
 //	private final Volume loopsVolume = new JointVolume(masterVolume);
-//	
+//
 //	private final List<LoopPlayer> loopPlayers = new ArrayList<>();
 //	private final List<DeferredAudio> resources = new ArrayList<>();
-//	
-//	
+//
+//
 //	/**
 //	 * @param busAccess app access
 //	 */
 //	public SoundSystem() {
-//		
+//
 //		if (!soundSystemInited) {
 //			soundSystemInited = true;
-//			
+//
 //			try {
 //				SoundStore.get().setMaxSources(MAX_SOURCES);
 //				SoundStore.get().init();
 //				setListener(INITIAL_LISTENER_POS);
-//				
+//
 //				App.bus().send(new AudioReadyEvent());
 //			} catch (final Throwable t) {
 //				Log.e("Error initializing sound system.", t);
 //			}
 //		}
 //	}
-//	
-//	
+//
+//
 //	@Override
 //	public void destroy()
 //	{
 //		for (final DeferredAudio r : resources) {
 //			r.destroy();
 //		}
-//		
+//
 //		SoundStore.get().clear();
 //		AL.destroy();
 //	}
-//	
-//	
+//
+//
 //	@Override
 //	public void update(double delta)
 //	{
@@ -121,11 +121,11 @@ package junk;
 //			lp.update(delta);
 //		}
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Create effect resource
-//	 * 
+//	 *
 //	 * @param resource resource path
 //	 * @param pitch default pitch (1 = unchanged)
 //	 * @param gain default gain (0-1)
@@ -135,11 +135,11 @@ package junk;
 //	{
 //		return new EffectPlayer(createResource(resource), pitch, gain, effectsVolume);
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Register loop resource (music / effect loop)
-//	 * 
+//	 *
 //	 * @param resource resource path
 //	 * @param pitch default pitch (1 = unchanged)
 //	 * @param gain default gain (0-1)
@@ -154,11 +154,11 @@ package junk;
 //		loopPlayers.add(p);
 //		return p;
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Create {@link DeferredAudio} for a resource
-//	 * 
+//	 *
 //	 * @param res a resource name
 //	 * @return the resource
 //	 * @throws IllegalArgumentException if resource is already registered
@@ -170,8 +170,8 @@ package junk;
 //		resources.add(a);
 //		return a;
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Fade out all loops (ie. for screen transitions)
 //	 */
@@ -181,8 +181,8 @@ package junk;
 //			p.fadeOut();
 //		}
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Pause all loops (leave volume unchanged)
 //	 */
@@ -192,66 +192,66 @@ package junk;
 //			p.pause();
 //		}
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Set level of master volume
-//	 * 
+//	 *
 //	 * @param d level
 //	 */
 //	public void setMasterVolume(double d)
 //	{
 //		masterVolume.set(d);
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Set level of effects volume
-//	 * 
+//	 *
 //	 * @param d level
 //	 */
 //	public void setEffectsVolume(double d)
 //	{
 //		effectsVolume.set(d);
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Set level of music volume
-//	 * 
+//	 *
 //	 * @param d level
 //	 */
 //	public void setMusicVolume(double d)
 //	{
 //		loopsVolume.set(d);
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Get level of master volume
-//	 * 
+//	 *
 //	 * @return level
 //	 */
 //	public double getMasterVolume()
 //	{
 //		return masterVolume.get();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Get level of effects volume
-//	 * 
+//	 *
 //	 * @return level
 //	 */
 //	public double getEffectsVolume()
 //	{
 //		return effectsVolume.get();
 //	}
-//	
-//	
+//
+//
 //	/**
 //	 * Get level of music volume
-//	 * 
+//	 *
 //	 * @return level
 //	 */
 //	public double getMusicVolume()

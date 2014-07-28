@@ -8,17 +8,17 @@ import mightypork.utils.eventbus.events.flags.NotLoggedEvent;
 
 /**
  * A keyboard event FIXME Should use Key class, not keycode.
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 @NotLoggedEvent
 public class KeyEvent extends BusEvent<KeyEventHandler> {
-	
+
 	private final int key;
 	private final boolean down;
 	private final char c;
-	
-	
+
+
 	/**
 	 * @param key key that triggered the event. Can be KEY_NONE.
 	 * @param c typed char (can be zero char)
@@ -30,8 +30,8 @@ public class KeyEvent extends BusEvent<KeyEventHandler> {
 		this.c = c;
 		this.down = down;
 	}
-	
-	
+
+
 	/**
 	 * @return key code
 	 */
@@ -39,8 +39,8 @@ public class KeyEvent extends BusEvent<KeyEventHandler> {
 	{
 		return key;
 	}
-	
-	
+
+
 	/**
 	 * @return true if key was just pressed
 	 */
@@ -48,8 +48,8 @@ public class KeyEvent extends BusEvent<KeyEventHandler> {
 	{
 		return down;
 	}
-	
-	
+
+
 	/**
 	 * @return true if key was just released
 	 */
@@ -57,8 +57,8 @@ public class KeyEvent extends BusEvent<KeyEventHandler> {
 	{
 		return !down;
 	}
-	
-	
+
+
 	/**
 	 * @return event character (if any)
 	 */
@@ -66,20 +66,20 @@ public class KeyEvent extends BusEvent<KeyEventHandler> {
 	{
 		return c;
 	}
-	
-	
+
+
 	@Override
 	public void handleBy(KeyEventHandler keh)
 	{
 		keh.receive(this);
 	}
-	
-	
+
+
 	@Override
 	public String toString()
 	{
 		// FIXME
 		return Keys.codeToKey(key).getName() + ":" + (down ? "DOWN" : "UP");
 	}
-	
+
 }

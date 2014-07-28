@@ -11,47 +11,51 @@ import mightypork.utils.eventbus.clients.DelegatingClient;
 
 
 /**
- * Screen with multiple instances of {@link ScreenLayer}
- * 
+ * Screen with multiple instances of {@link ScreenLayer}. Layers specify their
+ * rendering and event priority.
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class LayeredScreen extends Screen {
-	
+
 	/**
 	 * Wrapper for delegating client, to use custom client ordering.
-	 * 
+	 *
 	 * @author Ondřej Hruška (MightyPork)
 	 */
 	private class LayersClient implements DelegatingClient {
-		
+
 		@SuppressWarnings({ "unchecked", "rawtypes" })
 		@Override
 		public Collection getChildClients()
 		{
 			return layersByEventPriority;
 		}
-		
-		
+
+
 		@Override
 		public boolean doesDelegate()
 		{
 			return true;
 		}
-		
+
 	}
-	
+
 	private final List<ScreenLayer> layersByZIndex = new ArrayList<>();
 	private final List<ScreenLayer> layersByEventPriority = new ArrayList<>();
-	
+
 	private final LayersClient layersClient = new LayersClient();
-	
-	
+
+
+	/**
+	 * Create a layered screen
+	 */
 	public LayeredScreen()
 	{
 		addChildClient(layersClient);
 	}
-	
-	
+
+
 	@Override
 	protected void renderScreen()
 	{
@@ -59,40 +63,40 @@ public abstract class LayeredScreen extends Screen {
 			if (layer.isVisible()) layer.render();
 		}
 	}
-	
-	
+
+
 	/**
 	 * Add a layer to the screen.
-	 * 
-	 * @param layer
+	 *
+	 * @param layer the layer to add
 	 */
 	protected void addLayer(ScreenLayer layer)
 	{
 		this.layersByZIndex.add(layer);
 		this.layersByEventPriority.add(layer);
-		
+
 		Collections.sort(layersByEventPriority, new Comparator<Overlay>() {
-			
+
 			@Override
 			public int compare(Overlay o1, Overlay o2)
 			{
 				return o2.getEventPriority() - o1.getEventPriority();
 			}
-			
+
 		});
-		
+
 		Collections.sort(layersByZIndex, new Comparator<Overlay>() {
-			
+
 			@Override
 			public int compare(Overlay o1, Overlay o2)
 			{
 				return o1.getZIndex() - o2.getZIndex();
 			}
-			
+
 		});
 	}
-	
-	
+
+
 	@Override
 	protected void onScreenEnter()
 	{
@@ -100,8 +104,8 @@ public abstract class LayeredScreen extends Screen {
 			layer.onScreenEnter();
 		}
 	}
-	
-	
+
+
 	@Override
 	protected void onScreenLeave()
 	{
@@ -109,5 +113,5 @@ public abstract class LayeredScreen extends Screen {
 			layer.onScreenLeave();
 		}
 	}
-	
+
 }

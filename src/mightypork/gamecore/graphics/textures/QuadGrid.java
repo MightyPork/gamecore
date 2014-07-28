@@ -5,8 +5,9 @@ import mightypork.utils.math.constraints.rect.Rect;
 
 
 /**
- * {@link TxQuad} and {@link TxSheet} building utility
- * 
+ * {@link TxQuad} and {@link TxSheet} building utility, that cuts a texture into
+ * equally sized quads.
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public class QuadGrid {
@@ -18,6 +19,11 @@ public class QuadGrid {
 	private final double tileH;
 	
 	
+	/**
+	 * @param tx backing texture
+	 * @param tilesX number of tile columns
+	 * @param tilesY number of tile rows
+	 */
 	public QuadGrid(ITexture tx, int tilesX, int tilesY)
 	{
 		this.tx = tx;
@@ -30,7 +36,7 @@ public class QuadGrid {
 	
 	/**
 	 * Make square quad at given coords (one grid cell)
-	 * 
+	 *
 	 * @param x x coordinate (cells)
 	 * @param y y coordinate (cells)
 	 * @return the quad
@@ -48,7 +54,7 @@ public class QuadGrid {
 	/**
 	 * Make square quad at given coords, with arbitrary size. Coordinates are
 	 * multiples of cell size.
-	 * 
+	 *
 	 * @param x x coordinate (cells)
 	 * @param y y coordinate (cells)
 	 * @param width width (cells)
@@ -71,7 +77,7 @@ public class QuadGrid {
 	
 	/**
 	 * Make a sheet.
-	 * 
+	 *
 	 * @param x x origin coordinate (cells)
 	 * @param y y origin coordinate (cells)
 	 * @param width width (cells)

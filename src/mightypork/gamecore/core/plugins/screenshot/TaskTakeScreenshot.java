@@ -5,9 +5,9 @@ import java.io.File;
 import java.io.IOException;
 
 import mightypork.gamecore.core.App;
-import mightypork.gamecore.core.WorkDir;
 import mightypork.gamecore.graphics.Screenshot;
 import mightypork.utils.Support;
+import mightypork.utils.files.WorkDir;
 import mightypork.utils.logging.Log;
 
 
@@ -15,14 +15,14 @@ import mightypork.utils.logging.Log;
  * Task that takes screenshot and asynchronously saves it to a file.<br>
  * Can be run in a separate thread, but must be instantiated in the render
  * thread.
- * 
+ *
  * @author MightyPork
  */
 public class TaskTakeScreenshot implements Runnable {
-	
+
 	private final Screenshot scr;
-	
-	
+
+
 	/**
 	 * Take screenshot. Must be called in render thread.
 	 */
@@ -30,16 +30,16 @@ public class TaskTakeScreenshot implements Runnable {
 	{
 		scr = App.gfx().takeScreenshot();
 	}
-	
-	
+
+
 	@Override
 	public void run()
 	{
 		// generate unique filename
 		final File file = getScreenshotFile();
-		
+
 		Log.f3("Saving screenshot to file: " + file);
-		
+
 		// save to disk
 		try {
 			scr.save(file);
@@ -47,8 +47,8 @@ public class TaskTakeScreenshot implements Runnable {
 			Log.e("Failed to save screenshot.", e);
 		}
 	}
-	
-	
+
+
 	/**
 	 * @return File to save the screenshot to.
 	 */
@@ -57,8 +57,8 @@ public class TaskTakeScreenshot implements Runnable {
 		final String fname = getBaseFilename();
 		return findFreeFile(fname);
 	}
-	
-	
+
+
 	/**
 	 * @return directory for screenshots
 	 */
@@ -66,23 +66,23 @@ public class TaskTakeScreenshot implements Runnable {
 	{
 		return WorkDir.getDir("_screenshot_dir");
 	}
-	
-	
+
+
 	/**
 	 * Get base filename for the screenshot, without extension.
-	 * 
+	 *
 	 * @return filename
 	 */
 	protected String getBaseFilename()
 	{
 		return Support.getTime("yyyy-MM-dd_HH-mm-ss");
 	}
-	
-	
+
+
 	/**
 	 * Find first free filename for the screenshot, by adding -NUMBER after the
 	 * base filename and before extension.
-	 * 
+	 *
 	 * @param base_name base filename
 	 * @return full path to screenshot file
 	 */
@@ -97,5 +97,5 @@ public class TaskTakeScreenshot implements Runnable {
 		}
 		return file;
 	}
-	
+
 }

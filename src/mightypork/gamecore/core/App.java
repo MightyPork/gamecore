@@ -19,7 +19,7 @@ import mightypork.utils.logging.Log;
 
 /**
  * Game base class & static subsystem access
- * 
+ *
  * @author MightyPork
  */
 public class App extends BusNode {
@@ -30,14 +30,16 @@ public class App extends BusNode {
 	private final EventBus eventBus = new EventBus();
 	private boolean started = false;
 	
+	/** List of installed App plugins */
 	protected final DelegatingList plugins = new DelegatingList();
+	/** List of initializers */
 	protected final List<InitTask> initializers = new ArrayList<>();
 	
 	
 	/**
 	 * Create an app with given backend.
-	 * 
-	 * @param backend
+	 *
+	 * @param backend the backend to use
 	 */
 	public App(AppBackend backend)
 	{
@@ -56,8 +58,8 @@ public class App extends BusNode {
 		
 		// initialize and use backend
 		this.backend = backend;
-		this.eventBus.subscribe(backend);
 		this.backend.bind(this);
+		this.eventBus.subscribe(backend);
 		this.backend.initialize();
 	}
 	
@@ -65,7 +67,7 @@ public class App extends BusNode {
 	/**
 	 * Add a plugin to the app. Plugins can eg. listen to bus events and react
 	 * to them.
-	 * 
+	 *
 	 * @param plugin the added plugin.
 	 */
 	public void addPlugin(AppPlugin plugin)
@@ -83,8 +85,8 @@ public class App extends BusNode {
 	
 	/**
 	 * Add an initializer to the app.
-	 * 
-	 * @param initializer
+	 *
+	 * @param initializer the added init task
 	 */
 	public void addInitTask(InitTask initializer)
 	{
@@ -98,7 +100,7 @@ public class App extends BusNode {
 	
 	/**
 	 * Get current backend
-	 * 
+	 *
 	 * @return the backend
 	 */
 	public AppBackend getBackend()
@@ -128,11 +130,21 @@ public class App extends BusNode {
 		// sort initializers by order.
 		final List<InitTask> orderedInitializers = InitTask.inOrder(initializers);
 		
-		for (final InitTask initializer : orderedInitializers) {
-			Log.f1("Running init task \"" + initializer.getName() + "\"...");
-			initializer.bind(this);
-			initializer.init();
-			initializer.run();
+		for (final InitTask initTask : orderedInitializers) {
+			Log.f1("Running init task \"" + initTask.getName() + "\"...");
+			
+			initTask.bind(this);
+			
+			// set the task options
+			initTask.init();
+			
+			initTask.before();
+			
+			// main task action
+			initTask.run();
+			
+			// after hook for extra actions immeditaely after the task completes
+			initTask.after();
 		}
 		
 		Log.i("=== Initialization sequence completed ===");
@@ -199,7 +211,7 @@ public class App extends BusNode {
 	
 	/**
 	 * Get the currently running App instance.
-	 * 
+	 *
 	 * @return app instance
 	 */
 	public static App instance()
@@ -210,7 +222,7 @@ public class App extends BusNode {
 	
 	/**
 	 * Get graphics module from the running app's backend
-	 * 
+	 *
 	 * @return graphics module
 	 */
 	public static GraphicsModule gfx()
@@ -221,7 +233,7 @@ public class App extends BusNode {
 	
 	/**
 	 * Get audio module from the running app's backend
-	 * 
+	 *
 	 * @return audio module
 	 */
 	public static AudioModule audio()
@@ -232,7 +244,7 @@ public class App extends BusNode {
 	
 	/**
 	 * Get input module from the running app's backend
-	 * 
+	 *
 	 * @return input module
 	 */
 	public static InputModule input()
@@ -243,7 +255,7 @@ public class App extends BusNode {
 	
 	/**
 	 * Get event bus instance.
-	 * 
+	 *
 	 * @return event bus
 	 */
 	public static EventBus bus()
@@ -254,7 +266,7 @@ public class App extends BusNode {
 	
 	/**
 	 * Get the main config, if initialized.
-	 * 
+	 *
 	 * @return main config
 	 * @throws IllegalArgumentException if there is no such config.
 	 */
@@ -266,7 +278,7 @@ public class App extends BusNode {
 	
 	/**
 	 * Get a config by alias.
-	 * 
+	 *
 	 * @param alias config alias
 	 * @return the config
 	 * @throws IllegalArgumentException if there is no such config.

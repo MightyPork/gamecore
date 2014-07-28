@@ -9,7 +9,7 @@ import mightypork.gamecore.gui.components.DynamicWidthComponent;
 
 /**
  * Draws image in given rect
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public class ImagePainter extends BaseComponent implements DynamicWidthComponent {
@@ -40,6 +40,11 @@ public class ImagePainter extends BaseComponent implements DynamicWidthComponent
 	}
 	
 	
+	/**
+	 * Set drawn {@link TxQuad}
+	 * 
+	 * @param txQuad the drawn quad
+	 */
 	public void setTxQuad(TxQuad txQuad)
 	{
 		this.txQuad = txQuad;

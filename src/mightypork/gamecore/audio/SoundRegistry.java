@@ -11,18 +11,18 @@ import mightypork.gamecore.core.App;
 
 /**
  * Audio resource storage
- * 
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public class SoundRegistry {
-	
+
 	private final Map<String, EffectPlayer> effects = new HashMap<>();
 	private final Map<String, LoopPlayer> loops = new HashMap<>();
-	
-	
+
+
 	/**
 	 * Register effect resource
-	 * 
+	 *
 	 * @param key sound key
 	 * @param resource resource path
 	 * @param pitch default pitch (1 = unchanged)
@@ -32,11 +32,11 @@ public class SoundRegistry {
 	{
 		effects.put(key, App.audio().createEffect(resource, pitch, gain));
 	}
-	
-	
+
+
 	/**
 	 * Register loop resource (music / effect loop)
-	 * 
+	 *
 	 * @param key sound key
 	 * @param resource resource path
 	 * @param pitch default pitch (1 = unchanged)
@@ -48,11 +48,11 @@ public class SoundRegistry {
 	{
 		loops.put(key, App.audio().createLoop(resource, pitch, gain, fadeIn, fadeOut));
 	}
-	
-	
+
+
 	/**
 	 * Get a loop player for key
-	 * 
+	 *
 	 * @param key sound key
 	 * @return loop player
 	 */
@@ -64,11 +64,11 @@ public class SoundRegistry {
 		}
 		return p;
 	}
-	
-	
+
+
 	/**
 	 * Get a effect player for key
-	 * 
+	 *
 	 * @param key sound key
 	 * @return effect player
 	 */

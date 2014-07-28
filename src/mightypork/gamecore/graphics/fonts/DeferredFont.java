@@ -6,22 +6,33 @@ import mightypork.gamecore.resources.BaseDeferredResource;
 
 
 /**
- * Abstract deferred font stub.
- * 
+ * Deferred font stub.
+ *
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class DeferredFont extends BaseDeferredResource implements IFont {
 	
+	/**
+	 * Font style enum
+	 */
 	public static enum FontStyle
 	{
-		PLAIN(0), BOLD(1), ITALIC(2), BOLD_ITALIC(3);
+		/** Plan style */
+		PLAIN(0),
+		/** Bold style */
+		BOLD(1),
+		/** Italic style */
+		ITALIC(2),
+		/** Bond and italic together */
+		BOLD_ITALIC(1 + 2);
 		
+		/** Number associated with the style */
 		public int numval;
 		
 		
 		/**
 		 * Font style
-		 * 
+		 *
 		 * @param style style index as in awt Font. Not using constants to be
 		 *            independent on awt.
 		 */
@@ -31,53 +42,111 @@ public abstract class DeferredFont extends BaseDeferredResource implements IFont
 		}
 	}
 	
+	/**
+	 * Requested font size. For bitmap fonts, this should match the actual font
+	 * size (in pixels). The font can be scaled after loaded, but it may be
+	 * cached with this size.
+	 */
 	protected double size = 12;
+	
+	/** Requested font style. If not applicable, fall back to PLAIN */
 	protected FontStyle style = FontStyle.PLAIN;
+	
+	/**
+	 * Chars that are required to be loaded in the font. A space glyph must be
+	 * also added when loading.
+	 */
 	protected String chars = Glyphs.basic;
+	
+	/** Requested filtering mode */
 	protected FilterMode filter = FilterMode.NEAREST;
+	
+	/** Whether to use anti-aliasing for the font. */
 	protected boolean antialias = false;
+	
+	/**
+	 * Ratio of the font to discard at the top (how much of the glyphs height is
+	 * blank from top)
+	 */
 	protected double discardTop = 0;
+	
+	/**
+	 * Ratio of the font to discard at the bottom (how much of the glyphs height
+	 * is blank from bottom)
+	 */
 	protected double discardBottom = 0;
 	
 	
+	/**
+	 * Make a font from resource
+	 *
+	 * @param resource the font resource
+	 */
 	public DeferredFont(String resource)
 	{
 		super(resource);
 	}
 	
 	
-	public void setSize(double size)
+	/**
+	 * Set font size. If the font is backed by a texture, this is the size at
+	 * which the font is rendered to the texture. For bitmap fonts, this should
+	 * match the font height in px.
+	 *
+	 * @param size font size
+	 */
+	public final void setSize(double size)
 	{
 		this.size = size;
 	}
 	
 	
-	public void setStyle(FontStyle style)
+	/**
+	 * Set desired font style
+	 *
+	 * @param style style
+	 */
+	public final void setStyle(FontStyle style)
 	{
 		this.style = style;
 	}
 	
 	
-	public void setChars(String chars)
+	/**
+	 * Set what chars are to be loaded. The space glyph will be loaded always.
+	 *
+	 * @param chars String containing chars to load (duplicates are ignored)
+	 */
+	public final void setChars(String chars)
 	{
 		this.chars = chars;
 	}
 	
 	
-	public void setFilter(FilterMode filter)
+	/**
+	 * Set texture filtering mode. For bitmap fonts, set to NEAREST.
+	 *
+	 * @param filter filter mode.
+	 */
+	public final void setFilter(FilterMode filter)
 	{
 		this.filter = filter;
 	}
 	
 	
-	public void setAntialias(boolean antialias)
+	/**
+	 * Set whether to use antialiasing.
+	 *
+	 * @param antialias antialias
+	 */
+	public final void setAntialias(boolean antialias)
 	{
 		this.antialias = antialias;
 	}
 	
 	
 	@Override
-	public void setDiscardRatio(double top, double bottom)
+	public final void setDiscardRatio(double top, double bottom)
 	{
 		discardTop = top;
 		discardBottom = bottom;
@@ -85,14 +154,14 @@ public abstract class DeferredFont extends BaseDeferredResource implements IFont
 	
 	
 	@Override
-	public double getTopDiscardRatio()
+	public final double getTopDiscardRatio()
 	{
 		return discardTop;
 	}
 	
 	
 	@Override
-	public double getBottomDiscardRatio()
+	public final double getBottomDiscardRatio()
 	{
 		return discardBottom;
 	}

@@ -12,17 +12,18 @@ import mightypork.utils.eventbus.clients.BusNode;
  * The goal of this abstraction is to allow easy migration to different
  * environment with different libraries etc. It should be as simple as using
  * different backend.
- * 
+ *
  * @author MightyPork
  */
 public abstract class AppBackend extends BusNode {
 	
+	/** App instance assigned using <code>bind()</code> */
 	protected App app;
 	
 	
 	/**
-	 * Assign an app instance.
-	 * 
+	 * Assign the initialized app instance to an "app" field.
+	 *
 	 * @param app app
 	 */
 	public void bind(App app)
@@ -42,7 +43,7 @@ public abstract class AppBackend extends BusNode {
 	
 	/**
 	 * Get graphics module (screen manager, texture and font loader, renderer)
-	 * 
+	 *
 	 * @return graphics module
 	 */
 	public abstract GraphicsModule getGraphics();
@@ -50,7 +51,7 @@ public abstract class AppBackend extends BusNode {
 	
 	/**
 	 * Get audio module (
-	 * 
+	 *
 	 * @return audio module
 	 */
 	public abstract AudioModule getAudio();
@@ -58,7 +59,7 @@ public abstract class AppBackend extends BusNode {
 	
 	/**
 	 * Get input module
-	 * 
+	 *
 	 * @return input module
 	 */
 	public abstract InputModule getInput();

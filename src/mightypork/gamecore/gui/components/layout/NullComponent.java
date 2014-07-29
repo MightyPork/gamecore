@@ -10,7 +10,7 @@ import mightypork.gamecore.gui.components.BaseComponent;
  * @author Ondřej Hruška (MightyPork)
  */
 public class NullComponent extends BaseComponent {
-	
+
 	@Override
 	protected void renderComponent()
 	{

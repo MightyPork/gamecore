@@ -49,4 +49,11 @@ public class InitTaskLogHeader extends InitTask {
 	{
 		return new String[] { "log", "workdir" };
 	}
+
+
+	@Override
+	public int getPriority()
+	{
+		return PRIO_FIRST;
+	}
 }

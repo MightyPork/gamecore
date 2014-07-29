@@ -11,13 +11,13 @@ import mightypork.gamecore.input.events.KeyEventHandler;
  * @author Ondřej Hruška (MightyPork)
  */
 public class KeyBinding implements KeyEventHandler {
-	
+
 	private final KeyStroke keystroke;
 	private Runnable handler;
 	private final Trigger edge;
 	private boolean wasDown = false;
-	
-	
+
+
 	/**
 	 * @param edge trigger edge
 	 * @param stroke trigger keystroke
@@ -30,8 +30,8 @@ public class KeyBinding implements KeyEventHandler {
 		this.edge = edge;
 		wasDown = stroke.isDown();
 	}
-	
-	
+
+
 	/**
 	 * Check for equality of keystroke
 	 *
@@ -42,8 +42,8 @@ public class KeyBinding implements KeyEventHandler {
 	{
 		return this.keystroke.equals(stroke);
 	}
-	
-	
+
+
 	/**
 	 * @param handler event handler
 	 */
@@ -51,18 +51,18 @@ public class KeyBinding implements KeyEventHandler {
 	{
 		this.handler = handler;
 	}
-	
-	
+
+
 	@Override
 	public void receive(KeyEvent event)
 	{
 		final boolean nowDown = keystroke.isDown();
-		
+
 		boolean trigger = false;
 		trigger |= (edge == Trigger.FALLING && (!wasDown && nowDown));
 		trigger |= (edge == Trigger.RISING && (wasDown && !nowDown));
 		wasDown = nowDown;
-		
+
 		// run handler when event was met
 		if (trigger) {
 			handler.run();

@@ -13,10 +13,10 @@ import mightypork.utils.eventbus.events.flags.SingleReceiverEvent;
  */
 @SingleReceiverEvent
 public class ScreenRequest extends BusEvent<ScreenRequestListener> {
-
+	
 	private final String scrName;
-
-
+	
+	
 	/**
 	 * Create a request to change screen
 	 *
@@ -26,12 +26,12 @@ public class ScreenRequest extends BusEvent<ScreenRequestListener> {
 	{
 		scrName = screenKey;
 	}
-
-
+	
+	
 	@Override
 	public void handleBy(ScreenRequestListener handler)
 	{
 		handler.showScreen(scrName);
 	}
-
+	
 }

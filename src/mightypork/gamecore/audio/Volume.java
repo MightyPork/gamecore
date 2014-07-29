@@ -11,7 +11,7 @@ import mightypork.utils.struct.Mutable;
  * @author Ondřej Hruška (MightyPork)
  */
 public class Volume extends Mutable<Double> {
-	
+
 	/**
 	 * @param d initial value
 	 */
@@ -19,12 +19,12 @@ public class Volume extends Mutable<Double> {
 	{
 		super(d);
 	}
-	
-	
+
+
 	@Override
 	public void set(Double d)
 	{
 		super.set(Calc.clamp(d, 0, 1));
 	}
-	
+
 }

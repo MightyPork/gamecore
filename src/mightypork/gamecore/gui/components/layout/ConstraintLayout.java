@@ -12,18 +12,18 @@ import mightypork.utils.math.constraints.rect.RectBound;
  * @author Ondřej Hruška (MightyPork)
  */
 public class ConstraintLayout extends LayoutComponent {
-	
+
 	public ConstraintLayout()
 	{
 	}
-	
-	
+
+
 	public ConstraintLayout(RectBound context)
 	{
 		super(context);
 	}
-	
-	
+
+
 	/**
 	 * Add a component to the layout.<br>
 	 * The component's rect must be set up manually.
@@ -34,5 +34,5 @@ public class ConstraintLayout extends LayoutComponent {
 	{
 		attach(component);
 	}
-	
+
 }

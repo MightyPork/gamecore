@@ -6,13 +6,12 @@ import mightypork.gamecore.resources.loading.ResourceLoader;
 
 
 /**
- * Task to add a resource loader.<br>
- * By default the async resource loader is used
+ * Add Async resource loader.
  *
  * @author Ondřej Hruška (MightyPork)
  */
 public class InitTaskResourceLoaderAsync extends InitTaskResourceLoader {
-
+	
 	/**
 	 * Create a loader impl
 	 *
@@ -21,10 +20,6 @@ public class InitTaskResourceLoaderAsync extends InitTaskResourceLoader {
 	@Override
 	protected ResourceLoader getLoaderImpl()
 	{
-		final AsyncResourceLoader loader = new AsyncResourceLoader();
-		
-		// could now configure the loader
-		
-		return loader;
+		return new AsyncResourceLoader();
 	}
 }

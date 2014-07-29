@@ -12,10 +12,10 @@ import mightypork.utils.files.WorkDir;
  * @author Ondřej Hruška (MightyPork)
  */
 public class InitTaskPluginScreenshot extends InitTask {
-
+	
 	private String screenshotDir;
-
-
+	
+	
 	/**
 	 * Initialize to use the "screenshots" directory
 	 */
@@ -23,8 +23,8 @@ public class InitTaskPluginScreenshot extends InitTask {
 	{
 		this("screenshots");
 	}
-
-
+	
+	
 	/**
 	 * Initialize to use the given directory for saving.
 	 *
@@ -34,8 +34,8 @@ public class InitTaskPluginScreenshot extends InitTask {
 	{
 		this.screenshotDir = dir;
 	}
-
-
+	
+	
 	/**
 	 * Set screenshot directory
 	 *
@@ -45,33 +45,33 @@ public class InitTaskPluginScreenshot extends InitTask {
 	{
 		this.screenshotDir = dir;
 	}
-
-
+	
+	
 	@Override
 	public void run()
 	{
 		WorkDir.addPath("_screenshot_dir", screenshotDir);
 		app.addPlugin(getPluginImpl());
 	}
-
-
+	
+	
 	protected AppPlugin getPluginImpl()
 	{
 		return new ScreenshotPlugin();
 	}
-	
-	
+
+
 	@Override
 	public String getName()
 	{
 		return "plugin_screenshot";
 	}
-
-
+	
+	
 	@Override
 	public String[] getDependencies()
 	{
 		return new String[] { "workdir" };
 	}
-
+	
 }

@@ -21,6 +21,7 @@ public abstract class InitTaskResourceLoader extends InitTask {
 	{
 		loader = getLoaderImpl();
 		if (loader != null) loader.init();
+		app.addChildClient(loader);
 	}
 	
 	

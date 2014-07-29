@@ -1,40 +1,52 @@
 package mightypork.gamecore.core.init;
 
 
+import mightypork.gamecore.core.BasicMainLoop;
 import mightypork.gamecore.core.MainLoop;
+import mightypork.utils.annotations.Stub;
 
 
 /**
- * Task to add a resource loader.<br>
- * By default the async resource loader is used
+ * Task to add a main loop.
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public abstract class InitTaskMainLoop extends InitTask {
-
-	/** The loader. */
+public class InitTaskMainLoop extends InitTask {
+	
+	/** The loop, can be accessed in the after() method. */
 	protected MainLoop loop;
-
-
+	
+	
 	@Override
 	public void run()
 	{
 		loop = getLoopImpl();
 		app.setMainLoop(loop);
 	}
-
-
+	
+	
 	/**
-	 * Create a loader impl
+	 * Create a main loop
 	 *
 	 * @return loader
 	 */
-	protected abstract MainLoop getLoopImpl();
-
-
+	@Stub
+	protected MainLoop getLoopImpl()
+	{
+		return new BasicMainLoop();
+	}
+	
+	
 	@Override
 	public String getName()
 	{
 		return "main_loop";
+	}
+
+
+	@Override
+	public int getPriority()
+	{
+		return PRIO_EARLY;
 	}
 }

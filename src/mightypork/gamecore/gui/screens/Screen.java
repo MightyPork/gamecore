@@ -21,13 +21,13 @@ import mightypork.utils.math.constraints.rect.RectBound;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class Screen extends BusNode implements Renderable, RectBound, KeyBinder, LayoutChangeListener {
-
+	
 	private final KeyBindingPool keybindings = new KeyBindingPool();
-
+	
 	private volatile boolean active;
 	private volatile boolean needSetupViewport = false;
-
-
+	
+	
 	/**
 	 * Make a screen. The screen will initially not listen to the bus, which is
 	 * changed once the setActive method is set to true.
@@ -36,31 +36,31 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	{
 		// disable events initially
 		setListening(false);
-
+		
 		addChildClient(keybindings);
 	}
-
-
+	
+	
 	private void fireLayoutChangeEvent()
 	{
 		App.bus().sendDirectToChildren(this, new LayoutChangeEvent());
 	}
-
-
+	
+	
 	@Override
 	public final void bindKey(KeyStroke stroke, Trigger edge, Runnable task)
 	{
 		keybindings.bindKey(stroke, edge, task);
 	}
-
-
+	
+	
 	@Override
 	public final void unbindKey(KeyStroke stroke)
 	{
 		keybindings.unbindKey(stroke);
 	}
-
-
+	
+	
 	/**
 	 * Prepare for being shown
 	 *
@@ -71,24 +71,24 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 		if (shown) {
 			active = true;
 			needSetupViewport = true;
-
+			
 			fireLayoutChangeEvent();
 			onScreenEnter();
-
+			
 			// enable events
 			setListening(true);
-
+			
 		} else {
 			onScreenLeave();
-
+			
 			active = false;
-
+			
 			// disable events
 			setListening(false);
 		}
 	}
-
-
+	
+	
 	/**
 	 * @return true if screen is the current screen
 	 */
@@ -96,41 +96,41 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	{
 		return active;
 	}
-
-
+	
+	
 	@Override
 	public void onLayoutChanged()
 	{
 		if (!isActive()) return;
-
+		
 		needSetupViewport = true;
 	}
-
-
+	
+	
 	@Override
 	public final Rect getRect()
 	{
 		return App.gfx().getRect();
 	}
-
-
+	
+	
 	@Override
 	public void render()
 	{
 		if (!isActive()) return;
-
+		
 		if (needSetupViewport) {
 			App.gfx().setupProjection();
 		}
-
+		
 		App.gfx().pushState();
-
+		
 		renderScreen();
-
+		
 		App.gfx().popState();
 	}
-
-
+	
+	
 	/**
 	 * Called when the screen becomes active
 	 */
@@ -139,8 +139,8 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	{
 		//
 	}
-
-
+	
+	
 	/**
 	 * Called when the screen is no longer active
 	 */
@@ -149,11 +149,11 @@ public abstract class Screen extends BusNode implements Renderable, RectBound, K
 	{
 		//
 	}
-
-
+	
+	
 	/**
 	 * Render screen contents (context is ready for 2D rendering)
 	 */
 	protected abstract void renderScreen();
-
+	
 }

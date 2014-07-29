@@ -12,20 +12,20 @@ import mightypork.utils.interfaces.Destroyable;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class AudioPlayer implements Destroyable {
-	
+
 	/** the track */
 	private final IAudio audio;
-	
+
 	/** base gain for sfx */
 	private double baseGain;
-	
+
 	/** base pitch for sfx */
 	private double basePitch;
-	
+
 	/** dedicated volume control */
 	private final Volume gainMultiplier;
-	
-	
+
+
 	/**
 	 * @param track audio resource
 	 * @param volume colume control
@@ -33,20 +33,20 @@ public abstract class AudioPlayer implements Destroyable {
 	public AudioPlayer(IAudio track, Volume volume)
 	{
 		this.audio = track;
-		
+
 		if (volume == null) volume = new Volume(1D);
-		
+
 		this.gainMultiplier = volume;
 	}
-	
-	
+
+
 	@Override
 	public void destroy()
 	{
 		audio.destroy();
 	}
-	
-	
+
+
 	/**
 	 * @return audio resource
 	 */
@@ -54,8 +54,8 @@ public abstract class AudioPlayer implements Destroyable {
 	{
 		return audio;
 	}
-	
-	
+
+
 	/**
 	 * Get play gain, computed based on volume and given multiplier
 	 *
@@ -66,8 +66,8 @@ public abstract class AudioPlayer implements Destroyable {
 	{
 		return baseGain * gainMultiplier.get() * multiplier;
 	}
-	
-	
+
+
 	/**
 	 * Get pitch
 	 *
@@ -78,8 +78,8 @@ public abstract class AudioPlayer implements Destroyable {
 	{
 		return basePitch * multiplier;
 	}
-	
-	
+
+
 	/**
 	 * Get if audio is valid
 	 *
@@ -89,8 +89,8 @@ public abstract class AudioPlayer implements Destroyable {
 	{
 		return (audio != null);
 	}
-	
-	
+
+
 	/**
 	 * Set base gain. 1 is original volume, 0 is silence.
 	 *
@@ -100,8 +100,8 @@ public abstract class AudioPlayer implements Destroyable {
 	{
 		this.baseGain = gain;
 	}
-	
-	
+
+
 	/**
 	 * Set base pitch. 1 is original pitch, less is deeper, more is higher.
 	 *
@@ -111,5 +111,5 @@ public abstract class AudioPlayer implements Destroyable {
 	{
 		this.basePitch = pitch;
 	}
-
+	
 }

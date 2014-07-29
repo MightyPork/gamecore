@@ -13,16 +13,16 @@ import mightypork.utils.logging.Log;
  * @author Ondřej Hruška (MightyPork)
  */
 public class TxSheet {
-
+	
 	private final TxQuad original;
 	private final TxQuad[] sprites;
 	private final int width;
-
+	
 	private final Random rand = new Random();
 	private final Random randForSeed = new Random();
 	private final int count;
-
-
+	
+	
 	/**
 	 * Make a sprite sheet
 	 *
@@ -35,11 +35,11 @@ public class TxSheet {
 		this.original = tx;
 		this.width = width;
 		this.count = width * height;
-
+		
 		this.sprites = new TxQuad[count];
 	}
-
-
+	
+	
 	/**
 	 * @return number of quads
 	 */
@@ -47,8 +47,8 @@ public class TxSheet {
 	{
 		return count;
 	}
-
-
+	
+	
 	/**
 	 * Get a quad based on ratio 0-1 (0: first, 1: last)
 	 *
@@ -59,8 +59,8 @@ public class TxSheet {
 	{
 		return getQuad((int) Math.round((count - 1) * ratio));
 	}
-
-
+	
+	
 	/**
 	 * Get quad of index
 	 *
@@ -73,25 +73,25 @@ public class TxSheet {
 			Log.w("Index out of bounds: " + index + ", allowed: 0.." + count);
 			index = index % count;
 		}
-
+		
 		// lazy - init only when needed
 		if (sprites[index] == null) {
 			final int x = index % width;
 			final int y = index / width;
-
+			
 			final double origW = original.uvs.width().value();
 			final double origH = original.uvs.height().value();
-
+			
 			final TxQuad txq = new TxQuad(original.tx, original.uvs.move(x * origW, y * origH));
 			txq.dupeAttrs(original);
-
+			
 			sprites[index] = txq;
 		}
-
+		
 		return sprites[index];
 	}
-
-
+	
+	
 	/**
 	 * Get entirely random TxQuad from this sheet
 	 *
@@ -101,8 +101,8 @@ public class TxSheet {
 	{
 		return getQuad(rand.nextInt(count));
 	}
-
-
+	
+	
 	/**
 	 * Get random TxQuad from this sheet
 	 *
@@ -114,8 +114,8 @@ public class TxSheet {
 		randForSeed.setSeed(seed);
 		return getQuad(randForSeed.nextInt(count));
 	}
-
-
+	
+	
 	/**
 	 * Get random TxQuad from this sheet
 	 *

@@ -14,7 +14,7 @@ import mightypork.utils.math.constraints.vect.Vect;
  */
 @Alias(name = "Audio")
 public abstract class DeferredAudio extends BaseDeferredResource implements IAudio {
-	
+
 	/**
 	 * Create audio
 	 *
@@ -24,22 +24,22 @@ public abstract class DeferredAudio extends BaseDeferredResource implements IAud
 	{
 		super(resourceName);
 	}
-
-
+	
+	
 	@Override
 	public void play(double gain, double pitch, boolean loop)
 	{
 		play(gain, pitch, loop, App.sound().getListenerPos());
 	}
-
-
+	
+	
 	@Override
 	public void play(double gain, double pitch, boolean loop, double x, double y)
 	{
 		play(gain, pitch, loop, x, y, App.sound().getListenerPos().z());
 	}
-
-
+	
+	
 	@Override
 	public void play(double gain, double pitch, boolean loop, Vect pos)
 	{

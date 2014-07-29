@@ -1,7 +1,7 @@
-package mightypork.gamecore.core.config;
+package mightypork.gamecore.core.init;
 
 
-import mightypork.gamecore.core.init.InitTask;
+import mightypork.gamecore.core.config.Config;
 import mightypork.utils.annotations.Stub;
 
 
@@ -70,6 +70,13 @@ public abstract class InitTaskConfig extends InitTask {
 	public String[] getDependencies()
 	{
 		return new String[] { "workdir" };
+	}
+	
+	
+	@Override
+	public int getPriority()
+	{
+		return PRIO_FIRST;
 	}
 	
 }

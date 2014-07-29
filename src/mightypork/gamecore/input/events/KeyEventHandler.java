@@ -7,7 +7,7 @@ package mightypork.gamecore.input.events;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface KeyEventHandler {
-	
+
 	/**
 	 * Handle an event
 	 *

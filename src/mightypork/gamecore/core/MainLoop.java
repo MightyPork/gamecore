@@ -12,7 +12,7 @@ import mightypork.utils.interfaces.Destroyable;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface MainLoop extends Destroyable {
-	
+
 	/**
 	 * Set primary renderable
 	 *
@@ -20,19 +20,19 @@ public interface MainLoop extends Destroyable {
 	 *            {@link ScreenRegistry}
 	 */
 	public abstract void setRootRenderable(Renderable rootRenderable);
-	
-	
+
+
 	/**
 	 * Start the loop. The loop should be terminated when the destroy() method
 	 * is called.
 	 */
 	public abstract void start();
-	
-	
+
+
 	@Override
 	public abstract void destroy();
-	
-	
+
+
 	/**
 	 * Add a task to queue to be executed in the main loop (in rendering
 	 * context). This may be eg. loading textures.
@@ -41,5 +41,5 @@ public interface MainLoop extends Destroyable {
 	 * @param skipQueue true to skip the queue
 	 */
 	public abstract void queueTask(Runnable task, boolean skipQueue);
-	
+
 }

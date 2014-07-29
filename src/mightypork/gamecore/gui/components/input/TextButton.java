@@ -18,31 +18,31 @@ import mightypork.utils.math.constraints.vect.var.VectVar;
  * @author Ondřej Hruška (MightyPork)
  */
 public class TextButton extends ClickableComponent implements DynamicWidthComponent {
-	
+
 	public final TextPainter textPainter;
-	
+
 	private final VectVar offset = Vect.makeVar();
-	
+
 	public Vect offsetPassive = height().div(16).toVectXY();
 	public Vect offsetOver = height().div(20).toVectXY();
 	public Vect offsetUnder = height().div(32).toVectXY();
-	
+
 	private final Color color;
-	
+
 	private boolean hoverMove = true;
-	
-	
+
+
 	public TextButton(IFont font, String text, Color color)
 	{
 		this.color = color;
-		
+
 		this.textPainter = new TextPainter(font, AlignX.CENTER, this.color, text);
 		this.textPainter.setRect(this);
 		this.textPainter.setShadow(RGB.BLACK_30, offset);
 		textPainter.setVPaddingPercent(5);
 	}
-	
-	
+
+
 	@Override
 	protected void renderComponent()
 	{
@@ -55,11 +55,11 @@ public class TextButton extends ClickableComponent implements DynamicWidthCompon
 		} else {
 			offset.setTo(offsetPassive);
 		}
-		
+
 		textPainter.render();
 	}
-	
-	
+
+
 	/**
 	 * Disable offset change on hover
 	 */
@@ -67,12 +67,12 @@ public class TextButton extends ClickableComponent implements DynamicWidthCompon
 	{
 		hoverMove = false;
 	}
-	
-	
+
+
 	@Override
 	public double computeWidth(double height)
 	{
 		return textPainter.computeWidth(height);
 	}
-	
+
 }

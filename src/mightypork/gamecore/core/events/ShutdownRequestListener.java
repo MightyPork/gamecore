@@ -6,13 +6,13 @@ package mightypork.gamecore.core.events;
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public interface ShutdownListener {
+public interface ShutdownRequestListener {
 	
 	/**
-	 * Intercept quit request.<br>
-	 * Consume the event to abort shutdown (ie. ask user to save)
+	 * Intercept shutdown request.<br>
+	 * Consume the event to abort shutdown (ie. ask user to save).
 	 *
 	 * @param event quit request event.
 	 */
-	void onShutdown(ShutdownEvent event);
+	void onShutdownRequested(ShutdownRequest event);
 }

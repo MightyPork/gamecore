@@ -16,14 +16,14 @@ import mightypork.utils.logging.Log;
  * @author Ondřej Hruška (MightyPork)
  */
 public class InitTaskCrashHandler extends InitTask implements UncaughtExceptionHandler {
-	
+
 	@Override
 	public void run()
 	{
 		Thread.setDefaultUncaughtExceptionHandler(this);
 	}
-	
-	
+
+
 	@Override
 	@Stub
 	public void uncaughtException(Thread thread, Throwable throwable)
@@ -31,11 +31,18 @@ public class InitTaskCrashHandler extends InitTask implements UncaughtExceptionH
 		Log.e("The game has crashed.", throwable);
 		App.shutdown();
 	}
-	
-	
+
+
 	@Override
 	public String getName()
 	{
 		return "crash_handler";
+	}
+	
+	
+	@Override
+	public int getPriority()
+	{
+		return PRIO_FIRST;
 	}
 }

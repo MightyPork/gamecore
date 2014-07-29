@@ -11,19 +11,19 @@ import mightypork.utils.math.constraints.vect.Vect;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface IAudio extends Destroyable {
-
+	
 	/**
 	 * Pause loop (remember position and stop playing) - if was looping
 	 */
 	void pauseLoop();
-
-
+	
+	
 	/**
 	 * Resume loop (if was looping and paused)
 	 */
 	void resumeLoop();
-
-
+	
+	
 	/**
 	 * Adjust gain for the currently playing effect (can be used for fading
 	 * music)
@@ -31,27 +31,27 @@ public interface IAudio extends Destroyable {
 	 * @param gain gain to set 0..1
 	 */
 	void adjustGain(double gain);
-
-
+	
+	
 	/**
 	 * Stop audio playback, free source. Meaningful for loops, may not work
 	 * properly for effects.
 	 */
 	void stop();
-
-
+	
+	
 	/**
 	 * @return true if the audio is playing
 	 */
 	boolean isPlaying();
-
-
+	
+	
 	/**
 	 * @return trie if the audio is paused
 	 */
 	boolean isPaused();
-	
-	
+
+
 	/**
 	 * Play as sound effect at listener position
 	 *
@@ -60,8 +60,8 @@ public interface IAudio extends Destroyable {
 	 * @param loop looping
 	 */
 	void play(double gain, double pitch, boolean loop);
-
-
+	
+	
 	/**
 	 * Play as sound effect at given position
 	 *
@@ -73,8 +73,8 @@ public interface IAudio extends Destroyable {
 	 * @param z
 	 */
 	void play(double gain, double pitch, boolean loop, double x, double y, double z);
-
-
+	
+	
 	/**
 	 * Play as sound effect at given X-Y position
 	 *
@@ -85,8 +85,8 @@ public interface IAudio extends Destroyable {
 	 * @param y
 	 */
 	void play(double gain, double pitch, boolean loop, double x, double y);
-
-
+	
+	
 	/**
 	 * Play as sound effect at given position
 	 *
@@ -96,8 +96,8 @@ public interface IAudio extends Destroyable {
 	 * @param pos coord
 	 */
 	void play(double gain, double pitch, boolean loop, Vect pos);
-
-
+	
+	
 	/**
 	 * Check if this audio is currently active (ie. playing or paused, not
 	 * stopped)
@@ -105,5 +105,5 @@ public interface IAudio extends Destroyable {
 	 * @return is active
 	 */
 	boolean isActive();
-
+	
 }

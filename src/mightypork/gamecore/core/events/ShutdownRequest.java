@@ -15,26 +15,13 @@ import mightypork.utils.logging.Log;
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public class ShutdownEvent extends BusEvent<ShutdownListener> {
-	
-	private final Runnable shutdownTask;
-	
-	
-	/**
-	 * Make a shutdown event
-	 *
-	 * @param doShutdown Task that does the actual shutdown
-	 */
-	public ShutdownEvent(Runnable doShutdown)
-	{
-		this.shutdownTask = doShutdown;
-	}
+public class ShutdownRequest extends BusEvent<ShutdownRequestListener> {
 	
 	
 	@Override
-	protected void handleBy(ShutdownListener handler)
+	protected void handleBy(ShutdownRequestListener handler)
 	{
-		handler.onShutdown(this);
+		handler.onShutdownRequested(this);
 	}
 	
 	
@@ -44,7 +31,7 @@ public class ShutdownEvent extends BusEvent<ShutdownListener> {
 		if (!isConsumed()) {
 			Log.i("Shutting down...");
 
-			App.bus().send(new MainLoopRequest(shutdownTask, true));
+			App.shutdown();
 
 		} else {
 			Log.i("Shutdown aborted.");

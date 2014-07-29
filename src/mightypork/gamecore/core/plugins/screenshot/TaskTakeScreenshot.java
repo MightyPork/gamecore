@@ -19,10 +19,10 @@ import mightypork.utils.logging.Log;
  * @author MightyPork
  */
 public class TaskTakeScreenshot implements Runnable {
-	
+
 	private final Screenshot scr;
-	
-	
+
+
 	/**
 	 * Take screenshot. Must be called in render thread.
 	 */
@@ -30,16 +30,16 @@ public class TaskTakeScreenshot implements Runnable {
 	{
 		scr = App.gfx().takeScreenshot();
 	}
-	
-	
+
+
 	@Override
 	public void run()
 	{
 		// generate unique filename
 		final File file = getScreenshotFile();
-		
+
 		Log.f3("Saving screenshot to file: " + file);
-		
+
 		// save to disk
 		try {
 			scr.save(file);
@@ -47,8 +47,8 @@ public class TaskTakeScreenshot implements Runnable {
 			Log.e("Failed to save screenshot.", e);
 		}
 	}
-	
-	
+
+
 	/**
 	 * @return File to save the screenshot to.
 	 */
@@ -57,8 +57,8 @@ public class TaskTakeScreenshot implements Runnable {
 		final String fname = getBaseFilename();
 		return findFreeFile(fname);
 	}
-	
-	
+
+
 	/**
 	 * @return directory for screenshots
 	 */
@@ -66,8 +66,8 @@ public class TaskTakeScreenshot implements Runnable {
 	{
 		return WorkDir.getDir("_screenshot_dir");
 	}
-	
-	
+
+
 	/**
 	 * Get base filename for the screenshot, without extension.
 	 *
@@ -77,8 +77,8 @@ public class TaskTakeScreenshot implements Runnable {
 	{
 		return Support.getTime("yyyy-MM-dd_HH-mm-ss");
 	}
-	
-	
+
+
 	/**
 	 * Find first free filename for the screenshot, by adding -NUMBER after the
 	 * base filename and before extension.
@@ -97,5 +97,5 @@ public class TaskTakeScreenshot implements Runnable {
 		}
 		return file;
 	}
-	
+
 }

@@ -13,16 +13,16 @@ import mightypork.utils.math.constraints.rect.RectBound;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface PluggableRenderable extends Renderable, PluggableRectBound {
-	
+
 	@Override
 	void render();
-	
-	
+
+
 	@Override
 	Rect getRect();
-	
-	
+
+
 	@Override
 	void setRect(RectBound rect);
-	
+
 }

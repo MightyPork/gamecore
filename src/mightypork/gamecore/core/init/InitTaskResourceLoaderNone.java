@@ -5,14 +5,14 @@ import mightypork.gamecore.resources.loading.ResourceLoader;
 
 
 /**
- * Task to add a resource loader.<br>
- * By default the async resource loader is used
+ * Add no resource loader. That will cause resources to be loaded on-demand. May
+ * cause lag if the resources are too large.
  *
  * @author Ondřej Hruška (MightyPork)
  */
 public class InitTaskResourceLoaderNone extends InitTaskResourceLoader {
-
-
+	
+	
 	@Override
 	protected ResourceLoader getLoaderImpl()
 	{

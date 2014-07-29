@@ -133,4 +133,11 @@ public class InitTaskWorkdir extends InitTask {
 	{
 		return "workdir";
 	}
+
+
+	@Override
+	public int getPriority()
+	{
+		return PRIO_EARLY;
+	}
 }

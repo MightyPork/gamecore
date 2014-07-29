@@ -15,12 +15,12 @@ import mightypork.utils.math.constraints.rect.RectBound;
  * @author Ondřej Hruška (MightyPork)
  */
 public class FlowColumnLayout extends LayoutComponent {
-	
+
 	private int col = 0;
 	private Num elementWidth;
 	private final AlignX align;
-	
-	
+
+
 	/**
 	 * @param context context
 	 * @param elementWidth width of all elements
@@ -31,13 +31,13 @@ public class FlowColumnLayout extends LayoutComponent {
 		super(context);
 		this.elementWidth = elementWidth;
 		this.align = align;
-		
+
 		if (align != AlignX.LEFT && align != AlignX.RIGHT) {
 			throw new IllegalArgumentException("Can align only left or right.");
 		}
 	}
-	
-	
+
+
 	/**
 	 * make a new holder.<br>
 	 * Context must be assigned before rendering.
@@ -49,8 +49,8 @@ public class FlowColumnLayout extends LayoutComponent {
 	{
 		this(null, elementWidth, align);
 	}
-	
-	
+
+
 	/**
 	 * Add an item
 	 *
@@ -59,9 +59,9 @@ public class FlowColumnLayout extends LayoutComponent {
 	public void add(final Component elem)
 	{
 		if (elem == null) return;
-		
+
 		final Rect r;
-		
+
 		switch (align) {
 			case LEFT:
 				r = leftEdge().growRight(elementWidth).moveX(elementWidth.mul(col++));
@@ -72,16 +72,16 @@ public class FlowColumnLayout extends LayoutComponent {
 			default:
 				throw new IllegalArgumentException("Bad align.");
 		}
-		
+
 		elem.setRect(r);
-		
+
 		attach(elem);
 	}
-	
-	
+
+
 	public void setElementWidth(Num elementWidth)
 	{
 		this.elementWidth = elementWidth;
 	}
-	
+
 }

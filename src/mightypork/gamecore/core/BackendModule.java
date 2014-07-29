@@ -12,7 +12,7 @@ import mightypork.utils.interfaces.Destroyable;
  * @author MightyPork
  */
 public abstract class BackendModule extends BusNode implements Destroyable {
-	
+
 	/**
 	 * Initialize the backend module.<br>
 	 * Any initialization that would normally be done in constructor shall be
@@ -20,8 +20,8 @@ public abstract class BackendModule extends BusNode implements Destroyable {
 	 * "call to overridable method from constructor"
 	 */
 	public abstract void init();
-	
-	
+
+
 	@Override
 	@Stub
 	public void destroy()

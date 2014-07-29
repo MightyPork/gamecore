@@ -5,7 +5,7 @@ import mightypork.gamecore.graphics.GraphicsModule;
 
 
 /**
- * Setup main window.
+ * Setup main window / display with rendering context.
  *
  * @author Ondřej Hruška (MightyPork)
  */

@@ -15,17 +15,17 @@ import mightypork.utils.math.constraints.vect.VectConst;
  */
 @NotLoggedEvent
 public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
-	
+
 	public static final int BUTTON_LEFT = 0;
 	public static final int BUTTON_MIDDLE = 1;
 	public static final int BUTTON_RIGHT = 2;
-	
+
 	private final int button;
 	private final int wheeld;
 	private final VectConst pos;
 	private final boolean down;
-	
-	
+
+
 	/**
 	 * Mouse button event
 	 *
@@ -41,8 +41,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 		this.pos = pos.freeze();
 		this.wheeld = wheeld;
 	}
-	
-	
+
+
 	/**
 	 * @return true if the event was caused by a button state change
 	 */
@@ -50,8 +50,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 	{
 		return button != -1;
 	}
-	
-	
+
+
 	/**
 	 * @return true if the event was caused by a wheel change
 	 */
@@ -59,8 +59,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 	{
 		return wheeld != 0;
 	}
-	
-	
+
+
 	/**
 	 * @return button id or -1 if none was pressed
 	 */
@@ -68,8 +68,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 	{
 		return button;
 	}
-	
-	
+
+
 	/**
 	 * @return number of steps the wheel changed since last event
 	 */
@@ -77,8 +77,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 	{
 		return wheeld;
 	}
-	
-	
+
+
 	/**
 	 * @return mouse position when the event occurred
 	 */
@@ -86,8 +86,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 	{
 		return pos;
 	}
-	
-	
+
+
 	/**
 	 * @return true if button was just pressed
 	 */
@@ -95,8 +95,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 	{
 		return button != -1 && down;
 	}
-	
-	
+
+
 	/**
 	 * @return true if button was just released
 	 */
@@ -104,8 +104,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 	{
 		return button != -1 && !down;
 	}
-	
-	
+
+
 	/**
 	 * Get if event happened over a rect
 	 *
@@ -116,8 +116,8 @@ public class MouseButtonEvent extends BusEvent<MouseButtonHandler> {
 	{
 		return rect.getRect().contains(pos);
 	}
-	
-	
+
+
 	@Override
 	public void handleBy(MouseButtonHandler handler)
 	{

@@ -13,10 +13,10 @@ import mightypork.utils.math.constraints.rect.builders.TiledRect;
  * @author Ondřej Hruška (MightyPork)
  */
 public class GridLayout extends LayoutComponent {
-	
+
 	private final TiledRect tiler;
-	
-	
+
+
 	/**
 	 * @param context context
 	 * @param rows number of rows
@@ -27,8 +27,8 @@ public class GridLayout extends LayoutComponent {
 		super(context);
 		this.tiler = tiles(cols, rows);
 	}
-	
-	
+
+
 	/**
 	 * make a new holder.<br>
 	 * Context must be assigned before rendering.
@@ -40,8 +40,8 @@ public class GridLayout extends LayoutComponent {
 	{
 		this(null, rows, cols);
 	}
-	
-	
+
+
 	/**
 	 * Add a row to the holder.
 	 *
@@ -52,13 +52,13 @@ public class GridLayout extends LayoutComponent {
 	public void put(Component elem, int row, int column)
 	{
 		if (elem == null) return;
-		
+
 		elem.setRect(tiler.tile(column, row));
-		
+
 		attach(elem);
 	}
-	
-	
+
+
 	/**
 	 * Put with span
 	 *
@@ -71,10 +71,10 @@ public class GridLayout extends LayoutComponent {
 	public void put(Component elem, int row, int column, int rowspan, int colspan)
 	{
 		if (elem == null) return;
-		
+
 		elem.setRect(tiler.span(column, row, colspan, rowspan));
-		
+
 		attach(elem);
 	}
-	
+
 }

@@ -15,47 +15,47 @@ import mightypork.utils.math.constraints.vect.Vect;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class InputModule extends BackendModule implements KeyBinder {
-	
+
 	protected KeyBindingPool keybindings;
-	
-	
+
+
 	@Override
 	public final void init()
 	{
 		initKeyCodes();
 		initDevices();
-		
+
 		keybindings = new KeyBindingPool();
 		addChildClient(keybindings);
 	}
-	
-	
+
+
 	/**
 	 * Initialize key codes for keys in {@link Keys}
 	 */
 	protected abstract void initKeyCodes();
-	
-	
+
+
 	/**
 	 * Initialize input devices (set up infrastructure for getting the input)
 	 */
 	protected abstract void initDevices();
-	
-	
+
+
 	@Override
 	public void bindKey(KeyStroke stroke, Trigger edge, Runnable task)
 	{
 		keybindings.bindKey(stroke, edge, task);
 	}
-	
-	
+
+
 	@Override
 	public void unbindKey(KeyStroke stroke)
 	{
 		keybindings.unbindKey(stroke);
 	}
-	
-	
+
+
 	/**
 	 * Get absolute mouse position. Should always return the same Vect instance
 	 * (use a VectVar or similar).
@@ -63,24 +63,24 @@ public abstract class InputModule extends BackendModule implements KeyBinder {
 	 * @return mouse position
 	 */
 	public abstract Vect getMousePos();
-	
-	
+
+
 	/**
 	 * Check if mouse is inside window
 	 *
 	 * @return true if mouse is inside window.
 	 */
 	public abstract boolean isMouseInside();
-	
-	
+
+
 	/**
 	 * Trap mouse cursor in the window / release it
 	 *
 	 * @param grab true to grab, false to release
 	 */
 	public abstract void grabMouse(boolean grab);
-	
-	
+
+
 	/**
 	 * Check if key is down. The key comes from the Keys class, so the code is
 	 * the one assigned in initKeyCodes()
@@ -89,8 +89,8 @@ public abstract class InputModule extends BackendModule implements KeyBinder {
 	 * @return is down
 	 */
 	public abstract boolean isKeyDown(Key key);
-	
-	
+
+
 	/**
 	 * Check mouse button state
 	 *

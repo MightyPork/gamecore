@@ -14,11 +14,11 @@ import mightypork.utils.eventbus.clients.BusNode;
  * @author Ondřej Hruška (MightyPork)
  */
 public class AppPlugin extends BusNode {
-
+	
 	/** App instance assigned using <code>bind()</code> */
 	protected App app;
-
-
+	
+	
 	/**
 	 * Assign the initialized app instance to an "app" field.
 	 *
@@ -28,8 +28,8 @@ public class AppPlugin extends BusNode {
 	{
 		this.app = app;
 	}
-
-
+	
+	
 	/**
 	 * Initialize the plugin for the given App.<br>
 	 * The plugin is already attached to the event bus.

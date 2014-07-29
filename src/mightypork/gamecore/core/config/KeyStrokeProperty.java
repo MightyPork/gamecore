@@ -16,7 +16,7 @@ import mightypork.utils.config.propmgr.Property;
  * @author Ondřej Hruška (MightyPork)
  */
 public class KeyStrokeProperty extends Property<KeyStroke> {
-	
+
 	/**
 	 * Make a keystroke property
 	 *
@@ -28,32 +28,32 @@ public class KeyStrokeProperty extends Property<KeyStroke> {
 	{
 		super(key, defaultValue, comment);
 	}
-	
-	
+
+
 	@Override
 	public void fromString(String string)
 	{
 		if (string != null) {
 			// keep the same instance
-			
+
 			final Key backup_key = value.getKey();
 			final int backup_mod = value.getMod();
-			
+
 			value.loadFromString(string);
 			if (value.getKey() == Keys.NONE) {
 				value.setTo(backup_key, backup_mod);
 			}
 		}
 	}
-	
-	
+
+
 	@Override
 	public String toString()
 	{
 		return value.saveToString();
 	}
-	
-	
+
+
 	@Override
 	public void setValue(Object value)
 	{

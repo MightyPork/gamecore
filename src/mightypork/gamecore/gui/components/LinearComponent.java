@@ -15,36 +15,36 @@ import mightypork.utils.math.constraints.vect.proxy.VectAdapter;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class LinearComponent extends BaseComponent implements DynamicWidthComponent {
-	
+
 	private final Rect rect = new Rect() {
-		
+
 		@Override
 		public Vect size()
 		{
 			return new Vect() {
-				
+
 				@Override
 				public double x()
 				{
 					return computeWidth(y());
 				}
-				
-				
+
+
 				@Override
 				public double y()
 				{
 					return height.value();
 				}
-				
+
 			};
 		}
-		
-		
+
+
 		@Override
 		public Vect origin()
 		{
 			return new VectAdapter() {
-				
+
 				@Override
 				protected Vect getSource()
 				{
@@ -53,11 +53,11 @@ public abstract class LinearComponent extends BaseComponent implements DynamicWi
 			};
 		}
 	};
-	
+
 	private Vect origin;
 	private Num height;
-	
-	
+
+
 	/**
 	 * Create a linear component
 	 */
@@ -65,15 +65,15 @@ public abstract class LinearComponent extends BaseComponent implements DynamicWi
 	{
 		super.setRect(rect);
 	}
-	
-	
+
+
 	@Override
 	public void setRect(RectBound rect)
 	{
 		throw new RuntimeException("Cannot assign a rect to a linear component. Set origin and height instead.");
 	}
-	
-	
+
+
 	/**
 	 * Set component's height
 	 *
@@ -83,8 +83,8 @@ public abstract class LinearComponent extends BaseComponent implements DynamicWi
 	{
 		this.height = height;
 	}
-	
-	
+
+
 	/**
 	 * Set component's origin
 	 *

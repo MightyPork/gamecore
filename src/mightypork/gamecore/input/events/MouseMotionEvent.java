@@ -14,11 +14,11 @@ import mightypork.utils.math.constraints.vect.VectConst;
  */
 @NotLoggedEvent
 public class MouseMotionEvent extends BusEvent<MouseMotionHandler> {
-	
+
 	private final VectConst move;
 	private final VectConst pos;
-	
-	
+
+
 	/**
 	 * @param pos end pos
 	 * @param move move vector
@@ -28,8 +28,8 @@ public class MouseMotionEvent extends BusEvent<MouseMotionHandler> {
 		this.move = move.freeze();
 		this.pos = pos.freeze();
 	}
-	
-	
+
+
 	/**
 	 * @return movement since last {@link MouseMotionEvent}
 	 */
@@ -37,8 +37,8 @@ public class MouseMotionEvent extends BusEvent<MouseMotionHandler> {
 	{
 		return move;
 	}
-	
-	
+
+
 	/**
 	 * @return current mouse position
 	 */
@@ -46,12 +46,12 @@ public class MouseMotionEvent extends BusEvent<MouseMotionHandler> {
 	{
 		return pos;
 	}
-	
-	
+
+
 	@Override
 	public void handleBy(MouseMotionHandler keh)
 	{
 		keh.receive(this);
 	}
-	
+
 }

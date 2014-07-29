@@ -11,13 +11,13 @@ import mightypork.utils.math.constraints.num.Num;
  * @author Ondřej Hruška (MightyPork)
  */
 public class LinearGap extends LinearRectangle {
-	
+
 	public LinearGap(Num width)
 	{
 		super(new NullComponent(), width);
 	}
-	
-	
+
+
 	public LinearGap(double heightPercent)
 	{
 		this(Num.ZERO);

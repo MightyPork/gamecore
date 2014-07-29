@@ -14,12 +14,12 @@ import mightypork.utils.interfaces.Enableable;
  * @author Ondřej Hruška (MightyPork)
  */
 public class ActionGroup implements Enableable {
-
+	
 	private boolean enabled = true;
-
+	
 	private final Set<Enableable> groupMembers = new HashSet<>();
-
-
+	
+	
 	@Override
 	public void setEnabled(boolean yes)
 	{
@@ -27,15 +27,15 @@ public class ActionGroup implements Enableable {
 		for (final Enableable e : groupMembers)
 			e.setEnabled(yes);
 	}
-
-
+	
+	
 	@Override
 	public boolean isEnabled()
 	{
 		return enabled;
 	}
-
-
+	
+	
 	/**
 	 * Add an {@link Enableable} to the group
 	 *
@@ -45,8 +45,8 @@ public class ActionGroup implements Enableable {
 	{
 		groupMembers.add(member);
 	}
-
-
+	
+	
 	/**
 	 * Remove a group member
 	 *
@@ -56,5 +56,5 @@ public class ActionGroup implements Enableable {
 	{
 		groupMembers.remove(member);
 	}
-
+	
 }

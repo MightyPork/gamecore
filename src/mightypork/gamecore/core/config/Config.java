@@ -4,8 +4,8 @@ package mightypork.gamecore.core.config;
 import java.util.HashMap;
 import java.util.Map;
 
-import mightypork.gamecore.core.events.ShutdownEvent;
-import mightypork.gamecore.core.events.ShutdownListener;
+import mightypork.gamecore.core.events.ShutdownRequest;
+import mightypork.gamecore.core.events.ShutdownRequestListener;
 import mightypork.gamecore.input.Key;
 import mightypork.gamecore.input.KeyStroke;
 import mightypork.utils.config.propmgr.Property;
@@ -21,16 +21,16 @@ import mightypork.utils.logging.Log;
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public class Config implements ShutdownListener {
-
+public class Config implements ShutdownRequestListener {
+	
 	/** Array of configs registered for the app */
 	protected static Map<String, Config> configs = new HashMap<>();
-
+	
 	private final Map<String, KeyStrokeProperty> strokes = new HashMap<>();
-
+	
 	private final PropertyManager propertyManager;
-
-
+	
+	
 	/**
 	 * Get a config from the static map, by given alias
 	 *
@@ -40,15 +40,15 @@ public class Config implements ShutdownListener {
 	public static Config forAlias(String alias)
 	{
 		final Config c = configs.get(alias);
-
+		
 		if (c == null) {
 			throw new IllegalArgumentException("There is no config with alias \"" + alias + "\"");
 		}
-
+		
 		return c;
 	}
-
-
+	
+	
 	/**
 	 * Register a config by alias.
 	 *
@@ -60,11 +60,11 @@ public class Config implements ShutdownListener {
 		if (configs.get(alias) != null) {
 			throw new IllegalArgumentException("The alias \"" + alias + "\" is already used.");
 		}
-
+		
 		configs.put(alias, config);
 	}
-
-
+	
+	
 	/**
 	 * Initialize property manager for a file
 	 *
@@ -75,8 +75,8 @@ public class Config implements ShutdownListener {
 	{
 		this(new PropertyFile(WorkDir.getFile(file), headComment));
 	}
-
-
+	
+	
 	/**
 	 * Initialize property manager for a given store
 	 *
@@ -86,8 +86,8 @@ public class Config implements ShutdownListener {
 	{
 		propertyManager = new PropertyManager(store);
 	}
-
-
+	
+	
 	/**
 	 * Add a keystroke property
 	 *
@@ -101,8 +101,8 @@ public class Config implements ShutdownListener {
 		strokes.put(prefixKeyStroke(key), kprop);
 		propertyManager.addProperty(kprop);
 	}
-
-
+	
+	
 	/**
 	 * Add a boolean property (flag)
 	 *
@@ -114,8 +114,8 @@ public class Config implements ShutdownListener {
 	{
 		propertyManager.addBoolean(key, defval, comment);
 	}
-
-
+	
+	
 	/**
 	 * Add an integer property
 	 *
@@ -127,8 +127,8 @@ public class Config implements ShutdownListener {
 	{
 		propertyManager.addInteger(key, defval, comment);
 	}
-
-
+	
+	
 	/**
 	 * Add a double property
 	 *
@@ -140,8 +140,8 @@ public class Config implements ShutdownListener {
 	{
 		propertyManager.addDouble(key, defval, comment);
 	}
-
-
+	
+	
 	/**
 	 * Add a string property
 	 *
@@ -153,8 +153,8 @@ public class Config implements ShutdownListener {
 	{
 		propertyManager.addString(key, defval, comment);
 	}
-
-
+	
+	
 	/**
 	 * Add an arbitrary property (can be custom type)
 	 *
@@ -164,8 +164,8 @@ public class Config implements ShutdownListener {
 	{
 		propertyManager.addProperty(prop);
 	}
-
-
+	
+	
 	/**
 	 * Load config from file
 	 */
@@ -173,8 +173,8 @@ public class Config implements ShutdownListener {
 	{
 		propertyManager.load();
 	}
-
-
+	
+	
 	/**
 	 * Save config to file
 	 */
@@ -183,8 +183,8 @@ public class Config implements ShutdownListener {
 		Log.f3("Saving config.");
 		propertyManager.save();
 	}
-
-
+	
+	
 	/**
 	 * Get an option for key
 	 *
@@ -197,14 +197,14 @@ public class Config implements ShutdownListener {
 			if (propertyManager.getProperty(key) == null) {
 				throw new IllegalArgumentException("No such property: " + key);
 			}
-
+			
 			return propertyManager.getValue(key);
 		} catch (final ClassCastException cce) {
 			throw new RuntimeException("Property of incompatible type: " + key);
 		}
 	}
-
-
+	
+	
 	/**
 	 * Set option to a value. Call the save() method to make the change
 	 * permanent.
@@ -217,11 +217,11 @@ public class Config implements ShutdownListener {
 		if (propertyManager.getProperty(key) == null) {
 			throw new IllegalArgumentException("No such property: " + key);
 		}
-
+		
 		propertyManager.setValue(key, value);
 	}
-
-
+	
+	
 	/**
 	 * Add "key." before the given config file key
 	 *
@@ -232,8 +232,8 @@ public class Config implements ShutdownListener {
 	{
 		return "key." + cfgKey;
 	}
-
-
+	
+	
 	/**
 	 * Get keystroke for name
 	 *
@@ -246,11 +246,11 @@ public class Config implements ShutdownListener {
 		if (kp == null) {
 			throw new IllegalArgumentException("No such stroke: " + cfgKey);
 		}
-
+		
 		return kp.getValue();
 	}
-
-
+	
+	
 	/**
 	 * Set a keystroke for name
 	 *
@@ -264,13 +264,13 @@ public class Config implements ShutdownListener {
 		if (kp == null) {
 			throw new IllegalArgumentException("No such stroke: " + cfgKey);
 		}
-
+		
 		kp.getValue().setTo(key, mod);
 	}
-
-
+	
+	
 	@Override
-	public void onShutdown(ShutdownEvent event)
+	public void onShutdownRequested(ShutdownRequest event)
 	{
 		save(); // save changes done to the config
 	}

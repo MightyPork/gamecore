@@ -10,7 +10,7 @@ import mightypork.utils.eventbus.clients.ToggleableClient;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class InputComponent extends BaseComponent implements ToggleableClient {
-
+	
 	@Override
 	public boolean isListening()
 	{

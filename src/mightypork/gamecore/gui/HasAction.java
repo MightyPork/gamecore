@@ -7,7 +7,7 @@ package mightypork.gamecore.gui;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface HasAction {
-
+	
 	/**
 	 * Assign an action
 	 *

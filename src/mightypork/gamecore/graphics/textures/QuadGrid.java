@@ -11,14 +11,14 @@ import mightypork.utils.math.constraints.rect.Rect;
  * @author Ondřej Hruška (MightyPork)
  */
 public class QuadGrid {
-	
+
 	private final ITexture tx;
 	private final int txHeight;
 	private final int txWidth;
 	private final double tileW;
 	private final double tileH;
-	
-	
+
+
 	/**
 	 * @param tx backing texture
 	 * @param tilesX number of tile columns
@@ -32,8 +32,8 @@ public class QuadGrid {
 		this.tileW = 1D / tilesX;
 		this.tileH = 1D / tilesY;
 	}
-	
-	
+
+
 	/**
 	 * Make square quad at given coords (one grid cell)
 	 *
@@ -46,11 +46,11 @@ public class QuadGrid {
 		if (x < 0 || x >= txWidth || y < 0 || y >= txHeight) {
 			throw new IndexOutOfBoundsException("Requested invalid txquad coordinates.");
 		}
-		
+
 		return makeQuad(x, y, 1, 1);
 	}
-	
-	
+
+
 	/**
 	 * Make square quad at given coords, with arbitrary size. Coordinates are
 	 * multiples of cell size.
@@ -66,15 +66,15 @@ public class QuadGrid {
 		if (x < 0 || x >= txWidth || y < 0 || y >= txHeight) {
 			throw new IndexOutOfBoundsException("Requested invalid txquad coordinates.");
 		}
-		
+
 		if (x + width > txWidth || y + height > txHeight) {
 			throw new IndexOutOfBoundsException("Requested invalid txquad size (would go beyond texture size).");
 		}
-		
+
 		return tx.makeQuad(Rect.make(tileW * x, tileH * y, tileW * width, tileH * height));
 	}
-	
-	
+
+
 	/**
 	 * Make a sheet.
 	 *
@@ -89,11 +89,11 @@ public class QuadGrid {
 		if (x < 0 || x >= txWidth || y < 0 || y >= txHeight) {
 			throw new IndexOutOfBoundsException("Requested invalid txquad coordinates.");
 		}
-		
+
 		if (x + width > txWidth || y + height > txHeight) {
 			throw new IndexOutOfBoundsException("Requested invalid txsheet size (would go beyond texture size).");
 		}
-		
+
 		return makeQuad(x, y).makeSheet(width, height);
 	}
 }

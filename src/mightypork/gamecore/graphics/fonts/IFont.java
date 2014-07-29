@@ -11,7 +11,7 @@ import mightypork.utils.math.constraints.vect.Vect;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface IFont {
-
+	
 	/**
 	 * Draw without scaling at (0, 0) in given color.
 	 *
@@ -19,8 +19,8 @@ public interface IFont {
 	 * @param color draw color
 	 */
 	void draw(String text, Color color);
-
-
+	
+	
 	/**
 	 * Get suize needed to render give string
 	 *
@@ -28,27 +28,27 @@ public interface IFont {
 	 * @return coord (width, height)
 	 */
 	Vect getNeededSpace(String text);
-
-
+	
+	
 	/**
 	 * @return font height
 	 */
 	int getLineHeight();
-
-
+	
+	
 	/**
 	 * @param text texted text
 	 * @return space needed
 	 */
 	int getWidth(String text);
-
-
+	
+	
 	/**
 	 * @return specified font size
 	 */
 	int getFontSize();
-
-
+	
+	
 	/**
 	 * Set what vertical ratio of the font size is blank and should be cut off
 	 * when rendering
@@ -57,16 +57,16 @@ public interface IFont {
 	 * @param bottom bottom ratio (0-1)
 	 */
 	void setDiscardRatio(double top, double bottom);
-
-
+	
+	
 	/**
 	 * Get top discard ratio (blank unused space)
 	 *
 	 * @return ratio
 	 */
 	double getTopDiscardRatio();
-
-
+	
+	
 	/**
 	 * Get bottom discard ratio (blank unused space)
 	 *

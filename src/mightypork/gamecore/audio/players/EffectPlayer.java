@@ -12,7 +12,7 @@ import mightypork.utils.math.constraints.vect.Vect;
  * @author Ondřej Hruška (MightyPork)
  */
 public class EffectPlayer extends AudioPlayer {
-	
+
 	/**
 	 * @param track audio resource
 	 * @param volume volume control
@@ -21,8 +21,8 @@ public class EffectPlayer extends AudioPlayer {
 	{
 		super(track, volume);
 	}
-	
-	
+
+
 	/**
 	 * Play at listener
 	 *
@@ -32,11 +32,11 @@ public class EffectPlayer extends AudioPlayer {
 	public void play(double gain, double pitch)
 	{
 		if (!hasAudio()) return;
-		
+
 		getAudio().play(computeGain(gain), computePitch(pitch), false);
 	}
-	
-	
+
+
 	/**
 	 * Play at listener
 	 *
@@ -46,8 +46,8 @@ public class EffectPlayer extends AudioPlayer {
 	{
 		play(gain, 1);
 	}
-	
-	
+
+
 	/**
 	 * Play at given position
 	 *
@@ -58,8 +58,8 @@ public class EffectPlayer extends AudioPlayer {
 	{
 		play(gain, 1, pos);
 	}
-	
-	
+
+
 	/**
 	 * Play at given position
 	 *
@@ -70,8 +70,8 @@ public class EffectPlayer extends AudioPlayer {
 	public void play(double gain, double pitch, Vect pos)
 	{
 		if (!hasAudio()) return;
-		
+
 		getAudio().play(computeGain(gain), computePitch(pitch), false, pos);
 	}
-	
+
 }

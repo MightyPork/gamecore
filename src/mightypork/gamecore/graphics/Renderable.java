@@ -7,10 +7,10 @@ package mightypork.gamecore.graphics;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface Renderable {
-
+	
 	/**
 	 * Render on screen.
 	 */
 	void render();
-
+	
 }

@@ -15,10 +15,10 @@ import mightypork.utils.logging.Log;
  * @author Ondřej Hruška (MightyPork)
  */
 public class ShutdownEvent extends BusEvent<ShutdownListener> {
-	
+
 	private final Runnable shutdownTask;
-	
-	
+
+
 	/**
 	 * Make a shutdown event
 	 *
@@ -28,15 +28,15 @@ public class ShutdownEvent extends BusEvent<ShutdownListener> {
 	{
 		this.shutdownTask = doShutdown;
 	}
-	
-	
+
+
 	@Override
 	protected void handleBy(ShutdownListener handler)
 	{
 		handler.onShutdown(this);
 	}
-	
-	
+
+
 	@Override
 	public void onDispatchComplete(EventBus bus)
 	{
@@ -47,5 +47,5 @@ public class ShutdownEvent extends BusEvent<ShutdownListener> {
 			Log.i("Shutdown aborted.");
 		}
 	}
-	
+
 }

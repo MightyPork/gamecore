@@ -7,7 +7,7 @@ package mightypork.gamecore.gui.events;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface ViewportChangeListener {
-
+	
 	/**
 	 * Handle event
 	 *

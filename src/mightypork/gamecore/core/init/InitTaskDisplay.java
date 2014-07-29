@@ -10,12 +10,12 @@ import mightypork.gamecore.graphics.GraphicsModule;
  * @author Ondřej Hruška (MightyPork)
  */
 public class InitTaskDisplay extends InitTask {
-
+	
 	private int width = 800, height = 600, fps = 60;
 	private boolean resizable, fullscreen;
 	private String title = "Game";
-
-
+	
+	
 	/**
 	 * Set initial window size
 	 *
@@ -27,8 +27,8 @@ public class InitTaskDisplay extends InitTask {
 		this.width = width;
 		this.height = height;
 	}
-
-
+	
+	
 	/**
 	 * Set whether the window should be resizable
 	 *
@@ -38,8 +38,8 @@ public class InitTaskDisplay extends InitTask {
 	{
 		this.resizable = resizable;
 	}
-
-
+	
+	
 	/**
 	 * Set window title
 	 *
@@ -49,8 +49,8 @@ public class InitTaskDisplay extends InitTask {
 	{
 		this.title = title;
 	}
-
-
+	
+	
 	/**
 	 * Set desired framerate.
 	 *
@@ -60,8 +60,8 @@ public class InitTaskDisplay extends InitTask {
 	{
 		this.fps = fps;
 	}
-
-
+	
+	
 	/**
 	 * Set whether the window should start in fullscreen
 	 *
@@ -71,26 +71,26 @@ public class InitTaskDisplay extends InitTask {
 	{
 		this.fullscreen = fullscreen;
 	}
-
-
+	
+	
 	@Override
 	public void run()
 	{
 		final GraphicsModule gfx = app.getBackend().getGraphics();
-
+		
 		gfx.setSize(width, height);
 		gfx.setResizable(resizable);
 		gfx.setTitle(title);
 		gfx.setTargetFps(fps);
-
+		
 		if (fullscreen) gfx.setFullscreen(true);
 	}
-
-
+	
+	
 	@Override
 	public String getName()
 	{
 		return "display";
 	}
-
+	
 }

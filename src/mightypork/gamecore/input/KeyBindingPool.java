@@ -16,10 +16,10 @@ import mightypork.utils.logging.Log;
  * @author Ondřej Hruška (MightyPork)
  */
 public class KeyBindingPool implements KeyBinder, KeyEventHandler {
-
+	
 	private final Set<KeyBinding> bindings = new HashSet<>();
-
-
+	
+	
 	/**
 	 * Bind handler to a keystroke, replace current handler if any
 	 *
@@ -36,11 +36,11 @@ public class KeyBindingPool implements KeyBinder, KeyEventHandler {
 				return;
 			}
 		}
-
+		
 		bindings.add(new KeyBinding(stroke, edge, task));
 	}
-
-
+	
+	
 	/**
 	 * Remove handler from keystroke (id any)
 	 *
@@ -50,7 +50,7 @@ public class KeyBindingPool implements KeyBinder, KeyEventHandler {
 	public void unbindKey(KeyStroke stroke)
 	{
 		final Iterator<KeyBinding> iter = bindings.iterator();
-
+		
 		while (iter.hasNext()) {
 			final KeyBinding kb = iter.next();
 			if (kb.matches(stroke)) {
@@ -59,8 +59,8 @@ public class KeyBindingPool implements KeyBinder, KeyEventHandler {
 			}
 		}
 	}
-
-
+	
+	
 	@Override
 	public void receive(KeyEvent event)
 	{

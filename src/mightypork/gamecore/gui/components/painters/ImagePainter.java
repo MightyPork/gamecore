@@ -13,10 +13,10 @@ import mightypork.gamecore.gui.components.DynamicWidthComponent;
  * @author Ondřej Hruška (MightyPork)
  */
 public class ImagePainter extends BaseComponent implements DynamicWidthComponent {
-	
+
 	private TxQuad txQuad;
-	
-	
+
+
 	/**
 	 * @param txQuad drawn image
 	 */
@@ -24,25 +24,25 @@ public class ImagePainter extends BaseComponent implements DynamicWidthComponent
 	{
 		this.txQuad = txQuad;
 	}
-	
-	
+
+
 	@Override
 	public void renderComponent()
 	{
 		App.gfx().quad(this, txQuad);
 	}
-	
-	
+
+
 	@Override
 	public double computeWidth(double height)
 	{
 		return (height / txQuad.uvs.height().value()) * txQuad.uvs.width().value();
 	}
-	
-	
+
+
 	/**
 	 * Set drawn {@link TxQuad}
-	 * 
+	 *
 	 * @param txQuad the drawn quad
 	 */
 	public void setTxQuad(TxQuad txQuad)

@@ -19,50 +19,50 @@ import mightypork.utils.math.constraints.vect.Vect;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class AudioModule extends BackendModule implements Updateable {
-	
+
 	/**
 	 * Set listener position
 	 *
 	 * @param pos listener position
 	 */
 	public abstract void setListenerPos(Vect pos);
-	
-	
+
+
 	/**
 	 * Get current listener position
 	 *
 	 * @return listener position
 	 */
 	public abstract Vect getListenerPos();
-	
+
 	// -- instance --
-	
+
 	private final Volume masterVolume = new Volume(1D);
 	private final Volume effectsVolume = new JointVolume(masterVolume);
 	private final Volume loopsVolume = new JointVolume(masterVolume);
-	
+
 	private final List<LoopPlayer> loopPlayers = new ArrayList<>();
 	private final List<DeferredAudio> resources = new ArrayList<>();
-	
-	
+
+
 	@Override
 	public void destroy()
 	{
 		for (final DeferredAudio r : resources) {
 			r.destroy();
 		}
-		
+
 		deinitSoundSystem();
 	}
-	
-	
+
+
 	/**
 	 * Deinitialize the soud system, release resources etc.<br>
 	 * Audio resources are already destroyed.
 	 */
 	protected abstract void deinitSoundSystem();
-	
-	
+
+
 	@Override
 	public void update(double delta)
 	{
@@ -70,8 +70,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 			lp.update(delta);
 		}
 	}
-	
-	
+
+
 	/**
 	 * Create effect resource
 	 *
@@ -82,8 +82,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 	{
 		return new EffectPlayer(createAudioResource(resource), effectsVolume);
 	}
-	
-	
+
+
 	/**
 	 * Register loop resource (music / effect loop)
 	 *
@@ -96,8 +96,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 		loopPlayers.add(p);
 		return p;
 	}
-	
-	
+
+
 	/**
 	 * Create {@link DeferredAudio} for a resource, request deferred load and
 	 * add to the resources list.<br>
@@ -115,8 +115,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 		resources.add(a);
 		return a;
 	}
-	
-	
+
+
 	/**
 	 * Create a backend-specific deferred audio resource.<br>
 	 * The actual resource instance should be created here. Registering, loading
@@ -126,8 +126,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 	 * @return Deferred Audio
 	 */
 	protected abstract DeferredAudio doCreateResource(String res);
-	
-	
+
+
 	/**
 	 * Fade out all loops (= fade out the currently playing loops)
 	 */
@@ -137,8 +137,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 			p.fadeOut();
 		}
 	}
-	
-	
+
+
 	/**
 	 * Pause all loops (leave volume unchanged)
 	 */
@@ -148,8 +148,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 			p.pause();
 		}
 	}
-	
-	
+
+
 	/**
 	 * Set level of master volume (volume multiplier)
 	 *
@@ -159,8 +159,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 	{
 		masterVolume.set(volume);
 	}
-	
-	
+
+
 	/**
 	 * Set level of effects volume (volume multiplier)
 	 *
@@ -170,8 +170,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 	{
 		effectsVolume.set(volume);
 	}
-	
-	
+
+
 	/**
 	 * Set level of loops volume (volume multiplier)
 	 *
@@ -181,8 +181,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 	{
 		loopsVolume.set(volume);
 	}
-	
-	
+
+
 	/**
 	 * Get level of master volume (volume multiplier)
 	 *
@@ -192,8 +192,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 	{
 		return masterVolume.get();
 	}
-	
-	
+
+
 	/**
 	 * Get level of effects volume (volume multiplier)
 	 *
@@ -203,8 +203,8 @@ public abstract class AudioModule extends BackendModule implements Updateable {
 	{
 		return effectsVolume.get();
 	}
-	
-	
+
+
 	/**
 	 * Get level of loops volume (volume multiplier)
 	 *

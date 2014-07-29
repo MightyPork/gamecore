@@ -10,10 +10,10 @@ import mightypork.utils.math.Calc;
  * @author Ondřej Hruška (MightyPork)
  */
 public class JointVolume extends Volume {
-
+	
 	private final Volume[] volumes;
-
-
+	
+	
 	/**
 	 * Create joint volume with master gain of 1
 	 *
@@ -25,8 +25,8 @@ public class JointVolume extends Volume {
 		super(1D);
 		this.volumes = volumes;
 	}
-
-
+	
+	
 	/**
 	 * Get combined gain (multiplied)
 	 */
@@ -36,11 +36,11 @@ public class JointVolume extends Volume {
 		double d = super.get();
 		for (final Volume v : volumes)
 			d *= v.get();
-
+		
 		return Calc.clamp(d, 0, 1);
 	}
-
-
+	
+	
 	/**
 	 * Set master gain
 	 */

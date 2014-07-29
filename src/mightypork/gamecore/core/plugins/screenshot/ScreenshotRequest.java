@@ -12,11 +12,11 @@ import mightypork.utils.eventbus.events.flags.SingleReceiverEvent;
  */
 @SingleReceiverEvent
 public class ScreenshotRequest extends BusEvent<ScreenshotPlugin> {
-
+	
 	@Override
 	protected void handleBy(ScreenshotPlugin handler)
 	{
 		handler.takeScreenshot();
 	}
-
+	
 }

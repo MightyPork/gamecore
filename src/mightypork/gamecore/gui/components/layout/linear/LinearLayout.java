@@ -20,27 +20,27 @@ import mightypork.utils.math.constraints.vect.proxy.VectAdapter;
  * @author Ondřej Hruška (MightyPork)
  */
 public class LinearLayout extends LayoutComponent {
-
+	
 	public LinearLayout(AlignX align)
 	{
 		this.align = align;
 	}
-
-
+	
+	
 	public LinearLayout(RectBound context, AlignX align)
 	{
 		super(context);
 		this.align = align;
 	}
-
+	
 	private final NumSum totalWidth = new NumSum();
-
+	
 	private final Vect leftAlignOrigin = LinearLayout.this.origin();
 	private final Vect centerAlignOrigin = LinearLayout.this.topCenter().sub(totalWidth.half(), Num.ZERO);
 	private final Vect rightAlignOrigin = LinearLayout.this.topRight().sub(totalWidth, Num.ZERO);
-
+	
 	private final Vect leftMostOrigin = new VectAdapter() {
-
+		
 		@Override
 		protected Vect getSource()
 		{
@@ -55,18 +55,18 @@ public class LinearLayout extends LayoutComponent {
 			}
 		}
 	};
-
+	
 	private Vect nextOrigin = leftMostOrigin;
-
+	
 	private AlignX align = AlignX.LEFT;
-
-
+	
+	
 	public void add(DynamicWidthComponent dwcomp)
 	{
 		add(new LinearWrapper(dwcomp));
 	}
-
-
+	
+	
 	public void add(LinearComponent lincomp)
 	{
 		lincomp.setHeight(height());
@@ -75,14 +75,14 @@ public class LinearLayout extends LayoutComponent {
 		totalWidth.addSummand(lincomp.width());
 		attach(lincomp);
 	}
-
-
+	
+	
 	public void setAlign(AlignX align)
 	{
 		this.align = align;
 	}
-
-
+	
+	
 	/**
 	 * Add a gap.
 	 *

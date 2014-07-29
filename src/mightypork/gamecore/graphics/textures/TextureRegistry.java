@@ -17,11 +17,11 @@ import mightypork.utils.math.constraints.rect.Rect;
  * @author Ondřej Hruška (MightyPork)
  */
 public class TextureRegistry {
-
+	
 	private final Map<String, ITexture> textures = new HashMap<>();
 	private final Map<String, TxSheet> sheets = new HashMap<>();
-	
-	
+
+
 	/**
 	 * Load a texture from resource.
 	 *
@@ -35,13 +35,13 @@ public class TextureRegistry {
 		final DeferredTexture texture = App.gfx().createTextureResource(resourcePath);
 		texture.setFilter(filter);
 		texture.setWrap(wrap);
-
-		App.bus().send(new ResourceLoadRequest(texture));
 		
+		App.bus().send(new ResourceLoadRequest(texture));
+
 		return texture;
 	}
-
-
+	
+	
 	/**
 	 * Load a texture from resource; if key is not null, the texture will be
 	 * added to the bank.
@@ -55,18 +55,18 @@ public class TextureRegistry {
 	public ITexture addTexture(String key, String resourcePath, FilterMode filter, WrapMode wrap)
 	{
 		if (key != null) if (textures.containsKey(key)) throw new KeyAlreadyExistsException();
-
+		
 		final ITexture texture = loadTexture(resourcePath, filter, wrap);
-
+		
 		if (key != null) {
 			textures.put(key, texture);
 			add(key, texture.makeQuad(Rect.ONE));
 		}
-
+		
 		return texture;
 	}
-
-
+	
+	
 	/**
 	 * Add already created quad to the quad registry
 	 *
@@ -76,11 +76,11 @@ public class TextureRegistry {
 	public void add(String quadKey, TxQuad quad)
 	{
 		if (sheets.containsKey(quadKey)) throw new KeyAlreadyExistsException();
-
+		
 		sheets.put(quadKey, quad.makeSheet(1, 1));
 	}
-
-
+	
+	
 	/**
 	 * Add an already created sheet
 	 *
@@ -90,11 +90,11 @@ public class TextureRegistry {
 	public void add(String sheetKey, TxSheet sheet)
 	{
 		if (sheets.containsKey(sheetKey)) throw new KeyAlreadyExistsException();
-
+		
 		sheets.put(sheetKey, sheet);
 	}
-
-
+	
+	
 	/**
 	 * Get a {@link TxQuad} for key; if it was added as sheet, the first quad
 	 * ofthe sheet is returned.
@@ -106,8 +106,8 @@ public class TextureRegistry {
 	{
 		return getSheet(key).getQuad(0); // get the first
 	}
-
-
+	
+	
 	/**
 	 * Get a loaded {@link ITexture}
 	 *
@@ -117,13 +117,13 @@ public class TextureRegistry {
 	public ITexture getTexture(String key)
 	{
 		final ITexture tx = textures.get(key);
-
+		
 		if (tx == null) throw new RuntimeException("There's no texture called \"" + key + "\"!");
-
+		
 		return tx;
 	}
-
-
+	
+	
 	/**
 	 * Get a {@link TxSheet} for key
 	 *
@@ -133,12 +133,12 @@ public class TextureRegistry {
 	public TxSheet getSheet(String key)
 	{
 		final TxSheet sh = sheets.get(key);
-
+		
 		if (sh == null) {
 			throw new RuntimeException("There's no sheet called  \"" + key + "\"!");
 		}
-
+		
 		return sh;
 	}
-
+	
 }

@@ -4,6 +4,8 @@ package mightypork.gamecore.core.config;
 import java.util.HashMap;
 import java.util.Map;
 
+import mightypork.gamecore.core.events.ShutdownEvent;
+import mightypork.gamecore.core.events.ShutdownListener;
 import mightypork.gamecore.input.Key;
 import mightypork.gamecore.input.KeyStroke;
 import mightypork.utils.config.propmgr.Property;
@@ -19,7 +21,7 @@ import mightypork.utils.logging.Log;
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public class Config {
+public class Config implements ShutdownListener {
 
 	/** Array of configs registered for the app */
 	protected static Map<String, Config> configs = new HashMap<>();
@@ -264,5 +266,12 @@ public class Config {
 		}
 
 		kp.getValue().setTo(key, mod);
+	}
+
+
+	@Override
+	public void onShutdown(ShutdownEvent event)
+	{
+		save(); // save changes done to the config
 	}
 }

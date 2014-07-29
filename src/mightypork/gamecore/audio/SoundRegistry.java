@@ -16,11 +16,11 @@ import mightypork.utils.exceptions.KeyAlreadyExistsException;
  * @author Ondřej Hruška (MightyPork)
  */
 public class SoundRegistry {
-	
+
 	private final Map<String, EffectPlayer> effects = new HashMap<>();
 	private final Map<String, LoopPlayer> loops = new HashMap<>();
-	
-	
+
+
 	/**
 	 * Register effect resource
 	 *
@@ -33,16 +33,16 @@ public class SoundRegistry {
 	public EffectPlayer addEffect(String key, String resourcePath, double gain, double pitch)
 	{
 		final EffectPlayer effect = App.sound().createEffect(resourcePath);
-		
+
 		effect.setPitch(pitch);
 		effect.setGain(gain);
-		
+
 		addEffect(key, effect);
-		
+
 		return effect;
 	}
-	
-	
+
+
 	/**
 	 * Register effect resource
 	 *
@@ -52,11 +52,11 @@ public class SoundRegistry {
 	public void addEffect(String key, EffectPlayer effect)
 	{
 		if (effects.containsKey(key)) throw new KeyAlreadyExistsException();
-		
+
 		effects.put(key, effect);
 	}
-	
-	
+
+
 	/**
 	 * Register loop resource (music / effect loop)
 	 *
@@ -71,17 +71,17 @@ public class SoundRegistry {
 	public LoopPlayer addLoop(String key, String resourcePath, double gain, double pitch, double fadeIn, double fadeOut)
 	{
 		final LoopPlayer loop = App.sound().createLoop(resourcePath);
-
+		
 		loop.setPitch(pitch);
 		loop.setGain(gain);
 		loop.setFadeTimes(fadeIn, fadeOut);
-
+		
 		addLoop(key, loop);
-
+		
 		return loop;
 	}
-	
-	
+
+
 	/**
 	 * Register loop resource (music / effect loop)
 	 *
@@ -91,11 +91,11 @@ public class SoundRegistry {
 	public void addLoop(String key, LoopPlayer loop)
 	{
 		if (loops.containsKey(key)) throw new KeyAlreadyExistsException();
-		
+
 		loops.put(key, loop);
 	}
-	
-	
+
+
 	/**
 	 * Get a loop player for key
 	 *
@@ -110,8 +110,8 @@ public class SoundRegistry {
 		}
 		return p;
 	}
-	
-	
+
+
 	/**
 	 * Get a effect player for key
 	 *

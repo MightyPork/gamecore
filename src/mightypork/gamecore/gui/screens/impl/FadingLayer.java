@@ -15,10 +15,10 @@ import mightypork.utils.math.timing.TimedTask;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class FadingLayer extends ScreenLayer {
-	
+
 	private final NumAnimated numa;
 	private final TimedTask hideTimer = new TimedTask() {
-		
+
 		@Override
 		public void run()
 		{
@@ -27,9 +27,9 @@ public abstract class FadingLayer extends ScreenLayer {
 			onHideFinished();
 		}
 	};
-	
+
 	private final TimedTask showTimer = new TimedTask() {
-		
+
 		@Override
 		public void run()
 		{
@@ -37,11 +37,11 @@ public abstract class FadingLayer extends ScreenLayer {
 			onShowFinished();
 		}
 	};
-	
+
 	private boolean fadingIn = false;
 	private boolean fadingOut = false;
-	
-	
+
+
 	/**
 	 * Create with default fading time and effect
 	 *
@@ -51,8 +51,8 @@ public abstract class FadingLayer extends ScreenLayer {
 	{
 		this(screen, new NumAnimated(1, Easing.QUADRATIC_OUT, 0.3));
 	}
-	
-	
+
+
 	/**
 	 * Create with custom animator
 	 *
@@ -62,17 +62,17 @@ public abstract class FadingLayer extends ScreenLayer {
 	public FadingLayer(Screen screen, NumAnimated easingAnim)
 	{
 		super(screen);
-		
+
 		numa = easingAnim;
-		
+
 		updated.add(numa);
 		updated.add(hideTimer);
 		updated.add(showTimer);
-		
+
 		setAlpha(numa);
 	}
-	
-	
+
+
 	/**
 	 * Called after the fade-out was completed
 	 */
@@ -80,8 +80,8 @@ public abstract class FadingLayer extends ScreenLayer {
 	protected void onHideFinished()
 	{
 	}
-	
-	
+
+
 	/**
 	 * Called after the fade-in was completed
 	 */
@@ -89,8 +89,8 @@ public abstract class FadingLayer extends ScreenLayer {
 	protected void onShowFinished()
 	{
 	}
-	
-	
+
+
 	/**
 	 * Show with fading
 	 */
@@ -98,19 +98,19 @@ public abstract class FadingLayer extends ScreenLayer {
 	public void show()
 	{
 		if (fadingIn) return;
-		
+
 		if (!isVisible() || fadingOut) {
 			super.show();
 			numa.fadeIn();
 			hideTimer.stop();
 			showTimer.start(numa.getDefaultDuration());
-			
+
 			fadingOut = false;
 			fadingIn = true;
 		}
 	}
-	
-	
+
+
 	/**
 	 * Hide without fading
 	 */
@@ -121,8 +121,8 @@ public abstract class FadingLayer extends ScreenLayer {
 		super.hide();
 		onHideFinished();
 	}
-	
-	
+
+
 	/**
 	 * Show without fading
 	 */
@@ -133,8 +133,8 @@ public abstract class FadingLayer extends ScreenLayer {
 		super.show();
 		onShowFinished();
 	}
-	
-	
+
+
 	/**
 	 * Hide with fading
 	 */
@@ -142,14 +142,14 @@ public abstract class FadingLayer extends ScreenLayer {
 	public void hide()
 	{
 		if (fadingOut) return;
-		
+
 		if (isVisible()) {
 			numa.fadeOut();
 			hideTimer.start(numa.getDefaultDuration());
-			
+
 			fadingOut = true;
 			fadingIn = false;
 		}
 	}
-	
+
 }

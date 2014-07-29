@@ -16,11 +16,11 @@ import mightypork.utils.eventbus.clients.BusNode;
  * @author MightyPork
  */
 public abstract class AppBackend extends BusNode {
-	
+
 	/** App instance assigned using <code>bind()</code> */
 	protected App app;
-	
-	
+
+
 	/**
 	 * Assign the initialized app instance to an "app" field.
 	 *
@@ -33,30 +33,30 @@ public abstract class AppBackend extends BusNode {
 		}
 		this.app = app;
 	}
-	
-	
+
+
 	/**
 	 * Initialize backend modules, add them to event bus.
 	 */
 	public abstract void initialize();
-	
-	
+
+
 	/**
 	 * Get graphics module (screen manager, texture and font loader, renderer)
 	 *
 	 * @return graphics module
 	 */
 	public abstract GraphicsModule getGraphics();
-	
-	
+
+
 	/**
 	 * Get audio module (
 	 *
 	 * @return audio module
 	 */
 	public abstract AudioModule getAudio();
-	
-	
+
+
 	/**
 	 * Get input module
 	 *

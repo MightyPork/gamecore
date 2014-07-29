@@ -15,11 +15,11 @@ import mightypork.utils.eventbus.clients.DelegatingClient;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class AbstractLinearWrapper extends LinearComponent implements DelegatingClient {
-
+	
 	protected final Component wrapped;
 	private final ClientList list;
-
-
+	
+	
 	/**
 	 * @param wrapped wrapped component. Can be null.
 	 */
@@ -34,32 +34,32 @@ public abstract class AbstractLinearWrapper extends LinearComponent implements D
 				wrapped.setRect(this);
 			}
 		}
-
+		
 		list = new ClientList(wrapped);
 	}
-
-
+	
+	
 	@Override
 	protected void renderComponent()
 	{
 		if (wrapped != null) wrapped.render();
 	}
-
-
+	
+	
 	@Override
 	public Collection<?> getChildClients()
 	{
 		return list;
 	}
-
-
+	
+	
 	@Override
 	public boolean doesDelegate()
 	{
 		return true;
 	}
-
-
+	
+	
 	@Override
 	public void setEnabled(boolean yes)
 	{
@@ -68,8 +68,8 @@ public abstract class AbstractLinearWrapper extends LinearComponent implements D
 			wrapped.setIndirectlyEnabled(yes);
 		}
 	}
-
-
+	
+	
 	@Override
 	public void setIndirectlyEnabled(boolean yes)
 	{

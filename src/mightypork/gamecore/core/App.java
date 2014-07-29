@@ -31,11 +31,15 @@ public class App extends BusNode {
 	private final AppBackend backend;
 	private final EventBus eventBus = new EventBus();
 	private boolean started = false;
+	private boolean inited = false;
 
 	/** List of installed App plugins */
 	protected final DelegatingList plugins = new DelegatingList();
 	/** List of initializers */
 	protected final List<InitTask> initializers = new ArrayList<>();
+
+	/** The used main loop instance */
+	protected MainLoop mainLoop;
 
 
 	/**
@@ -101,6 +105,17 @@ public class App extends BusNode {
 
 
 	/**
+	 * Set the main loop implementation
+	 *
+	 * @param loop main loop impl
+	 */
+	public void setMainLoop(MainLoop loop)
+	{
+		this.mainLoop = loop;
+	}
+
+
+	/**
 	 * Get current backend
 	 *
 	 * @return the backend
@@ -122,12 +137,32 @@ public class App extends BusNode {
 			throw new IllegalStateException("Already started.");
 		}
 		started = true;
+		
+		Log.i("Starting init...");
+		init();
+
+		if (mainLoop == null) {
+			throw new IllegalStateException("The app has no main loop assigned.");
+		}
+
+		Log.i("Starting main loop...");
+		mainLoop.start();
+	}
+
+
+	private void init()
+	{
+		
+		if (inited) {
+			throw new IllegalStateException("Already inited.");
+		}
+		inited = true;
 
 		// pre-init hook, just in case anyone wanted to have one.
 		Log.f2("Calling pre-init hook...");
 		preInit();
 
-		Log.i("=== Starting initialization sequence ===");
+		Log.f2("Running init tasks...");
 
 		// sort initializers by order.
 		final List<InitTask> orderedInitializers = InitTask.inOrder(initializers);
@@ -148,8 +183,6 @@ public class App extends BusNode {
 			// after hook for extra actions immeditaely after the task completes
 			initTask.after();
 		}
-
-		Log.i("=== Initialization sequence completed ===");
 
 		// user can now start the main loop etc.
 		Log.f2("Calling post-init hook...");

@@ -7,7 +7,7 @@ package mightypork.gamecore.input.events;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface MouseButtonHandler {
-
+	
 	/**
 	 * Handle an event
 	 *

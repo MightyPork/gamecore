@@ -10,15 +10,15 @@ import mightypork.gamecore.resources.DeferredResource;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface ResourceLoader {
-	
+
 	/**
 	 * Load a resource
 	 *
 	 * @param resource
 	 */
 	void loadResource(DeferredResource resource);
-	
-	
+
+
 	/**
 	 * Initialize the loader (Join the bus, start a thread etc)
 	 *

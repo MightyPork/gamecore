@@ -11,21 +11,21 @@ import mightypork.utils.math.constraints.rect.Rect;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface ITexture extends Destroyable {
-
+	
 	/**
 	 * Set filter for scaling
 	 *
 	 * @param filter filter
 	 */
 	void setFilter(FilterMode filter);
-
-
+	
+	
 	/**
 	 * @param wrapping wrap mode
 	 */
 	void setWrap(WrapMode wrapping);
-
-
+	
+	
 	/**
 	 * Get a quad from this texture of given position/size
 	 *
@@ -33,8 +33,8 @@ public interface ITexture extends Destroyable {
 	 * @return the quad
 	 */
 	TxQuad makeQuad(Rect uvs);
-
-
+	
+	
 	/**
 	 * Get a grid for given number of tiles
 	 *
@@ -43,20 +43,20 @@ public interface ITexture extends Destroyable {
 	 * @return grid
 	 */
 	QuadGrid grid(int x, int y);
-
-
+	
+	
 	/**
 	 * @return source image width (corresponding to width01)
 	 */
 	int getImageWidth();
-
-
+	
+	
 	/**
 	 * @return source image height (corresponding to height01)
 	 */
 	int getImageHeight();
-
-
+	
+	
 	/**
 	 * @return true if the image is RGBA
 	 */

@@ -18,15 +18,15 @@ import mightypork.utils.math.timing.TimedTask;
  * @author Ondřej Hruška (MightyPork)
  */
 public class CrossfadeOverlay extends Overlay {
-
+	
 	private static final double T_IN = 0.4;
 	private static final double T_OUT = 0.6;
-
+	
 	NumAnimated alpha = new NumAnimated(0);
 	String requestedScreenName;
-
+	
 	TimedTask revealTask = new TimedTask() {
-
+		
 		@Override
 		public void run()
 		{
@@ -39,8 +39,8 @@ public class CrossfadeOverlay extends Overlay {
 			alpha.fadeOut(T_OUT);
 		}
 	};
-
-
+	
+	
 	/**
 	 * Create new crossfade overlay
 	 */
@@ -49,21 +49,21 @@ public class CrossfadeOverlay extends Overlay {
 		final QuadPainter qp = new QuadPainter(RGB.BLACK); // TODO allow custom colors
 		qp.setRect(root);
 		root.add(qp);
-
+		
 		updated.add(alpha);
 		updated.add(revealTask);
-
+		
 		setAlpha(alpha);
 	}
-
-
+	
+	
 	@Override
 	public int getZIndex()
 	{
 		return 10000; // not too high, so app can put something on top
 	}
-
-
+	
+	
 	/**
 	 * Go to specified screen
 	 *
@@ -73,21 +73,21 @@ public class CrossfadeOverlay extends Overlay {
 	public void goToScreen(String screen, boolean fromDark)
 	{
 		requestedScreenName = screen;
-
+		
 		if (screen == null) {
 			// going for halt
 			App.sound().fadeOutAllLoops();
 		}
-
+		
 		if (fromDark) {
 			alpha.setTo(1);
 			revealTask.run();
 		} else {
 			revealTask.start(T_IN);
-
+			
 			alpha.setEasing(Easing.SINE_IN);
 			alpha.fadeIn(T_IN);
 		}
 	}
-
+	
 }

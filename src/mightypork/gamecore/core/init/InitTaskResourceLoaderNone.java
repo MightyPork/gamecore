@@ -11,8 +11,8 @@ import mightypork.gamecore.resources.loading.ResourceLoader;
  * @author Ondřej Hruška (MightyPork)
  */
 public class InitTaskResourceLoaderNone extends InitTaskResourceLoader {
-	
-	
+
+
 	@Override
 	protected ResourceLoader getLoaderImpl()
 	{

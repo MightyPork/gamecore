@@ -12,7 +12,7 @@ import mightypork.gamecore.resources.loading.ResourceLoader;
  * @author Ondřej Hruška (MightyPork)
  */
 public class InitTaskResourceLoaderAsync extends InitTaskResourceLoader {
-	
+
 	/**
 	 * Create a loader impl
 	 *
@@ -22,9 +22,9 @@ public class InitTaskResourceLoaderAsync extends InitTaskResourceLoader {
 	protected ResourceLoader getLoaderImpl()
 	{
 		final AsyncResourceLoader loader = new AsyncResourceLoader();
-
+		
 		// could now configure the loader
-
+		
 		return loader;
 	}
 }

@@ -8,7 +8,7 @@ package mightypork.gamecore.gui.components;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface DynamicWidthComponent extends Component {
-
+	
 	/**
 	 * Get current width, if the element has specified height
 	 *

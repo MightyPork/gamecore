@@ -11,16 +11,16 @@ import mightypork.utils.math.constraints.rect.RectConst;
  * @author Ondřej Hruška (MightyPork)
  */
 public class TxQuad {
-	
+
 	/** The texture */
 	public final ITexture tx;
 	/** Coords in texture (0-1) */
 	public final RectConst uvs;
-	
+
 	private boolean flipX;
 	private boolean flipY;
-	
-	
+
+
 	/**
 	 * TxQuad from origin and size in pixels
 	 *
@@ -35,11 +35,11 @@ public class TxQuad {
 	{
 		final double w = tx.getImageWidth();
 		final double h = tx.getImageHeight();
-		
+
 		return fromSize(tx, xPx / w, yPx / h, widthPx / w, heightPx / h);
 	}
-	
-	
+
+
 	/**
 	 * TxQuad from origin and size 0-1
 	 *
@@ -54,8 +54,8 @@ public class TxQuad {
 	{
 		return new TxQuad(tx, x1, y1, x1 + width, y1 + height);
 	}
-	
-	
+
+
 	/**
 	 * Make of coords
 	 *
@@ -69,8 +69,8 @@ public class TxQuad {
 	{
 		this(tx, Rect.make(x1, y1, x2, y2));
 	}
-	
-	
+
+
 	/**
 	 * @param tx Texture
 	 * @param uvs Rect of texture UVs (0-1); will be frozen.
@@ -80,8 +80,8 @@ public class TxQuad {
 		this.tx = tx;
 		this.uvs = uvs.freeze();
 	}
-	
-	
+
+
 	/**
 	 * Clone another
 	 *
@@ -94,8 +94,8 @@ public class TxQuad {
 		this.flipX = txQuad.flipX;
 		this.flipY = txQuad.flipY;
 	}
-	
-	
+
+
 	/**
 	 * Get copy
 	 *
@@ -105,8 +105,8 @@ public class TxQuad {
 	{
 		return new TxQuad(this);
 	}
-	
-	
+
+
 	/**
 	 * Make a sheet starting with this quad, spannign to right and down.
 	 *
@@ -118,8 +118,8 @@ public class TxQuad {
 	{
 		return new TxSheet(this, (int) Math.round(width), (int) Math.round(height));
 	}
-	
-	
+
+
 	/**
 	 * @return copy flipped X
 	 */
@@ -129,8 +129,8 @@ public class TxQuad {
 		copy.flipX ^= true;
 		return copy;
 	}
-	
-	
+
+
 	/**
 	 * @return copy flipped Y
 	 */
@@ -140,8 +140,8 @@ public class TxQuad {
 		copy.flipY ^= true;
 		return copy;
 	}
-	
-	
+
+
 	/**
 	 * @return true if the quad is to be rendered flipped vertically
 	 */
@@ -149,8 +149,8 @@ public class TxQuad {
 	{
 		return flipY;
 	}
-	
-	
+
+
 	/**
 	 * @return true if the quad is to be rendered flipped horizontally
 	 */
@@ -158,8 +158,8 @@ public class TxQuad {
 	{
 		return flipX;
 	}
-	
-	
+
+
 	/**
 	 * Use the same flit/other attributes as the original txQuad
 	 *

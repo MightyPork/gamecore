@@ -13,10 +13,10 @@ import mightypork.utils.math.color.Color;
  * @author Ondřej Hruška (MightyPork)
  */
 public class LayerColor extends ScreenLayer {
-	
+
 	private final int zIndex;
-	
-	
+
+
 	/**
 	 * Overlay with color
 	 *
@@ -27,18 +27,18 @@ public class LayerColor extends ScreenLayer {
 	public LayerColor(Screen screen, Color color, int zIndex)
 	{
 		super(screen);
-		
+
 		final QuadPainter qp = new QuadPainter(color);
 		qp.setRect(root);
 		root.add(qp);
 		this.zIndex = zIndex;
 	}
-	
-	
+
+
 	@Override
 	public int getZIndex()
 	{
 		return this.zIndex;
 	}
-	
+
 }

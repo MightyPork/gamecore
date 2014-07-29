@@ -1,7 +1,7 @@
 package mightypork.gamecore.core.init;
 
 
-import mightypork.gamecore.resources.loading.ResourceLoader;
+import mightypork.gamecore.core.MainLoop;
 
 
 /**
@@ -10,17 +10,17 @@ import mightypork.gamecore.resources.loading.ResourceLoader;
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public abstract class InitTaskResourceLoader extends InitTask {
+public abstract class InitTaskMainLoop extends InitTask {
 	
 	/** The loader. */
-	protected ResourceLoader loader;
+	protected MainLoop loop;
 	
 	
 	@Override
 	public void run()
 	{
-		loader = getLoaderImpl();
-		if (loader != null) loader.init();
+		loop = getLoopImpl();
+		app.setMainLoop(loop);
 	}
 	
 	
@@ -29,7 +29,7 @@ public abstract class InitTaskResourceLoader extends InitTask {
 	 *
 	 * @return loader
 	 */
-	protected abstract ResourceLoader getLoaderImpl();
+	protected abstract MainLoop getLoopImpl();
 	
 	
 	@Override

@@ -10,7 +10,7 @@ import mightypork.gamecore.gui.Action;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface KeyBinder {
-
+	
 	/**
 	 * Bind handler to a keystroke, replace current handler if any
 	 *
@@ -19,13 +19,13 @@ public interface KeyBinder {
 	 * @param task handler; can be {@link Runnable} or {@link Action}
 	 */
 	void bindKey(KeyStroke stroke, Trigger edge, Runnable task);
-
-
+	
+	
 	/**
 	 * Remove handler from a keystroke (id any)
 	 *
 	 * @param stroke stroke
 	 */
 	void unbindKey(KeyStroke stroke);
-
+	
 }

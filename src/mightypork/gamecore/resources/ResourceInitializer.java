@@ -12,23 +12,23 @@ import mightypork.gamecore.graphics.textures.TextureRegistry;
  * @author Ondřej Hruška (MightyPork)
  */
 public interface ResourceInitializer {
-
+	
 	/**
 	 * Add fonts to load.
 	 *
 	 * @param fonts font registry
 	 */
 	void addFonts(FontRegistry fonts);
-
-
+	
+	
 	/**
 	 * Add sounds to load.
 	 *
 	 * @param sounds sound registry
 	 */
 	void addSounds(SoundRegistry sounds);
-
-
+	
+	
 	/**
 	 * Add textures to load
 	 *

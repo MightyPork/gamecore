@@ -22,7 +22,7 @@ import java.io.IOException;
  * @author MightyPork
  */
 public interface Screenshot {
-
+	
 	/**
 	 * Process byte buffer and write image to a file.<br>
 	 * Image can be cached for future save.

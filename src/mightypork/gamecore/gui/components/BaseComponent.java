@@ -23,15 +23,15 @@ import mightypork.utils.math.constraints.rect.proxy.RectProxy;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class BaseComponent extends AbstractRectCache implements Component, LayoutChangeListener {
-
+	
 	private Rect source;
 	private boolean visible = true;
 	private boolean enabled = true;
 	private int indirectDisableLevel = 0;
-
+	
 	private Num alphaMul = Num.ONE;
-
-
+	
+	
 	/**
 	 * Create a base component.<br>
 	 * By default, disable caching to avoid problems with updating. Caching can
@@ -41,47 +41,47 @@ public abstract class BaseComponent extends AbstractRectCache implements Compone
 	{
 		enableCaching(false);
 	}
-
-
+	
+	
 	@Override
 	public void setRect(RectBound rect)
 	{
 		this.source = new RectProxy(rect);
 	}
-
-
+	
+	
 	@Override
 	public final boolean isVisible()
 	{
 		return visible;
 	}
-
-
+	
+	
 	@Override
 	public final void setVisible(boolean visible)
 	{
 		this.visible = visible;
 	}
-
-
+	
+	
 	@Override
 	public final Rect getCacheSource()
 	{
 		return source.round(); // round to avoid visual artifacts in fonts and such
 	}
-
-
+	
+	
 	@Override
 	public final void render()
 	{
 		if (!isVisible()) return;
-
+		
 		Color.pushAlpha(alphaMul);
 		renderComponent();
 		Color.popAlpha();
 	}
-
-
+	
+	
 	@Override
 	public final void onLayoutChanged()
 	{
@@ -91,63 +91,63 @@ public abstract class BaseComponent extends AbstractRectCache implements Compone
 			Log.e("Component is missing a bounding rect, at: " + Support.str(getClass()));
 		}
 	}
-
-
+	
+	
 	@Override
 	public final void onConstraintChanged()
 	{
 		updateLayout();
 	}
-
-
+	
+	
 	@Override
 	public final boolean isMouseOver()
 	{
 		return App.input().getMousePos().isInside(this);
 	}
-
-
+	
+	
 	/**
 	 * Draw the component (it's visible)
 	 */
 	protected abstract void renderComponent();
-
-
+	
+	
 	@Override
 	@Stub
 	public void updateLayout()
 	{
 	}
-
-
+	
+	
 	@Override
 	public void setEnabled(boolean yes)
 	{
 		enabled = yes;
 	}
-
-
+	
+	
 	@Override
 	public boolean isEnabled()
 	{
 		return enabled && isIndirectlyEnabled();
 	}
-
-
+	
+	
 	@Override
 	public final void setAlpha(Num alpha)
 	{
 		this.alphaMul = alpha;
 	}
-
-
+	
+	
 	@Override
 	public final void setAlpha(double alpha)
 	{
 		this.alphaMul = Num.make(alpha);
 	}
-
-
+	
+	
 	@Override
 	public void setIndirectlyEnabled(boolean yes)
 	{
@@ -157,15 +157,15 @@ public abstract class BaseComponent extends AbstractRectCache implements Compone
 			if (indirectDisableLevel > 0) indirectDisableLevel--;
 		}
 	}
-
-
+	
+	
 	@Override
 	public boolean isIndirectlyEnabled()
 	{
 		return indirectDisableLevel == 0;
 	}
-
-
+	
+	
 	@Override
 	public boolean isDirectlyEnabled()
 	{

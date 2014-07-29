@@ -29,62 +29,62 @@ import mightypork.utils.math.constraints.vect.Vect;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class Overlay extends BusNode implements Comparable<Overlay>, Updateable, Renderable, KeyBinder, Hideable, Enableable, LayoutChangeListener {
-
+	
 	private boolean visible = true;
 	private boolean enabled = true;
-
+	
 	private final KeyBindingPool keybindings = new KeyBindingPool();
-
+	
 	/** Root layout, rendered and attached to the event bus. */
 	protected final ConstraintLayout root;
-
+	
 	/** Constraint: Mouse position. */
 	protected final Vect mouse;
-
+	
 	/** Extra rendered items (outside root) */
 	protected final Collection<Renderable> rendered = new ArrayList<>();
-
+	
 	/** Extra updated items (not members of the component tree) */
 	protected final Collection<Updateable> updated = new ArrayList<>();
 	private Num alphaMul = Num.ONE;
-
-
+	
+	
 	/**
 	 * Create an overlay over the screen
 	 */
 	public Overlay()
 	{
 		this.mouse = App.input().getMousePos();
-
+		
 		this.root = new ConstraintLayout(App.gfx().getRect());
 		addChildClient(root);
 		addChildClient(keybindings);
-
+		
 		rendered.add(root);
 	}
-
-
+	
+	
 	@Override
 	public final void bindKey(KeyStroke stroke, Trigger edge, Runnable task)
 	{
 		keybindings.bindKey(stroke, edge, task);
 	}
-
-
+	
+	
 	@Override
 	public final void unbindKey(KeyStroke stroke)
 	{
 		keybindings.unbindKey(stroke);
 	}
-
-
+	
+	
 	@Override
 	public final boolean isVisible()
 	{
 		return visible;
 	}
-
-
+	
+	
 	@Override
 	public void setVisible(boolean visible)
 	{
@@ -93,8 +93,8 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 			root.setVisible(visible);
 		}
 	}
-
-
+	
+	
 	@Override
 	public void setEnabled(boolean yes)
 	{
@@ -103,15 +103,15 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 			root.setEnabled(yes);
 		}
 	}
-
-
+	
+	
 	@Override
 	public boolean isEnabled()
 	{
 		return enabled;
 	}
-
-
+	
+	
 	/**
 	 * Get rendering layer
 	 *
@@ -119,8 +119,8 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 	 */
 	@Stub
 	public abstract int getZIndex();
-
-
+	
+	
 	/**
 	 * Get event bus listening priority - useful to block incoming events.
 	 *
@@ -130,8 +130,8 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 	{
 		return getZIndex();
 	}
-
-
+	
+	
 	/**
 	 * Render the overlay. The caller MUST check for visibility himself.
 	 */
@@ -139,34 +139,34 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 	public void render()
 	{
 		if (!isVisible()) return;
-
+		
 		Color.pushAlpha(alphaMul);
 		for (final Renderable r : rendered) {
 			r.render();
 		}
-
+		
 		Color.popAlpha();
 	}
-
-
+	
+	
 	@Override
 	public void update(double delta)
 	{
 		if (!isEnabled()) return;
-
+		
 		for (final Updateable u : updated) {
 			u.update(delta);
 		}
 	}
-
-
+	
+	
 	@Override
 	public int compareTo(Overlay o)
 	{
 		return o.getEventPriority() - getEventPriority();
 	}
-
-
+	
+	
 	/**
 	 * <p>
 	 * Screen size changed.
@@ -182,8 +182,8 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 	public void onLayoutChanged()
 	{
 	}
-
-
+	
+	
 	/**
 	 * Set overlay's alpha multiplier
 	 *
@@ -193,8 +193,8 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 	{
 		this.alphaMul = alpha;
 	}
-
-
+	
+	
 	/**
 	 * Set overlay's alpha multiplier
 	 *
@@ -204,8 +204,8 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 	{
 		this.alphaMul = Num.make(alpha);
 	}
-
-
+	
+	
 	/**
 	 * Show and set enabled
 	 */
@@ -214,8 +214,8 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 		setVisible(true);
 		setEnabled(true);
 	}
-
-
+	
+	
 	/**
 	 * Hide and set disabled
 	 */
@@ -224,15 +224,15 @@ public abstract class Overlay extends BusNode implements Comparable<Overlay>, Up
 		setVisible(false);
 		setEnabled(false);
 	}
-
-
+	
+	
 	@Override
 	public boolean isListening()
 	{
 		return (isVisible() || isEnabled());
 	}
-
-
+	
+	
 	@Override
 	public boolean doesDelegate()
 	{

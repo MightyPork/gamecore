@@ -15,13 +15,13 @@ import mightypork.utils.math.constraints.rect.Rect;
 @Alias(name = "Texture")
 @MustLoadInRenderingContext
 public abstract class DeferredTexture extends BaseDeferredResource implements ITexture {
-	
+
 	/** Used filtering mode */
 	protected FilterMode filter = FilterMode.NEAREST;
 	/** Used wrapping mode */
 	protected WrapMode wrap = WrapMode.CLAMP;
-	
-	
+
+
 	/**
 	 * @param resourcePath resource path
 	 */
@@ -29,29 +29,29 @@ public abstract class DeferredTexture extends BaseDeferredResource implements IT
 	{
 		super(resourcePath);
 	}
-	
-	
+
+
 	@Override
 	public TxQuad makeQuad(Rect uvs)
 	{
 		return new TxQuad(this, uvs);
 	}
-	
-	
+
+
 	@Override
 	public void setFilter(FilterMode filterMin)
 	{
 		this.filter = filterMin;
 	}
-	
-	
+
+
 	@Override
 	public void setWrap(WrapMode wrapping)
 	{
 		this.wrap = wrapping;
 	}
-	
-	
+
+
 	@Override
 	public QuadGrid grid(int x, int y)
 	{

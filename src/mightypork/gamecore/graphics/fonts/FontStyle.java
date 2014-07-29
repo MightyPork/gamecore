@@ -1,5 +1,6 @@
 package mightypork.gamecore.graphics.fonts;
 
+
 /**
  * Font style enum
  */
@@ -13,11 +14,11 @@ public enum FontStyle
 	ITALIC(2),
 	/** Bond and italic together */
 	BOLD_ITALIC(1 + 2);
-	
+
 	/** Number associated with the style */
 	public int numval;
-	
-	
+
+
 	/**
 	 * Font style
 	 *

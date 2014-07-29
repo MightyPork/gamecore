@@ -15,35 +15,35 @@ import mightypork.utils.logging.Log;
  */
 @OptionalInitTask
 public class InitTaskLogHeader extends InitTask {
-
+	
 	@Override
 	public void run()
 	{
 		String txt = "";
-
+		
 		txt += "\n### SYSTEM INFO ###\n\n";
 		txt += " Platform ...... " + System.getProperty("os.name") + "\n";
 		txt += " Runtime ....... " + System.getProperty("java.runtime.name") + "\n";
 		txt += " Java .......... " + System.getProperty("java.version") + "\n";
 		txt += " Launch path ... " + System.getProperty("user.dir") + "\n";
-
+		
 		try {
 			txt += " Workdir ....... " + WorkDir.getBaseDir().getCanonicalPath() + "\n";
 		} catch (final IOException e) {
 			Log.e(e);
 		}
-
+		
 		Log.i(txt);
 	}
-
-
+	
+	
 	@Override
 	public String getName()
 	{
 		return "log_header";
 	}
-
-
+	
+	
 	@Override
 	public String[] getDependencies()
 	{

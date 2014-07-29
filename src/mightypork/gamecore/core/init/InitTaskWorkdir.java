@@ -21,13 +21,13 @@ import mightypork.utils.logging.Log;
  * @author Ondřej Hruška (MightyPork)
  */
 public class InitTaskWorkdir extends InitTask {
-
+	
 	private File workdirPath;
 	private boolean doLock;
 	private String lockFile = ".lock";
 	private final Map<String, String> namedPaths = new HashMap<>();
-
-
+	
+	
 	/**
 	 * @param workdir path to the working directory
 	 * @param lock whether to lock the directory (single instance mode)
@@ -37,8 +37,8 @@ public class InitTaskWorkdir extends InitTask {
 		this.workdirPath = workdir;
 		this.doLock = lock;
 	}
-
-
+	
+	
 	/**
 	 * Set workdir root path
 	 *
@@ -48,8 +48,8 @@ public class InitTaskWorkdir extends InitTask {
 	{
 		this.workdirPath = path;
 	}
-
-
+	
+	
 	/**
 	 * Set whether the workdir should be locked when the app is running, to
 	 * prevent other instances from running simultaneously.
@@ -60,8 +60,8 @@ public class InitTaskWorkdir extends InitTask {
 	{
 		this.doLock = lock;
 	}
-
-
+	
+	
 	/**
 	 * Set name of the lock file.
 	 *
@@ -71,8 +71,8 @@ public class InitTaskWorkdir extends InitTask {
 	{
 		this.lockFile = lockFile;
 	}
-
-
+	
+	
 	/**
 	 * Add a named path
 	 *
@@ -83,13 +83,13 @@ public class InitTaskWorkdir extends InitTask {
 	{
 		namedPaths.put(alias, path);
 	}
-
-
+	
+	
 	@Override
 	public void run()
 	{
 		WorkDir.setBaseDir(workdirPath);
-
+		
 		// lock working directory
 		if (doLock) {
 			final File lock = WorkDir.getFile(lockFile);
@@ -98,13 +98,13 @@ public class InitTaskWorkdir extends InitTask {
 				return;
 			}
 		}
-
+		
 		for (final Entry<String, String> e : namedPaths.entrySet()) {
 			WorkDir.addPath(e.getKey(), e.getValue());
 		}
 	}
-
-
+	
+	
 	/**
 	 * Called when the lock file could not be obtained (cannot write or already
 	 * exists).<br>
@@ -114,7 +114,7 @@ public class InitTaskWorkdir extends InitTask {
 	protected void onLockError()
 	{
 		Log.e("Could not obtain lock file.\nOnly one instance can run at a time.");
-
+		
 		//@formatter:off
 		JOptionPane.showMessageDialog(
 				null,
@@ -123,11 +123,11 @@ public class InitTaskWorkdir extends InitTask {
 				JOptionPane.ERROR_MESSAGE
 				);
 		//@formatter:on
-
+		
 		App.shutdown();
 	}
-
-
+	
+	
 	@Override
 	public String getName()
 	{

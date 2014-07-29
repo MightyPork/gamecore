@@ -15,12 +15,12 @@ import mightypork.gamecore.core.App;
  * @author Ondřej Hruška (MightyPork)
  */
 public class Key {
-
+	
 	private int code = -1;
 	private final String name;
 	private final Set<String> aliases = new HashSet<>(1);
-
-
+	
+	
 	/**
 	 * Create a key. Note that both name and aliases are converted to uppercase,
 	 * and all underscores are ignored when the aliases are matched.
@@ -30,24 +30,24 @@ public class Key {
 	 */
 	public Key(String name, String... aliases)
 	{
-
+		
 		// assign name and aliases, converting both to uppercase
-
+		
 		this.name = name;
 		this.aliases.add(prepareForMatch(name));
-
+		
 		for (final String al : aliases) {
 			this.aliases.add(prepareForMatch(al));
 		}
 	}
-
-
+	
+	
 	public boolean isDown()
 	{
 		return App.input().isKeyDown(this);
 	}
-
-
+	
+	
 	/**
 	 * Set a key code. This can be used by the {@link InputModule} to store a
 	 * numeric code in the key.
@@ -58,8 +58,8 @@ public class Key {
 	{
 		this.code = code;
 	}
-
-
+	
+	
 	/**
 	 * Check if the provided alias matches this key.<br>
 	 * Both the primary alias and the extra aliases are considered.
@@ -72,14 +72,14 @@ public class Key {
 		if (alias == null) return false;
 		return aliases.contains(prepareForMatch(alias));
 	}
-
-
+	
+	
 	private String prepareForMatch(String matched)
 	{
 		return matched.toUpperCase().replace("_", "");
 	}
-
-
+	
+	
 	/**
 	 * Get key name (primary alias).
 	 *
@@ -89,8 +89,8 @@ public class Key {
 	{
 		return name;
 	}
-
-
+	
+	
 	/**
 	 * Get the numeric code assigned to this key. If none is assigned, the value
 	 * is -1.
@@ -101,8 +101,8 @@ public class Key {
 	{
 		return code;
 	}
-
-
+	
+	
 	/**
 	 * Get if this key is not a NONE or undefined key.
 	 *

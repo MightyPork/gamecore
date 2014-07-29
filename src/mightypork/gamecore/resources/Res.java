@@ -18,12 +18,12 @@ import mightypork.gamecore.graphics.textures.TxSheet;
  * @author Ondřej Hruška (MightyPork)
  */
 public final class Res {
-	
+
 	private static TextureRegistry textures = new TextureRegistry();
 	private static SoundRegistry sounds = new SoundRegistry();
 	private static FontRegistry fonts = new FontRegistry();
-	
-	
+
+
 	/**
 	 * Get a texture by key
 	 *
@@ -34,8 +34,8 @@ public final class Res {
 	{
 		return textures.getTexture(key);
 	}
-	
-	
+
+
 	/**
 	 * Get a texture sheet by key
 	 *
@@ -46,8 +46,8 @@ public final class Res {
 	{
 		return textures.getSheet(key);
 	}
-	
-	
+
+
 	/**
 	 * Get a texture quad by key
 	 *
@@ -58,8 +58,8 @@ public final class Res {
 	{
 		return textures.getQuad(key);
 	}
-	
-	
+
+
 	/**
 	 * Get a sound loop player by key
 	 *
@@ -70,8 +70,8 @@ public final class Res {
 	{
 		return sounds.getLoop(key);
 	}
-	
-	
+
+
 	/**
 	 * Get a sound effect player by key
 	 *
@@ -82,8 +82,8 @@ public final class Res {
 	{
 		return sounds.getEffect(key);
 	}
-
-
+	
+	
 	/**
 	 * Get a font by key
 	 *
@@ -94,8 +94,8 @@ public final class Res {
 	{
 		return fonts.getFont(key);
 	}
-	
-	
+
+
 	/**
 	 * Get internal texture registry
 	 *
@@ -105,8 +105,8 @@ public final class Res {
 	{
 		return textures;
 	}
-
-
+	
+	
 	/**
 	 * Get internal font registry
 	 *
@@ -116,8 +116,8 @@ public final class Res {
 	{
 		return fonts;
 	}
-	
-	
+
+
 	/**
 	 * Get internal sound registry
 	 *
@@ -127,8 +127,8 @@ public final class Res {
 	{
 		return sounds;
 	}
-
-
+	
+	
 	/**
 	 * Load resources by a resource initializer.
 	 *
@@ -140,5 +140,5 @@ public final class Res {
 		initializer.addTextures(textures);
 		initializer.addSounds(sounds);
 	}
-	
+
 }

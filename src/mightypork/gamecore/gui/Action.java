@@ -10,10 +10,10 @@ import mightypork.utils.interfaces.Enableable;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class Action implements Runnable, Enableable {
-	
+
 	private boolean enabled = true;
-	
-	
+
+
 	/**
 	 * Enable the action
 	 *
@@ -24,8 +24,8 @@ public abstract class Action implements Runnable, Enableable {
 	{
 		this.enabled = enable;
 	}
-	
-	
+
+
 	/**
 	 * @return true if this action is enabled.
 	 */
@@ -34,8 +34,8 @@ public abstract class Action implements Runnable, Enableable {
 	{
 		return enabled;
 	}
-	
-	
+
+
 	/**
 	 * Run the action, if it's enabled.
 	 */
@@ -44,11 +44,11 @@ public abstract class Action implements Runnable, Enableable {
 	{
 		if (enabled) execute();
 	}
-	
-	
+
+
 	/**
 	 * Do the work.
 	 */
 	protected abstract void execute();
-	
+
 }

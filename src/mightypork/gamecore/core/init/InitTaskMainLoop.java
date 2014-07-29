@@ -11,30 +11,30 @@ import mightypork.gamecore.core.MainLoop;
  * @author Ondřej Hruška (MightyPork)
  */
 public abstract class InitTaskMainLoop extends InitTask {
-	
+
 	/** The loader. */
 	protected MainLoop loop;
-	
-	
+
+
 	@Override
 	public void run()
 	{
 		loop = getLoopImpl();
 		app.setMainLoop(loop);
 	}
-	
-	
+
+
 	/**
 	 * Create a loader impl
 	 *
 	 * @return loader
 	 */
 	protected abstract MainLoop getLoopImpl();
-	
-	
+
+
 	@Override
 	public String getName()
 	{
-		return "resource_loader";
+		return "main_loop";
 	}
 }

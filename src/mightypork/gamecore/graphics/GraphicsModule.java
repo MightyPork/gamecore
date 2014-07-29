@@ -267,7 +267,7 @@ public abstract class GraphicsModule extends BackendModule {
 	
 	
 	/**
-	 * Get backend-flavoured deferred texture. This should support PNG images.
+	 * Get backend-flavoured deferred PNG texture.
 	 *
 	 * @param path path to texture
 	 * @return the deferred font
@@ -276,12 +276,31 @@ public abstract class GraphicsModule extends BackendModule {
 	
 	
 	/**
-	 * Get backend-flavoured deferred font. This should support TTF fonts.
+	 * Get backend-flavoured deferred TTF font.
 	 *
 	 * @param path path to font, or font name in the system
 	 * @return the deferred font
 	 */
 	public abstract DeferredFont createFontResource(String path);
+	
+	
+	/**
+	 * Get backend-flavoured deferred TTF font.
+	 *
+	 * @param path path to font, or font name in the system
+	 * @param chars chars that should be supported
+	 * @param size font size used when rendering the font to a backing texture.
+	 *            For bitmap fonts, the actual font height.
+	 * @return the deferred font
+	 */
+	public DeferredFont createFont(String path, String chars, double size)
+	{
+		final DeferredFont font = createFontResource(path);
+		font.setChars(chars);
+		font.setSize(size);
+		
+		return font;
+	}
 	
 	
 	/**
@@ -416,4 +435,10 @@ public abstract class GraphicsModule extends BackendModule {
 	 * @return screen height
 	 */
 	public abstract int getHeight();
+
+
+	/**
+	 * Create the display (window) based on current settings.
+	 */
+	public abstract void createDisplay();
 }

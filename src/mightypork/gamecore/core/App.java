@@ -10,6 +10,7 @@ import mightypork.gamecore.core.events.ShutdownEvent;
 import mightypork.gamecore.core.init.InitTask;
 import mightypork.gamecore.core.plugins.AppPlugin;
 import mightypork.gamecore.graphics.GraphicsModule;
+import mightypork.gamecore.graphics.Renderable;
 import mightypork.gamecore.input.InputModule;
 import mightypork.utils.annotations.Stub;
 import mightypork.utils.eventbus.EventBus;
@@ -25,23 +26,25 @@ import mightypork.utils.logging.Log;
  * @author MightyPork
  */
 public class App extends BusNode {
-
+	
 	private static App instance;
-
+	
 	private final AppBackend backend;
 	private final EventBus eventBus = new EventBus();
 	private boolean started = false;
 	private boolean inited = false;
-
+	
 	/** List of installed App plugins */
 	protected final DelegatingList plugins = new DelegatingList();
 	/** List of initializers */
 	protected final List<InitTask> initializers = new ArrayList<>();
-
+	
 	/** The used main loop instance */
 	protected MainLoop mainLoop;
-
-
+	
+	private Renderable mainRenderable;
+	
+	
 	/**
 	 * Create an app with given backend.
 	 *
@@ -52,24 +55,24 @@ public class App extends BusNode {
 		if (App.instance != null) {
 			throw new IllegalStateException("App already initialized");
 		}
-
+		
 		// store current instance in static field
 		App.instance = this;
-
+		
 		// join the bus
 		this.eventBus.subscribe(this);
-
+		
 		// create plugin registry attached to bus
 		this.eventBus.subscribe(this.plugins);
-
+		
 		// initialize and use backend
 		this.backend = backend;
 		this.backend.bind(this);
 		this.eventBus.subscribe(backend);
 		this.backend.initialize();
 	}
-
-
+	
+	
 	/**
 	 * Add a plugin to the app. Plugins can eg. listen to bus events and react
 	 * to them.
@@ -78,17 +81,13 @@ public class App extends BusNode {
 	 */
 	public void addPlugin(AppPlugin plugin)
 	{
-		if (started) {
-			throw new IllegalStateException("App already started, cannot add plugins.");
-		}
-
 		// attach to event bus
 		plugins.add(plugin);
 		plugin.bind(this);
 		plugin.initialize();
 	}
-
-
+	
+	
 	/**
 	 * Add an initializer to the app.
 	 *
@@ -99,11 +98,11 @@ public class App extends BusNode {
 		if (started) {
 			throw new IllegalStateException("App already started, cannot add initializers.");
 		}
-
+		
 		initializers.add(initializer);
 	}
-
-
+	
+	
 	/**
 	 * Set the main loop implementation
 	 *
@@ -112,9 +111,21 @@ public class App extends BusNode {
 	public void setMainLoop(MainLoop loop)
 	{
 		this.mainLoop = loop;
+		bus().subscribe(loop); // ?
 	}
-
-
+	
+	
+	/**
+	 * Set the main renderable
+	 *
+	 * @param renderable the main renderable
+	 */
+	public void setMainRenderable(Renderable renderable)
+	{
+		this.mainRenderable = renderable;
+	}
+	
+	
 	/**
 	 * Get current backend
 	 *
@@ -124,8 +135,8 @@ public class App extends BusNode {
 	{
 		return backend;
 	}
-
-
+	
+	
 	/**
 	 * Initialize the App and start operating.<br>
 	 * This method should be called after adding all required initializers and
@@ -137,59 +148,60 @@ public class App extends BusNode {
 			throw new IllegalStateException("Already started.");
 		}
 		started = true;
-		
+
 		Log.i("Starting init...");
 		init();
-
+		
 		if (mainLoop == null) {
 			throw new IllegalStateException("The app has no main loop assigned.");
 		}
-
+		
 		Log.i("Starting main loop...");
+		mainLoop.setRootRenderable(mainRenderable);
 		mainLoop.start();
 	}
-
-
+	
+	
 	private void init()
 	{
-		
+
 		if (inited) {
 			throw new IllegalStateException("Already inited.");
 		}
 		inited = true;
-
+		
 		// pre-init hook, just in case anyone wanted to have one.
 		Log.f2("Calling pre-init hook...");
 		preInit();
-
+		
 		Log.f2("Running init tasks...");
-
+		
 		// sort initializers by order.
 		final List<InitTask> orderedInitializers = InitTask.inOrder(initializers);
-
+		
 		for (final InitTask initTask : orderedInitializers) {
 			Log.f1("Running init task \"" + initTask.getName() + "\"...");
-
+			
 			initTask.bind(this);
-
+			
 			// set the task options
 			initTask.init();
-
+			
 			initTask.before();
-
+			
 			// main task action
 			initTask.run();
-
+			
 			// after hook for extra actions immeditaely after the task completes
 			initTask.after();
 		}
-
+		
 		// user can now start the main loop etc.
 		Log.f2("Calling post-init hook...");
 		postInit();
 	}
-
-
+	
+	
 	/**
 	 * Hook called before the initialization sequence starts.
 	 */
@@ -197,8 +209,8 @@ public class App extends BusNode {
 	protected void preInit()
 	{
 	}
-
-
+	
+	
 	/**
 	 * Hook called after the initialization sequence is finished.
 	 */
@@ -206,8 +218,8 @@ public class App extends BusNode {
 	protected void postInit()
 	{
 	}
-
-
+	
+	
 	/**
 	 * Shut down the running instance.<br>
 	 * Deinitialize backend modules and terminate the JVM.
@@ -216,9 +228,9 @@ public class App extends BusNode {
 	{
 		if (instance != null) {
 			Log.i("Dispatching Shutdown event...");
-
+			
 			bus().send(new ShutdownEvent(new Runnable() {
-
+				
 				@Override
 				public void run()
 				{
@@ -231,19 +243,19 @@ public class App extends BusNode {
 					} catch (final Throwable e) {
 						Log.e(e);
 					}
-
+					
 					Log.i("Shutdown completed.");
 					System.exit(0);
 				}
 			}));
-
+			
 		} else {
 			Log.w("App is not running.");
 			System.exit(0);
 		}
 	}
-
-
+	
+	
 	/**
 	 * Get the currently running App instance.
 	 *
@@ -253,8 +265,8 @@ public class App extends BusNode {
 	{
 		return instance;
 	}
-
-
+	
+	
 	/**
 	 * Get graphics module from the running app's backend
 	 *
@@ -264,8 +276,8 @@ public class App extends BusNode {
 	{
 		return instance.backend.getGraphics();
 	}
-
-
+	
+	
 	/**
 	 * Get audio module from the running app's backend
 	 *
@@ -275,8 +287,8 @@ public class App extends BusNode {
 	{
 		return instance.backend.getAudio();
 	}
-
-
+	
+	
 	/**
 	 * Get input module from the running app's backend
 	 *
@@ -286,8 +298,8 @@ public class App extends BusNode {
 	{
 		return instance.backend.getInput();
 	}
-
-
+	
+	
 	/**
 	 * Get event bus instance.
 	 *
@@ -297,8 +309,8 @@ public class App extends BusNode {
 	{
 		return instance.eventBus;
 	}
-
-
+	
+	
 	/**
 	 * Get the main config, if initialized.
 	 *
@@ -309,8 +321,8 @@ public class App extends BusNode {
 	{
 		return cfg("main");
 	}
-
-
+	
+	
 	/**
 	 * Get a config by alias.
 	 *

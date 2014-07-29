@@ -346,7 +346,7 @@ public class Keys {
 	 *
 	 * @return active mod mask (mod bits ored)
 	 */
-	public static int getActiveMod()
+	public static int getActiveMods()
 	{
 		int mods = 0;
 		

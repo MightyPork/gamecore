@@ -1,6 +1,7 @@
 package mightypork.gamecore.core.events;
 
 
+import mightypork.gamecore.core.App;
 import mightypork.utils.eventbus.BusEvent;
 import mightypork.utils.eventbus.EventBus;
 import mightypork.utils.logging.Log;
@@ -42,7 +43,9 @@ public class ShutdownEvent extends BusEvent<ShutdownListener> {
 	{
 		if (!isConsumed()) {
 			Log.i("Shutting down...");
-			shutdownTask.run();
+			
+			App.bus().send(new MainLoopRequest(shutdownTask, true));
+			
 		} else {
 			Log.i("Shutdown aborted.");
 		}

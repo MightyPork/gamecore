@@ -60,7 +60,7 @@ public class KeyStroke {
 	 */
 	public boolean isDown()
 	{
-		return key.isDown() && (Keys.getActiveMod() == mod);
+		return key.isDown() && (Keys.getActiveMods() == mod);
 	}
 	
 	

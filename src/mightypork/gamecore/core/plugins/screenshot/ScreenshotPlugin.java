@@ -14,15 +14,16 @@ import mightypork.utils.Support;
  *
  * @author Ondřej Hruška (MightyPork)
  */
-public class ScreenshotPlugin extends AppPlugin {
-
+public class ScreenshotPlugin extends AppPlugin implements ScreenshotRequestListener {
+	
 	/**
 	 * Take screenshot. Called by the trigger event.
 	 */
-	void takeScreenshot()
+	@Override
+	public void onScreenshotRequest()
 	{
 		App.bus().send(new MainLoopRequest(new Runnable() {
-
+			
 			@Override
 			public void run()
 			{

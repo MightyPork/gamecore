@@ -1,5 +1,5 @@
-GameCore, a 2D game java library
-================================
+GameCore, a 2D java game engine
+===============================
 
 Versatile Java game engine with pluggable backends
 
